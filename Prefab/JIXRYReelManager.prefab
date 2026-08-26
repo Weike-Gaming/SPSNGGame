@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4177252031345620432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4385548864459280185}
+  - component: {fileID: 2168452316747860227}
+  - component: {fileID: 9002189648574166057}
+  - component: {fileID: 783620221915792185}
+  m_Layer: 0
+  m_Name: JIXRYReelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4385548864459280185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177252031345620432}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2168452316747860227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177252031345620432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1982050184, guid: 3b2bdfde5ea4c6a47b97a66795bd223c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symbolTemplate: {fileID: 11400000, guid: 1c7c9eb601815594791607a8c81531fc, type: 2}
+--- !u!114 &9002189648574166057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177252031345620432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6026614161e3afc4ebb75fd19a8fa0b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  symbolInfo: {fileID: 2168452316747860227}
+  _reelData:
+  - _numRows: 3
+    _centerRow: 2
+    _finalReelStop: 0
+    _flags: 8
+    _containerSize: 2.5
+    _iconSize: {x: 1, y: 1, z: 1}
+    _largeIconSize: {x: 1.3, y: 1.3, z: 1.3}
+    _fadeInDuration: 1
+    _fadeOutDuration: 1
+  - _numRows: 3
+    _centerRow: 2
+    _finalReelStop: 0
+    _flags: 8
+    _containerSize: 2.5
+    _iconSize: {x: 1, y: 1, z: 1}
+    _largeIconSize: {x: 1.3, y: 1.3, z: 1.3}
+    _fadeInDuration: 1
+    _fadeOutDuration: 1
+  - _numRows: 3
+    _centerRow: 2
+    _finalReelStop: 0
+    _flags: 8
+    _containerSize: 2.5
+    _iconSize: {x: 1, y: 1, z: 1}
+    _largeIconSize: {x: 1.3, y: 1.3, z: 1.3}
+    _fadeInDuration: 1
+    _fadeOutDuration: 1
+  - _numRows: 3
+    _centerRow: 2
+    _finalReelStop: 0
+    _flags: 8
+    _containerSize: 2.5
+    _iconSize: {x: 1, y: 1, z: 1}
+    _largeIconSize: {x: 1.3, y: 1.3, z: 1.3}
+    _fadeInDuration: 1
+    _fadeOutDuration: 1
+  - _numRows: 3
+    _centerRow: 2
+    _finalReelStop: 0
+    _flags: 8
+    _containerSize: 2.5
+    _iconSize: {x: 1, y: 1, z: 1}
+    _largeIconSize: {x: 1.3, y: 1.3, z: 1.3}
+    _fadeInDuration: 1
+    _fadeOutDuration: 1
+--- !u!114 &783620221915792185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177252031345620432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de53c825ba517c4bbbbf480eb6dccd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

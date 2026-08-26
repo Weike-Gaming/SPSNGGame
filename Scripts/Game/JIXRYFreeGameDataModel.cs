@@ -1,0 +1,228 @@
+﻿using System.Linq;
+using Weike.MachineInterface;
+using Weike.SlotCore;
+
+namespace Weike.Games.JIXRY
+{
+    public class JIXRYFreeGameDataModel : WkFreeGameDataModel
+    {
+        /// <summary>
+        /// int[35]
+        /// </summary>
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] fgIngotValue
+        {
+            get => _fgIngotValue;
+            set
+            {
+                if (_fgIngotValue.SequenceEqual(value)) return;
+                _fgIngotValue = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// int[35]
+        /// </summary>
+        public uint[] fgTempIngotValue
+        {
+            get => _fgTempIngotValue;
+            set
+            {
+                if (_fgTempIngotValue.SequenceEqual(value))
+                {
+                    return;
+                }
+
+                _fgTempIngotValue = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// int[35]
+        /// </summary>
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] fgPreviousIngotValue
+        {
+            get => _fgPreviousIngotValue;
+            set
+            {
+                if (_fgPreviousIngotValue.SequenceEqual(value))
+                {
+                    return;
+                }
+
+                _fgPreviousIngotValue = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
+        #region Extra prize
+
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint extraPrizeMultiplier
+        {
+            get => _extraPrizeMultiplier;
+            set
+            {
+                if (_extraPrizeMultiplier == value) return;
+                _extraPrizeMultiplier = value;
+                OnPropertyChanged();
+            }
+        }
+
+        // Backing private is a single uint; expose as uint to match.
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint extraPrizeMultiplierIngotValue
+        {
+            get => _extraPrizeMultiplierIngotValue;
+            set
+            {
+                if (_extraPrizeMultiplierIngotValue == value) return;
+                _extraPrizeMultiplierIngotValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [WkSaveToSram]
+        public uint previousExtraPrizeMultiplier
+        {
+            get => _previousExtraPrizeMultiplier;
+            set
+            {
+                if (_previousExtraPrizeMultiplier == value)
+                {
+                    return;
+                }
+                _previousExtraPrizeMultiplier = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        #region Jackpot Ingot
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public byte extraJackpotType
+        {
+            get => _extraJackpotType;
+            set
+            {
+                if (_extraJackpotType == value)
+                {
+                    return;
+                }
+                _extraJackpotType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [WkSaveToSram]
+        public byte previousExtraJackpotType
+        {
+            get => _previousExtraJackpotType;
+            set
+            {
+                if (_previousExtraJackpotType == value)
+                {
+                    return;
+                }
+                _previousExtraJackpotType = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+
+        #region Reel Nudge
+        public bool isLuckyWin
+        {
+            get => _isLuckyWin;
+            set
+            {
+                if (_isLuckyWin == value)
+                {
+                    return;
+                }
+                _isLuckyWin = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// int[5] of the rng before reel nudge.
+        /// </summary>
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] savedPreNudgeRng
+        {
+            get => _savedPreNudgeRng;
+            set
+            {
+                if (_savedPreNudgeRng.SequenceEqual(value))
+                    return;
+                _savedPreNudgeRng = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// int[15] of the ingot value AFTER reel nudge, only used for recovery.
+        /// </summary>
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] savedPostNudgeIngotValue
+        {
+            get => _savedPostNudgeIngotValue;
+            set
+            {
+                if (_savedPostNudgeIngotValue.SequenceEqual(value))
+                    return;
+                _savedPostNudgeIngotValue = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// int[15] of the ingot value BEFORE reel nudge, only used for History.
+        /// </summary>
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] savedPreNudgeIngotValue
+        {
+            get => _savedPreNudgeIngotValue;
+            set
+            {
+                if (_savedPreNudgeIngotValue.SequenceEqual(value))
+                    return;
+                _savedPreNudgeIngotValue = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+        #endregion
+
+        private uint[] _fgIngotValue = new uint[35];
+        private uint[] _fgTempIngotValue = new uint[35];
+        private uint[] _fgPreviousIngotValue = new uint[35];
+
+        private uint _extraPrizeMultiplier = 0;
+        private uint _extraPrizeMultiplierIngotValue = 0;
+        private uint _previousExtraPrizeMultiplier = 0;
+
+        private byte _extraJackpotType = 0;
+        private byte _previousExtraJackpotType = 0;
+
+        private uint[] _savedPreNudgeRng = new uint[5];
+        private uint[] _savedPostNudgeIngotValue = new uint[15];
+        private uint[] _savedPreNudgeIngotValue = new uint[15];
+        private bool _isLuckyWin;
+    }
+}

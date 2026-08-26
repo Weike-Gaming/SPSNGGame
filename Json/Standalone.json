@@ -1,0 +1,10 @@
+{
+    "configDataRecover" : {
+        "hasFastStop" : true,
+        "hasAutoSpin" : false,
+        "minimumPlayOptionIndex" : 4
+    },
+    "dataModel" : {    
+        "variation" : 1
+    }
+}

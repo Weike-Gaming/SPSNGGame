@@ -1,0 +1,424 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -684644244, guid: 3b2bdfde5ea4c6a47b97a66795bd223c, type: 3}
+  m_Name: JIXRYSymbolInfo
+  m_EditorClassIdentifier: 
+  symbols:
+  - name: NINE
+    symbolImageTexture: {fileID: 2800000, guid: b20f47b64d530c14c8dbd7977589d55f, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000050008000a00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: TEN
+    symbolImageTexture: {fileID: 2800000, guid: 70d31d45f8fbf4b40941a7fb0831a454, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000050008000a00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: JACK
+    symbolImageTexture: {fileID: 2800000, guid: 2c05a6d163ceb084484a1b0569a0a67b, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000050008000a00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: QUEEN
+    symbolImageTexture: {fileID: 2800000, guid: 03ac13c3861b32643b08ba3343695716, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 0000000008000a001e00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: KING
+    symbolImageTexture: {fileID: 2800000, guid: f57b7bc4d28e6184882101ba4fe59981, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 0000000008000a001e00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: ACE
+    symbolImageTexture: {fileID: 2800000, guid: 80c5204d8bbdf8a418570a1adc7a1e37, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 0000000008000a001e00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: FLAG
+    symbolImageTexture: {fileID: 2800000, guid: 7c80026d46d9ecc4ca2341210f7bd74c, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 000000000a001e003c00
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: HAT
+    symbolImageTexture: {fileID: 2800000, guid: b140a21dd7b09354a8e80cb02896bae7, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 000000000a001e005000
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: JADE SEAL
+    symbolImageTexture: {fileID: 2800000, guid: da8aaec354dd0a245b26b882df69120a, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 000000000a001e006400
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: SCROLL
+    symbolImageTexture: {fileID: 2800000, guid: 3080f405780b48b40a0244f9a779caa1, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000140032009600
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: THRONE
+    symbolImageTexture: {fileID: 2800000, guid: a5f0a80ea2787ae44bf8d8c06ebbe84f, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 000000001e005000c800
+    spriteAnimationCollection: []
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: REEL NUDGE GREEN SCATTER
+    symbolImageTexture: {fileID: 2800000, guid: 3975a177702ff054f8dd7586e8faf943, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: 4b1c03b989dd7f84bae26a3abaad9b09, type: 3}
+      - {fileID: 2800000, guid: b3257e6b207653a42b33b8690897f7c1, type: 3}
+      - {fileID: 2800000, guid: cfcec676924fe3143abdf4bead7c33a7, type: 3}
+      - {fileID: 2800000, guid: d85982540695f4c42bbf347efa649ea5, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 640f8c02c1b08264eb41f3052eeac976, type: 3}
+      - {fileID: 4900000, guid: 640f8c02c1b08264eb41f3052eeac976, type: 3}
+      - {fileID: 4900000, guid: 640f8c02c1b08264eb41f3052eeac976, type: 3}
+      - {fileID: 4900000, guid: 640f8c02c1b08264eb41f3052eeac976, type: 3}
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: 129eb488cf7fc8646b363cc6f44f5e67, type: 3}
+      - {fileID: 2800000, guid: eeea7630b4f0b9840bd62916608bb272, type: 3}
+      - {fileID: 2800000, guid: 4e6aaabb9aa740b459088e455cfd916c, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 85caa4123b955574a99d5328428b64c1, type: 3}
+      - {fileID: 4900000, guid: 85caa4123b955574a99d5328428b64c1, type: 3}
+      - {fileID: 4900000, guid: 85caa4123b955574a99d5328428b64c1, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: 098219c5155c6f94ea11e5fbd494b667, type: 3}
+      - {fileID: 2800000, guid: 92ff4fe9a2accee4aadbe54412b2a420, type: 3}
+      - {fileID: 2800000, guid: a082d571ef84aea4987c13bf16cd974e, type: 3}
+      - {fileID: 2800000, guid: c6f08857641f7e940ae79b28444f2008, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: e3e6591c408c8ad47934cd39bebaaf7c, type: 3}
+      - {fileID: 4900000, guid: e3e6591c408c8ad47934cd39bebaaf7c, type: 3}
+      - {fileID: 4900000, guid: e3e6591c408c8ad47934cd39bebaaf7c, type: 3}
+      - {fileID: 4900000, guid: e3e6591c408c8ad47934cd39bebaaf7c, type: 3}
+    - key: Spin
+      textureCollection:
+      - {fileID: 2800000, guid: ad087ea527c6f564e8ce420500d034b1, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 4982638b2088aa245b7d76a63730fd4d, type: 3}
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: BLUE_SCATTER
+  - name: JACKPOT RED SCATTER
+    symbolImageTexture: {fileID: 2800000, guid: 1000883742351d94aac935756c149bf1, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: 81ecd2c9f90072c4ca163d2214a693db, type: 3}
+      - {fileID: 2800000, guid: b05e2e889ab7e3546b951ef1e76cefc5, type: 3}
+      - {fileID: 2800000, guid: ebb1083e4b4406342a5e9eb0032d69b1, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: ef668bfde918d7441b16b8df1e9d8220, type: 3}
+      - {fileID: 4900000, guid: ef668bfde918d7441b16b8df1e9d8220, type: 3}
+      - {fileID: 4900000, guid: ef668bfde918d7441b16b8df1e9d8220, type: 3}
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: 78b460494d2a32c4383337ae7eb301dd, type: 3}
+      - {fileID: 2800000, guid: 10254b19549a39143b03b0cb55651993, type: 3}
+      - {fileID: 2800000, guid: 229e19d753f8f864b991038f71fc5928, type: 3}
+      - {fileID: 2800000, guid: 2ce1a1a59621fce45bf7f11290ee6315, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: fc20fcd1be48f5449b040f0b68aa53cd, type: 3}
+      - {fileID: 4900000, guid: fc20fcd1be48f5449b040f0b68aa53cd, type: 3}
+      - {fileID: 4900000, guid: fc20fcd1be48f5449b040f0b68aa53cd, type: 3}
+      - {fileID: 4900000, guid: fc20fcd1be48f5449b040f0b68aa53cd, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: fd30ec36a09bd7e499d0d13b6cdf9a34, type: 3}
+      - {fileID: 2800000, guid: 8da983aa9503b534a8243efb25575e2a, type: 3}
+      - {fileID: 2800000, guid: ed072935e8fc85c48bf0fd5d82cf7cf5, type: 3}
+      - {fileID: 2800000, guid: bf30b0fef9e8c6a4380010b3f532ecfd, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 2a9503bc5da474c4ab77956c21d89378, type: 3}
+      - {fileID: 4900000, guid: 2a9503bc5da474c4ab77956c21d89378, type: 3}
+      - {fileID: 4900000, guid: 2a9503bc5da474c4ab77956c21d89378, type: 3}
+      - {fileID: 4900000, guid: 2a9503bc5da474c4ab77956c21d89378, type: 3}
+    - key: Spin
+      textureCollection:
+      - {fileID: 2800000, guid: 185cbdb526a128f46b958a24fe15353f, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 4982638b2088aa245b7d76a63730fd4d, type: 3}
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: RED_SCATTER
+  - name: REEL UPGRADE PURPLE SCATTER
+    symbolImageTexture: {fileID: 2800000, guid: 7e4b93fba39422c47b2dee9c341f5c70, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: a0b03ee3d0b07034fab7e9f39879e022, type: 3}
+      - {fileID: 2800000, guid: a39b12952945fe94c8d54e244bc94dc1, type: 3}
+      - {fileID: 2800000, guid: 858039ab2a05d094e8990f295e2d635a, type: 3}
+      - {fileID: 2800000, guid: fc65d471fcbdbdc4eb3bba372b5ffcd2, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: ad48716689b1b6a4f834af5cdb50340c, type: 3}
+      - {fileID: 4900000, guid: ad48716689b1b6a4f834af5cdb50340c, type: 3}
+      - {fileID: 4900000, guid: ad48716689b1b6a4f834af5cdb50340c, type: 3}
+      - {fileID: 4900000, guid: ad48716689b1b6a4f834af5cdb50340c, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: 8e4f735eb79e4e447906920a94e18e3c, type: 3}
+      - {fileID: 2800000, guid: 79e72eb05dfd2a743a8a8ecebdbe68b5, type: 3}
+      - {fileID: 2800000, guid: 0125ab8262b6cb244bb107b34eb40b8f, type: 3}
+      - {fileID: 2800000, guid: 7c0af71b43fb8fe46858a51a8ba4d86f, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: c38c32ae01bdd684a909e8d0ab47127e, type: 3}
+      - {fileID: 4900000, guid: c38c32ae01bdd684a909e8d0ab47127e, type: 3}
+      - {fileID: 4900000, guid: c38c32ae01bdd684a909e8d0ab47127e, type: 3}
+      - {fileID: 4900000, guid: c38c32ae01bdd684a909e8d0ab47127e, type: 3}
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: 07e7b12e56368644ba70e5e27959d069, type: 3}
+      - {fileID: 2800000, guid: 3db98563885fb7048a4da19e8d9f8fe8, type: 3}
+      - {fileID: 2800000, guid: 49fae46289521d742bced424dcbf5d58, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: cd40fef0b46dc2b42bf4b008093fe578, type: 3}
+      - {fileID: 4900000, guid: cd40fef0b46dc2b42bf4b008093fe578, type: 3}
+      - {fileID: 4900000, guid: cd40fef0b46dc2b42bf4b008093fe578, type: 3}
+    - key: Spin
+      textureCollection:
+      - {fileID: 2800000, guid: 42fd4f4ccb59fd6428a4f9ac3d2b0b32, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 4982638b2088aa245b7d76a63730fd4d, type: 3}
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: GREEN_SCATTER
+  - name: ELEPHANT
+    symbolImageTexture: {fileID: 2800000, guid: 3816b4a72cb568f40913da461cad31a9, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: a2e417152f46311439608b75b13b4310, type: 3}
+      - {fileID: 2800000, guid: 1da0bec0e1148c243842380cbff82918, type: 3}
+      - {fileID: 2800000, guid: 21a9ccbbbcba3b94692c908ea6d68fd1, type: 3}
+      - {fileID: 2800000, guid: eca888d3ce5483941a0d385a0a72bd2a, type: 3}
+      - {fileID: 2800000, guid: 279874af2745edc4683ced327a272af9, type: 3}
+      - {fileID: 2800000, guid: adaa70325a7feff4e8fb8e51775a7ea1, type: 3}
+      - {fileID: 2800000, guid: 44d597b808c7680449d6e88a4d069fae, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: fb4aa7aad8597f44cac99d58a73e4dac, type: 3}
+      - {fileID: 4900000, guid: 821a34fabcab98541b590fe4b1c07a62, type: 3}
+    digitsTexture: {fileID: 0}
+    digitsJson: {fileID: 0}
+    symbolType: SUBSTITUTE
+  - name: INGOT
+    symbolImageTexture: {fileID: 2800000, guid: 2f45e03fbe43efb41858b6531347a5f5, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: 8fec61034a8c0a2478a599398e5044ea, type: 3}
+      - {fileID: 2800000, guid: e89fbe5fe13240347a911cf523127247, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: c0466d576b5404d48862accddeeaec52, type: 3}
+      - {fileID: 4900000, guid: 27ed107eb4e929c4daedc1baf4c633af, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: ec96a43bddfb4ac468d664864cd1402e, type: 3}
+      - {fileID: 2800000, guid: 45017e1ddc09d95418fc0fc3bcde64a1, type: 3}
+      - {fileID: 2800000, guid: 79cd2bf895c0d154b99c785f92673f5c, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: afd1946cf3632f7418a76254b68bc134, type: 3}
+      - {fileID: 4900000, guid: afd1946cf3632f7418a76254b68bc134, type: 3}
+      - {fileID: 4900000, guid: afd1946cf3632f7418a76254b68bc134, type: 3}
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: 23ee58a1688ece9498279175bf69b9af, type: 3}
+      - {fileID: 2800000, guid: 9bc1aab95af27c5409c67f1850db4266, type: 3}
+      - {fileID: 2800000, guid: 11e3ac9c16e7e7245b69823d7f773770, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 646affffe607f3a4ba7e3b49fac32053, type: 3}
+      - {fileID: 4900000, guid: 646affffe607f3a4ba7e3b49fac32053, type: 3}
+      - {fileID: 4900000, guid: 646affffe607f3a4ba7e3b49fac32053, type: 3}
+    digitsTexture: {fileID: 2800000, guid: 817e83d7c76e71041bd9323f01d8dcc1, type: 3}
+    digitsJson: {fileID: 4900000, guid: 9caab3be5d682424cbf60489c05521d1, type: 3}
+    symbolType: INGOT
+  - name: REEL UPGRADE MULTIPLIER PURPLE INGOT
+    symbolImageTexture: {fileID: 2800000, guid: 28664b12a9b410047a02b2c6b02cd7ca, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: 4c2a98d19c6bdc54eb9f8e8d8ee12531, type: 3}
+      - {fileID: 2800000, guid: 073b04e928e5b394c8c04294a77d26e3, type: 3}
+      - {fileID: 2800000, guid: fcf2a72f422bb9845a5cabf70b2e3bd9, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
+      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
+      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: 1ea88cacd8be33141acdb83fbbe983db, type: 3}
+      - {fileID: 2800000, guid: b42f9a0c070cd994ba69ea931752bdf1, type: 3}
+      - {fileID: 2800000, guid: 4803414d933d3314fbc022c67dc66cb6, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
+      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
+      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: 5513d57a2a10e7e48837a87a9e451985, type: 3}
+      - {fileID: 2800000, guid: 848068c79bf03784289267397259d811, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: fb76ec1202da1c04ba599bfa56870785, type: 3}
+      - {fileID: 4900000, guid: 327f0705ff6caa74d8fee3c1a8995aae, type: 3}
+    - key: Award
+      textureCollection:
+      - {fileID: 2800000, guid: f6246d57993b815439cb4a276ecb70ce, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 0ce821745e1f5a444b0e53c434bc0370, type: 3}
+    - key: Multiplier2_en
+      textureCollection:
+      - {fileID: 2800000, guid: 195e2a3c5bdbfcc4ca069bc166d7216b, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
+    - key: Multiplier3_en
+      textureCollection:
+      - {fileID: 2800000, guid: c13750502e2174c4d85e82d55d5b7226, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
+    - key: Multiplier5_en
+      textureCollection:
+      - {fileID: 2800000, guid: b83f84c108622e246bec81358aa8b8fc, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
+    digitsTexture: {fileID: 2800000, guid: 817e83d7c76e71041bd9323f01d8dcc1, type: 3}
+    digitsJson: {fileID: 4900000, guid: 9caab3be5d682424cbf60489c05521d1, type: 3}
+    symbolType: INGOT_PRIZEMULTIPLIER
+  - name: JACKPOT RED INGOT
+    symbolImageTexture: {fileID: 2800000, guid: 7f12487b72d9b9a40ae8cbd1a1314aa3, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 00000000000000000000
+    spriteAnimationCollection:
+    - key: Landing
+      textureCollection:
+      - {fileID: 2800000, guid: 853c53fff53cf1640aba13c866983bcf, type: 3}
+      - {fileID: 2800000, guid: 58dd7ffe7bbee4e45b2063d589580615, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 6652eb4e402ebd0429363dbbbe0c21bd, type: 3}
+      - {fileID: 4900000, guid: d6e4716965061924890ffa1779122847, type: 3}
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: b952a15c8c059344e9a5686461bb0ed1, type: 3}
+      - {fileID: 2800000, guid: 994e35954a0ffb44aa60097cd261bba8, type: 3}
+      - {fileID: 2800000, guid: 93b5e1ea9fa3f8e47a8b0cf2a92fa565, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: b846d10e846a91a4999425e8e8114be6, type: 3}
+      - {fileID: 2800000, guid: b3804339e95343e46b6dc33c4007ea56, type: 3}
+      - {fileID: 2800000, guid: 5997120db029fa041b6b406bf95c7fd1, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
+    - key: Award
+      textureCollection:
+      - {fileID: 2800000, guid: ffcfd7d8c6f76c54099f5d3a9a271d6b, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: fdc927f854b705b4db4cf9759fd40743, type: 3}
+    - key: Grand_en
+      textureCollection:
+      - {fileID: 2800000, guid: aa36c362634d4c94082347d3a6d574dc, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Major_en
+      textureCollection:
+      - {fileID: 2800000, guid: 54ab36f2e9079ca4eb5e424778656624, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Minor_en
+      textureCollection:
+      - {fileID: 2800000, guid: bf6c75984dc8b784cb39477d9bc63942, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Mini_en
+      textureCollection:
+      - {fileID: 2800000, guid: 569013866d8307e4c8f019c4e6522dc3, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Grand_zh
+      textureCollection:
+      - {fileID: 2800000, guid: 84e945f774cb46f49ba7610623f501dc, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Major_zh
+      textureCollection:
+      - {fileID: 2800000, guid: b80daa9686a3e644d9bbf47f21c829de, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Minor_zh
+      textureCollection:
+      - {fileID: 2800000, guid: dfcebad4d1e34d04387606c1ac862368, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Mini_zh
+      textureCollection:
+      - {fileID: 2800000, guid: 1b8c5fab77571fb45988d7502d1700fe, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    digitsTexture: {fileID: 2800000, guid: 817e83d7c76e71041bd9323f01d8dcc1, type: 3}
+    digitsJson: {fileID: 4900000, guid: 9caab3be5d682424cbf60489c05521d1, type: 3}
+    symbolType: INGOT_JACKPOT

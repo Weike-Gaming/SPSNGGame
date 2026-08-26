@@ -1,0 +1,34 @@
+ {
+    "EN" : 
+    {
+        "PleaseTakeWin" : "PLEASE TAKE WIN",
+        "TakeWinOrLowerBet" : "PLEASE TAKE WIN OR PLACE LOWER BET",
+        "TakeWinOrPlayOn" : "TAKE WIN OR PLAY ON", 
+        "GoodLuck" : "GOOD LUCK",
+        "InsertCredit" : "INSERT CREDITS",
+        "GameOverPlayOn" : "GAME OVER       PLAY ON",
+        "GameOverInsertCredits" : "GAME OVER          INSUFFICIENT CREDITS",
+        "InsertCreditOrSpin" : "INSERT CREDITS OR PRESS SPIN TO PLAY REMAINING CREDITS",
+        "GambleTakeWinOrPlayOn" : "GAMBLE, TAKE WIN OR PLAY ON",
+        "FeatureComplete" : "PLEASE TAKE WIN",
+        "Betx" : "BET x{0} SELECTED",
+        "NewBetx" : "NEW BET x{0} SELECTED",
+        "PleaseTakeWinFeature" : "PLEASE TAKE WIN"
+    },
+    "ZH" : 
+    {
+        "PleaseTakeWin" : "请领奖",
+        "TakeWinOrLowerBet" : "请领奖或下较小注额",
+        "TakeWinOrPlayOn" : "领奖或继续游戏", 
+        "GoodLuck" : "祝你好运",
+        "InsertCredit" : "投入积分",
+        "GameOverPlayOn" : "游戏结束      请继续游戏",
+        "GameOverInsertCredits" : "游戏结束      积分不足",
+        "InsertCreditOrSpin" : "请投入积分或用剩余积分继续游戏",
+        "GambleTakeWinOrPlayOn" : "进入博彩， 领奖 或继续游戏",
+        "FeatureComplete" : "请领奖",
+        "Betx" : "已选择注额 x{0}",
+        "NewBetx" : "已选择新注额 x{0}",
+        "PleaseTakeWinFeature" : "请领奖"
+    }
+}

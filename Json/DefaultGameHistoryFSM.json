@@ -1,0 +1,26 @@
+{
+	"States": [
+		{
+			"Name": "WkStateHistorySpin",
+			"params": [
+				"history-spin",
+				"history-spin"
+			]
+		}
+	],
+	"Transitions": [
+		
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"transition01",
+				"history-spin",
+				"history-win-increment",
+				[
+					"Cmd_WinIncrmeent"
+				],
+				1
+			]
+		}
+	]
+}

@@ -1,0 +1,375 @@
+{
+    "Level1": {
+        "BetMultiplierMin" : 0,
+        "BetMultiplierMax" : 5,
+        "Threshold" : 21.9,
+        "Phases" : {
+            "BigWin_30" : {
+                "WinAmountThreshold" : 150,
+                "WinLevel" : 1
+            },
+            "ExtremeBigWin_30" : {
+                "WinAmountThreshold" : 1000,
+                "WinLevel" : 2
+            }
+        },
+        "NonSkip" : [
+            {
+                "Min" : 2.9,
+                "Max" : 4.9,
+                "Duration" : 0.3
+            },
+            {
+                "Min" : 4.9,
+                "Max" : 7.9,
+                "Duration" : 0.5
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Duration" : 1.0
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 11.9,
+                "Duration" : 1.5
+            },
+            {
+                "Min" : 11.9,
+                "Max" : 21.8,
+                "Duration" : 2.0
+            },
+            {
+                "Min" : 21.8,
+                "Max" : 999999999.0,
+                "Duration" : 4.0
+            }
+        ],
+        "SfxIndex" : [
+            {
+                "Min" : 0,
+                "Max" : 0.2,
+                "Index" : 1
+            },
+            {
+                "Min" : 0.2,
+                "Max" : 0.4,
+                "Index" : 2
+            },
+            {
+                "Min" : 0.4,
+                "Max" : 0.6,
+                "Index" : 3
+            },
+            {
+                "Min" : 0.6,
+                "Max" : 0.8,
+                "Index" : 4
+            },
+            {
+                "Min" : 0.8,
+                "Max" : 1.1,
+                "Index" : 5
+            },
+            {
+                "Min" : 1.1,
+                "Max" : 1.5,
+                "Index" : 6
+            },
+            {
+                "Min" : 1.5,
+                "Max" : 2.0,
+                "Index" : 7
+            },
+            {
+                "Min" : 2.0,
+                "Max" : 2.7,
+                "Index" : 8
+            },
+            {
+                "Min" : 2.7,
+                "Max" : 3.6,
+                "Index" : 9
+            },
+            {
+                "Min" : 3.6,
+                "Max" : 4.7,
+                "Index" : 10
+            },
+            {
+                "Min" : 4.7,
+                "Max" : 6.1,
+                "Index" : 11
+            },
+            {
+                "Min" : 6.1,
+                "Max" : 7.9,
+                "Index" : 12
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Index" : 13
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 12.9,
+                "Index" : 14
+            },
+            {
+                "Min" : 12.9,
+                "Max" : 15.9,
+                "Index" : 15
+            },
+            {
+                "Min" : 15.9,
+                "Max" : 999999999.0,
+                "Index" : 16
+            }
+        ]
+    },
+    "Level2": {
+        "BetMultiplierMin" : 5,
+        "BetMultiplierMax" : 10,
+        "Threshold" : 15.9,
+        "Phases" : {
+            "BigWin_30" : {
+                "WinAmountThreshold" : 150,
+                "WinLevel" : 1
+            },
+            "ExtremeBigWin_30" : {
+                "WinAmountThreshold" : 1000,
+                "WinLevel" : 2
+            }
+        },
+        "NonSkip" : [
+            {
+                "Min" : 2.9,
+                "Max" : 4.9,
+                "Duration" : 0.3
+            },
+            {
+                "Min" : 4.9,
+                "Max" : 7.9,
+                "Duration" : 0.5
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Duration" : 1.0
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 11.9,
+                "Duration" : 1.5
+            },
+            {
+                "Min" : 11.9,
+                "Max" : 15.8,
+                "Duration" : 2.0
+            },
+            {
+                "Min" : 15.8,
+                "Max" : 999999999.0,
+                "Duration" : 4.0
+            }
+        ],
+        "SfxIndex" : [
+            {
+                "Min" : 0,
+                "Max" : 0.2,
+                "Index" : 2
+            },
+            {
+                "Min" : 0.2,
+                "Max" : 0.4,
+                "Index" : 3
+            },
+            {
+                "Min" : 0.4,
+                "Max" : 0.6,
+                "Index" : 4
+            },
+            {
+                "Min" : 0.6,
+                "Max" : 0.8,
+                "Index" : 5
+            },
+            {
+                "Min" : 0.8,
+                "Max" : 1.1,
+                "Index" : 6
+            },
+            {
+                "Min" : 1.1,
+                "Max" : 1.5,
+                "Index" : 7
+            },
+            {
+                "Min" : 1.5,
+                "Max" : 2.0,
+                "Index" : 8
+            },
+            {
+                "Min" : 2.0,
+                "Max" : 2.7,
+                "Index" : 9
+            },
+            {
+                "Min" : 2.7,
+                "Max" : 3.6,
+                "Index" : 10
+            },
+            {
+                "Min" : 3.6,
+                "Max" : 4.7,
+                "Index" : 11
+            },
+            {
+                "Min" : 4.7,
+                "Max" : 6.1,
+                "Index" : 12
+            },
+            {
+                "Min" : 6.1,
+                "Max" : 7.9,
+                "Index" : 13
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Index" : 14
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 12.9,
+                "Index" : 15
+            },
+            {
+                "Min" : 12.9,
+                "Max" : 999999999.0,
+                "Index" : 16
+            }
+        ]
+
+    },
+    "Level3": {
+        "BetMultiplierMin" : 10,
+        "BetMultiplierMax" : 2147483647,
+        "Threshold" : 12.9,
+        "Phases" : {
+            "BigWin_30" : {
+                "WinAmountThreshold" : 150,
+                "WinLevel" : 1
+            },
+            "ExtremeBigWin_30" : {
+                "WinAmountThreshold" : 1000,
+                "WinLevel" : 2
+            }
+        },
+        "NonSkip" : [
+            {
+                "Min" : 2.9,
+                "Max" : 4.9,
+                "Duration" : 0.3
+            },
+            {
+                "Min" : 4.9,
+                "Max" : 7.9,
+                "Duration" : 0.5
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Duration" : 1.0
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 11.9,
+                "Duration" : 1.5
+            },
+            {
+                "Min" : 11.9,
+                "Max" : 12.8,
+                "Duration" : 2.0
+            },
+            {
+                "Min" : 12.8,
+                "Max" : 999999999.0,
+                "Duration" : 4.0
+            }
+        ],
+        "SfxIndex" : [
+            {
+                "Min" : 0,
+                "Max" : 0.2,
+                "Index" : 3
+            },
+            {
+                "Min" : 0.2,
+                "Max" : 0.4,
+                "Index" : 4
+            },
+            {
+                "Min" : 0.4,
+                "Max" : 0.6,
+                "Index" : 5
+            },
+            {
+                "Min" : 0.6,
+                "Max" : 0.8,
+                "Index" : 6
+            },
+            {
+                "Min" : 0.8,
+                "Max" : 1.1,
+                "Index" : 7
+            },
+            {
+                "Min" : 1.1,
+                "Max" : 1.5,
+                "Index" : 8
+            },
+            {
+                "Min" : 1.5,
+                "Max" : 2.0,
+                "Index" : 9
+            },
+            {
+                "Min" : 2.0,
+                "Max" : 2.7,
+                "Index" : 10
+            },
+            {
+                "Min" : 2.7,
+                "Max" : 3.6,
+                "Index" : 11
+            },
+            {
+                "Min" : 3.6,
+                "Max" : 4.7,
+                "Index" : 12
+            },
+            {
+                "Min" : 4.7,
+                "Max" : 6.1,
+                "Index" : 13
+            },
+            {
+                "Min" : 6.1,
+                "Max" : 7.9,
+                "Index" : 14
+            },
+            {
+                "Min" : 7.9,
+                "Max" : 9.9,
+                "Index" : 15
+            },
+            {
+                "Min" : 9.9,
+                "Max" : 999999999.0,
+                "Index" : 16
+            }
+        ]
+    }
+}

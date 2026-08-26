@@ -1,0 +1,285 @@
+
+<script>
+	var _isWaitingForSavingGameConfig = false;
+	var _isWaitingForAbortSavingGameConfig = false;
+	
+	$(document).ready
+	(
+		function()
+		{
+			const formValues = $('form[name={% BLOCK GAMEDETAIL %}]').serialize();
+			const formParent = $('form[name={% BLOCK GAMEDETAIL %}]');
+
+			const initPlayLine = convertIntStringToHexString(formParent.find('#playLines').val(), 1);
+			const initBetPerLine = convertIntStringToHexString(formParent.find('#betPerLine').val(), 1);
+			const initminimumPlayOption = convertIntStringToHexString(formParent.find('#minimumPlayOption').val(), 1);
+			function canSaveGameConfig()
+			{
+				if(!_isWaitingForSavingGameConfig && !_isWaitingForAbortSavingGameConfig)
+				{
+					_isWaitingForSavingGameConfig = true;
+					formParent.find("#btnSave").text("ABORT");
+					$('input[name="PostAction"]').val('Abort');
+					
+					let bSoftMasterReset = convertIntStringToHexString(0, 1);
+					const gameId = convertIntStringToHexString(KEY_GAME_ID, 1);
+					const sramStartAddress = convertIntStringToHexString(KEY_SRAM_START_INDEX, 2);
+					// IMPORTANT: number of configuration (in byte data type) to save
+					const numOfConfigInByteToSave = convertIntStringToHexString(9, 1);
+					const playLinesIndex = convertIntStringToHexString(formParent.find('#playLines').val(), 1);
+					const betPerLineIndex = convertIntStringToHexString(formParent.find('#betPerLine').val(), 1);
+					const minimumPlayOptionIndex = convertIntStringToHexString(formParent.find('#minimumPlayOption').val(), 1);
+
+					updateContentPageElements(true, 'btnSave', '');
+					updateNavBarElements(true);
+					updateTabElements(true);
+					
+					if(initPlayLine !== playLinesIndex ||
+							initBetPerLine !== betPerLineIndex || 
+							initminimumPlayOption !== minimumPlayOptionIndex )
+					{
+						bSoftMasterReset = convertIntStringToHexString(1, 1);
+					}
+
+					$.post
+					("saveGameConfig", 
+						{ 
+							gameConfig:bSoftMasterReset + gameId  + sramStartAddress + numOfConfigInByteToSave + playLinesIndex + betPerLineIndex + minimumPlayOptionIndex
+						},
+						function(data)
+						{
+						}
+					);
+				}
+			}
+			
+			
+			formParent.find("#btnSave").click
+			(
+				function()
+				{
+					// Do not perform saving procedure if there is no changes
+					if(formValues == $('form[name={% BLOCK GAMEDETAIL %}]').serialize()) 
+						return false;
+						
+					if(_isWaitingForSavingGameConfig && !_isWaitingForAbortSavingGameConfig)
+					{
+						_isWaitingForSavingGameConfig = false;
+						_isWaitingForAbortSavingGameConfig = true;
+						
+						$.post
+						("abortSavingGameConfig", 
+							{
+								gameConfig:"00"
+							},
+							function(data)
+							{
+								_isWaitingForAbortSavingGameConfig = false;
+								formParent.find("#btnSave").text("SAVE");
+								$('input[name="PostAction"]').val('Save');
+								updateContentPageElements(false, '', '');
+								updateNavBarElements(false);
+								updateTabElements(false);
+							}
+						);
+					}
+					
+					const playLinesIndex = convertIntStringToHexString(formParent.find('#playLines').val(), 1);
+					const betPerLineIndex = convertIntStringToHexString(formParent.find('#betPerLine').val(), 1);
+					const minimumPlayOptionIndex = convertIntStringToHexString(formParent.find('#minimumPlayOption').val(), 1);
+					
+					if(!_isWaitingForSavingGameConfig && !_isWaitingForAbortSavingGameConfig)
+					{
+						if(initPlayLine !== playLinesIndex || 
+							initBetPerLine !== betPerLineIndex || 
+							initminimumPlayOption !== minimumPlayOptionIndex)
+						{
+							showModal('KEY_BOX_WARNING', 
+								'KEY_BOX_MESSAGE1 KEY_BOX_MESSAGE2',
+								function()
+								{ 
+									$('div.modal-container').hide();
+									$('div.modal-container').onModalHide();
+									canSaveGameConfig();
+									
+								},
+								function()
+								{ 
+									$('div.modal-container').hide();
+									$('div.modal-container').onModalHide();
+									return false;
+								},
+								'KEY_BOX_YES',
+								'KEY_BOX_NO', '#FBAF23'
+							);
+						}
+						else
+						{
+							canSaveGameConfig();
+						}
+					}
+				}
+			);
+		}
+	);
+	
+	
+	/*
+	 * convert integer to hexadecimal string 
+	 * @param {data} data to be converted
+	 * @param {sizeInByte} size of result in byte
+	 */
+	function convertIntStringToHexString(data, sizeInByte)
+	{
+		var hex = parseInt(data).toString(16);
+		var totalLength = 2 * sizeInByte;
+		
+		// 1 byte = 2 paddings, i.e 00 or 0F or 1A
+		while(hex.length < totalLength)
+		{
+			hex = "0" + hex;
+		}
+		
+		// truncate extra byte
+		if (hex.length > totalLength)
+		{
+			var startIndex = hex.length - totalLength;
+			var endIndex = hex.length;
+			hex = hex.substring(startIndex, endIndex);
+		}
+		
+		return hex;
+	}
+	
+	function convertIntStringToHexStringLSB(data, sizeInByte)
+	{
+		var hex = parseInt(data).toString(16);
+		if(hex.length % 2 > 0)
+		{
+			hex = "0" + hex; // pad "0" if string length is odd
+		}
+		// reverse hex by LSB
+		var tempHex = "";
+		var tempLength = hex.length;
+		var startIndex = 0;
+		var endIndex = 0;
+		while(tempLength >= 2)
+		{
+			startIndex = tempLength - 2;
+			endIndex = tempLength;
+			tempHex = tempHex + hex.substring(startIndex, endIndex);
+			tempLength = tempLength - 2;
+		}
+		hex = tempHex;
+		
+		var totalLength = 2 * sizeInByte;
+		// 1 byte = 2 paddings, i.e 00 or 0F or 1A
+		while(hex.length < totalLength)
+		{
+			hex = hex + "0";
+		}
+		// truncate extra byte
+		if (hex.length > totalLength)
+		{
+			hex = hex.substring(0, totalLength);
+		}
+		
+		return hex;
+	}
+	/*
+	 * create and show modal
+	 * @param {string} title
+	 * @param {string} contentMsg
+	 * @param {callback function} callbackYes
+	 * @param {callback function} callbackNo
+	 * @param {string} btnYesLabel
+	 * @param {string} btnNoLabel
+	 * @param {string} headerColor
+	 */
+	function showModal(title, contentMsg, callbackYes, callbackNo, btnYesLabel, btnNoLabel, headerColor){
+		createModal(title, contentMsg, btnYesLabel, btnNoLabel, headerColor);
+		$('div.modal').modal(callbackYes, callbackNo);
+	}
+
+	/*
+	 * create modal
+	 * @param {string} title
+	 * @param {string} content
+	 * @param {string} btnYes
+	 * @param {string} btnNo
+	 * @param {string} headerColor
+	 */
+	function createModal(title, content, btnYes, btnNo, headerColor)
+	{
+		var dialogHTML = '<div class="modal-container">';
+		dialogHTML += '<div class="modal fade">';
+		dialogHTML += '<div class="modal-dialog modal-sm">';
+		dialogHTML += '<div class="modal-content">';
+		dialogHTML += '<div class="modal-header">';
+		dialogHTML += '<h4 class="modal-title">'+title+'</h4>';
+		dialogHTML += '</div>';
+		dialogHTML += '<div class="modal-body">';
+		dialogHTML += content;
+		dialogHTML += '</div>';
+		dialogHTML += '<div class="modal-footer">';
+		if(btnNo != '')
+		{
+			dialogHTML += '<button type="button" class="btn btn-white btn-no" data-dismiss="modal">'+btnNo+'</button>';
+		}
+
+		if(btnYes != '')
+		{
+			dialogHTML += '<button type="button" class="btn btn-yes">'+btnYes+'</button>';
+		}
+		dialogHTML += '</div>';
+		dialogHTML += '</div>';
+		dialogHTML += '</div>';
+		dialogHTML += '</div>';
+		dialogHTML += '</div>';
+		
+		var backdrop = '<div class="modal-backdrop"></div>';
+		$('body').append(backdrop);
+		$('body').append(dialogHTML);
+		$('div.modal-header').css('background-color', headerColor);
+	}
+	
+
+</script>
+<form name="{% BLOCK GAMEDETAIL %}">
+	<div class="row">
+		<table class="tbl tbl-norm-1 left">
+			<tr KEY_BLOCK_BET_MULTIPLIER_STATUS>
+				<td class="label tbl-col-4">BET MULTIPLIER</td>
+				<td>
+					<select name="betPerLine" class="weike-select" id="betPerLine">
+						KEY_BLOCK_BET_MULTIPLIER
+					</select>
+				</td>
+			</tr>
+			<tr KEY_BLOCK_ENABLE_CONFIGURE_PLAY_LINE>
+				<td class="label tbl-col-4">PLAY OPTIONS</td>
+				<td KEY_BLOCK_PLAY_OPTIONS_SET_STATUS>
+					<select name="playLines" class="weike-select" id="playLines">
+						KEY_BLOCK_PLAY_LINES
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="label tbl-col-4">MINIMUM PLAY OPTION</td>
+				<td KEY_BLOCK_MINIMUM_PLAY_OPTION_STATUS>
+					<select name="minimumPlayOption" class="weike-select" id="minimumPlayOption">
+						KEY_BLOCK_MINIMUM_PLAY_OPTION
+					</select>
+				</td>
+			</tr>
+			KEY_BLOCK_STANDARD_PROGRESSIVE
+		</table>
+		
+	</div>
+	<div class="row-fx-bottom">
+		<div class="div-right">
+			<input type="hidden" name="PostAction" value="Save">
+			<button type="button" class="btn btn-large" id="btnSave">SAVE</button>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<dirinfo>
+<files>
+	<item key='E_bet_btn30_press.png20251104162432' />
+	<item key='E_bet_btn30.png20251104144919' />
+	<item key='E_bet_btn60_press.png20251104162353' />
+	<item key='E_bet_btn60.png20251104145009' />
+	<item key='E_bet_btn90_press.png20251104162315' />
+	<item key='E_bet_btn90.png20251104145956' />
+	<item key='E_bet_btn150_press.png20251104162219' />
+	<item key='E_bet_btn150.png20251104145635' />
+	<item key='E_bet_btn180_press.png20251104162137' />
+	<item key='E_bet_btn180.png20251104155554' />
+	<item key='E_bet_btn300_press.png20251104162040' />
+	<item key='E_bet_btn300.png20251104155633' />
+	<item key='E_bet_x1_press.png20251104185223' />
+	<item key='E_bet_x1.png20251104184156' />
+	<item key='E_bet_x2_press.png20251104185155' />
+	<item key='E_bet_x2.png20251104184125' />
+	<item key='E_bet_x3_press.png20251104185127' />
+	<item key='E_bet_x3.png20251104184055' />
+	<item key='E_bet_x5_press.png20251104185052' />
+	<item key='E_bet_x5.png20251104184025' />
+	<item key='E_bet_x6_press.png20251104185020' />
+	<item key='E_bet_x6.png20251104183946' />
+	<item key='E_bet_x10_press.png20251104184944' />
+	<item key='E_bet_x10.png20251104183908' />
+	<item key='E_credit_30_press.png20251104184900' />
+	<item key='E_credit_30.png20251104184524' />
+	<item key='E_credit_60_press.png20251104184829' />
+	<item key='E_credit_60.png20251104184453' />
+	<item key='E_credit_90_press.png20251104184746' />
+	<item key='E_credit_90.png20251104184420' />
+	<item key='E_credit_150_press.png20251104184720' />
+	<item key='E_credit_150.png20251104184345' />
+	<item key='E_credit_180_press.png20251104184653' />
+	<item key='E_credit_180.png20251104184313' />
+	<item key='E_credit_300_press.png20251104184621' />
+	<item key='E_credit_300.png20251104184234' />
+	<item key='button reject20251105114255' />
+</files>
+</dirinfo>

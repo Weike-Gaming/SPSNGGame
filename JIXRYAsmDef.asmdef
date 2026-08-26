@@ -1,0 +1,20 @@
+{
+    "name": "JIXRYAsmDef",
+    "rootNamespace": "Weike.Games.JIXRY",
+    "references": [
+        "GUID:ddcba083209492e459f63c51d4c3b55c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:bb13bf95db543bc4586ab6f338915282",
+        "GUID:dc137756a1be8e941b307bc797eed5b7",
+        "GUID:f06555f75b070af458a003d92f9efb00"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

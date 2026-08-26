@@ -1,0 +1,8 @@
+<game GameCode="MCQNG" checksum="">
+	<CoinCustomReelStrips ReelPlay_Cnt = "0">
+	</CoinCustomReelStrips>
+	<CoinConstantPattern Total_Item_Cnt = "0" Total_RNG = "0">
+	</CoinConstantPattern>
+	<JackpotSelection Total_Item_Cnt = "0">
+	</JackpotSelection>
+</game>

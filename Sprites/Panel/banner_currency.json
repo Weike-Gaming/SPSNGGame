@@ -1,0 +1,131 @@
+﻿{"frames": {
+
+"USD":
+{
+	"frame": {"x":0,"y":332,"w":88,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":180},
+	"sourceSize": {"w":88,"h":180}
+},
+"SGD":
+{
+	"frame": {"x":0,"y":332,"w":88,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":180},
+	"sourceSize": {"w":88,"h":180}
+},
+"HKD":
+{
+	"frame": {"x":0,"y":332,"w":88,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":180},
+	"sourceSize": {"w":88,"h":180}
+},
+"TWD":
+{
+	"frame": {"x":704,"y":180,"w":1,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":180},
+	"sourceSize": {"w":1,"h":180}
+},
+"NA":
+{
+	"frame": {"x":88,"y":0,"w":220,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":220,"h":180},
+	"sourceSize": {"w":220,"h":180}
+},
+"ZAR":
+{
+	"frame": {"x":308,"y":332,"w":116,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":116,"h":180},
+	"sourceSize": {"w":116,"h":180}
+},
+"MYR":
+{
+	"frame": {"x":424,"y":332,"w":232,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":232,"h":180},
+	"sourceSize": {"w":232,"h":180}
+},
+"IDR":
+{
+	"frame": {"x":656,"y":332,"w":196,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":180},
+	"sourceSize": {"w":196,"h":180}
+},
+"LKR":
+{
+	"frame": {"x":0,"y":180,"w":192,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":192,"h":180},
+	"sourceSize": {"w":192,"h":180}
+},
+"JPY":
+{
+	"frame": {"x":192,"y":180,"w":100,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":180},
+	"sourceSize": {"w":100,"h":180}
+},
+"CNY":
+{
+	"frame": {"x":704,"y":180,"w":1,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1,"h":180},
+	"sourceSize": {"w":1,"h":180}
+},
+"THB":
+{
+	"frame": {"x":292,"y":180,"w":88,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":180},
+	"sourceSize": {"w":88,"h":180}
+},
+"KRW":
+{
+	"frame": {"x":380,"y":180,"w":140,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":140,"h":180},
+	"sourceSize": {"w":140,"h":180}
+},
+"EUR":
+{
+	"frame": {"x":520,"y":180,"w":88,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":88,"h":180},
+	"sourceSize": {"w":88,"h":180}
+},
+"PHP":
+{
+	"frame": {"x":608,"y":180,"w":96,"h":180},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":96,"h":180},
+	"sourceSize": {"w":96,"h":180}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "24.0.8.70",
+	"image": "banner_currency",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":512},
+	"scale": "1"
+}
+}

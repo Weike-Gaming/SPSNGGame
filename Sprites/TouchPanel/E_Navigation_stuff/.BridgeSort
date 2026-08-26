@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<dirinfo>
+<files>
+	<item key='E_vol_loud.png20251104163617' />
+	<item key='E_vol_low.png20251104163420' />
+	<item key='E_vol_medium.png20251104163524' />
+	<item key='E_vol_off.png20251104163124' />
+	<item key='E_payout_off.png20251104164254' />
+	<item key='E_payout_on.png20251104164522' />
+	<item key='service_off_cn.png20251104164331' />
+	<item key='E_payout_on_cn.png20251104164440' />
+	<item key='E_service_off_cn.png20251104164012' />
+	<item key='E_service_off.png20251104163911' />
+	<item key='E_service_on_cn.png20251104164108' />
+	<item key='E_service_on.png20251104164200' />
+	<item key='E_takewin_en_off.png20251104164846' />
+	<item key='takewin_en_on.png20251104170054' />
+	<item key='takewin_en_off_cn.png20251104164933' />
+	<item key='takewin_en_on_cn.png20251104170001' />
+</files>
+</dirinfo>

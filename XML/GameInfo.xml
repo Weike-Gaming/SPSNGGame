@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<GameInfoWrapper xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<lang>0</lang>
+	<gamePackageID>MCQNG</gamePackageID>
+	<gameID>2513_MCQNG_1.01 (23072026)</gameID>
+	<gameDesc>MAJESTIC QING</gameDesc>
+	<useBetAsPlayline>false</useBetAsPlayline>
+	<gameTypeDesc>243 WAYS, 3X5 REELS</gameTypeDesc>
+	<betOptDesc>1, 2, 3, 6, 10</betOptDesc>
+	<playOptDesc>0, 0, 0, 0, 30</playOptDesc>
+	<rtp>0</rtp>
+	<denom>1</denom>
+	<minBet>30</minBet>
+	<maxBet>68</maxBet>
+	<maxWin>100</maxWin>
+	<betOpt>
+		<unsignedShort>1</unsignedShort>
+		<unsignedShort>2</unsignedShort>
+		<unsignedShort>3</unsignedShort>
+		<unsignedShort>6</unsignedShort>
+		<unsignedShort>10</unsignedShort>
+	</betOpt>
+	<playOpt>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>30</unsignedShort>
+	</playOpt>
+	<gambleAttempt>0</gambleAttempt>
+	<gambleMultiplier>0</gambleMultiplier>
+	<featureMultiplier>0</featureMultiplier>
+	<lastBetOpt>0</lastBetOpt>
+	<lastPlayOpt>0</lastPlayOpt>
+	<minPlayCr>30</minPlayCr>
+	<minPlayOpt>243</minPlayOpt>
+	<maxPlayOpt>243</maxPlayOpt>
+	<progType>2</progType>	<!-- 0:NA, 1:MYSTERY, 2:STDPROG, 3:SAP -->
+	<numProgLvl>2</numProgLvl>
+	<numSAMLvl>0</numSAMLvl>	<!-- 0:disable, N: number of levels -->
+	<threshold>486000</threshold>
+	<bonusThreshold>25000</bonusThreshold>
+	<BPModeStatus>false</BPModeStatus>
+	<type>1</type>	<!-- 0:LINE, 1:WAY, 2:WHEEL, 3:CARD -->
+	<multiDenomSupport>1</multiDenomSupport>	<!-- 0:Single denom, 1:Auto allocate denom, 2:Manual allocate denom -->
+	<gameStatisticSupport>0</gameStatisticSupport><!-- 0:NOT SUPPORTING, 1:SUPPORT COUNTER, 2:SUPPORT NON-COUNTER -->
+	<gameTestEnable>true</gameTestEnable>
+	<gameFeatureDesc></gameFeatureDesc>
+	<gameFeatureRtp>0</gameFeatureRtp>
+	<btnRtpVar>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+		<unsignedShort>0</unsignedShort>
+	</btnRtpVar>
+	<gameRtpInfo>
+		<m_structName>
+			<Namestruct>
+				<name>INT-N21</name>
+			</Namestruct>
+			<Namestruct>
+				<name>INT-N22</name>
+			</Namestruct>
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+			<Namestruct />
+		</m_structName>
+		<m_wRTPList>
+			<unsignedShort>8186</unsignedShort>
+			<unsignedShort>8186</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+		</m_wRTPList>
+		<m_wStdProgIncList>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+			<unsignedShort>0</unsignedShort>
+		</m_wStdProgIncList>
+	</gameRtpInfo>
+</GameInfoWrapper>

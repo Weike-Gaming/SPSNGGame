@@ -1,0 +1,33 @@
+{
+	"States": [
+		{
+			"Name": "WkStateCombiIdle",
+			"params": [
+				"combi-idle",
+				"combi-idle"
+			]
+		},
+		{
+			"Name": "WkStateCombiSpin",
+			"params": [
+				"combi-spin",
+				"combi-spin"
+			]
+		}
+	],
+	"Transitions": [
+		
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"transition01",
+				"combi-idle",
+				"combi-spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		}
+	]
+}

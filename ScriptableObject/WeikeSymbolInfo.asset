@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -684644244, guid: 3b2bdfde5ea4c6a47b97a66795bd223c, type: 3}
+  m_Name: WeikeSymbolInfo
+  m_EditorClassIdentifier: 
+  symbols:
+  - name: NINE
+    symbolImageTexture: {fileID: 2800000, guid: b20f47b64d530c14c8dbd7977589d55f, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: TEN
+    symbolImageTexture: {fileID: 2800000, guid: 70d31d45f8fbf4b40941a7fb0831a454, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: 
+  - name: JACK
+    symbolImageTexture: {fileID: 2800000, guid: 2c05a6d163ceb084484a1b0569a0a67b, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: QUEEN
+    symbolImageTexture: {fileID: 2800000, guid: 03ac13c3861b32643b08ba3343695716, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: KING
+    symbolImageTexture: {fileID: 2800000, guid: f57b7bc4d28e6184882101ba4fe59981, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: ACE
+    symbolImageTexture: {fileID: 2800000, guid: 80c5204d8bbdf8a418570a1adc7a1e37, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: TURTLE
+    symbolImageTexture: {fileID: 2800000, guid: fcea7cc63ff4fe149a0b87ed59fdbecd, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: 
+  - name: FISH
+    symbolImageTexture: {fileID: 2800000, guid: 761ecb4ca19594f479c77c6aa2aca098, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: SCROLL
+    symbolImageTexture: {fileID: 2800000, guid: 84d7a59a167b2c246b8021d55b93a385, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: COINS
+    symbolImageTexture: {fileID: 2800000, guid: 370631d4583efc34592dcb982219fee0, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: NORMAL_SYMBOL
+  - name: TREE
+    symbolImageTexture: {fileID: 2800000, guid: 35d69a213fc3ac74a9ebf8a05cebc28a, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: 
+  - name: SCATTER
+    symbolImageTexture: {fileID: 2800000, guid: 23f235ec990bd6048b68ae90235f3c81, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: SCATTER
+  - name: KIRIN
+    symbolImageTexture: {fileID: 2800000, guid: b9d0b9ccd1d5a1e4eb3e1fe7fdbd4c4e, type: 3}
+    symbolImageTextureZh: {fileID: 0}
+    odds: 
+    spriteAnimationCollection: []
+    spriteSheetJson: {fileID: 0}
+    symbolType: SUBSTITUTE

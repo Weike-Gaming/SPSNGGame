@@ -1,0 +1,17 @@
+{
+  "BetMultiplierType": 1,
+  "PlayOptions" : 
+  [
+    [30,30,30,30,30]
+  ],
+  "BetMultipliers": 
+  [
+    [ 1, 2, 3, 6, 10],
+    [ 1, 2, 3, 5, 10]
+  ],
+  "HasJackpotRandomPick" : false,
+  "JackpotTimers" :
+  [
+	[0]
+  ]
+}

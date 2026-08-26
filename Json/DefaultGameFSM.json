@@ -1,0 +1,1301 @@
+{
+	"States": [
+		{
+			"Name": "JIXRYStateHelp",
+			"params": [
+				"help",
+				"idle"
+			]
+		}	,
+		{
+			"Name": "JIXRYStateDemo",
+			"params": [
+				"demo",
+				"idle"
+			]
+		}	,
+		{
+			"Name": "JIXRYStateCheat",
+			"params": [
+				"cheat",
+				"idle"
+			]
+		}	,
+		{
+			"Name": "JIXRYStateIdle",
+			"params": [
+				"idle",
+				"idle"
+			]
+		},
+		{
+			"Name": "JIXRYStateSpin",
+			"params": [
+				"spin",
+				"spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFirstPopAnimation",
+			"params": [
+				"first-pop-animation",
+				"spin"
+			]
+		},		
+		{
+			"Name": "JIXRYStateWinIncrementNonSkip",
+			"params": [
+				"win-increment-non-skip",
+				"spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateWinIncrement",
+			"params": [
+				"win-increment",
+				"spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateTakeWin",
+			"params": [
+				"take-win",
+				"spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateMainGameEnd",
+			"params": [
+				"main-game-end",
+				"idle"
+			]
+		},
+		{
+			"Name": "JIXRYStateJackpotAnnouncement",
+			"params": [
+				"jp-announcement",
+				"jp-announcement"
+			]
+		},
+		{
+			"Name": "JIXRYStateJackpotSessionEnd",
+			"params": [
+				"jp-session-end",
+				"jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFirstPopAnimationFromJackpot",
+			"params": [
+				"first-pop-animation-from-jp",
+				"jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateWinIncrementNonSkipFromJackpot",
+			"params": [
+				"win-increment-non-skip-from-jp",
+				"jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateWinIncrementFromJackpot",
+			"params": [
+				"win-increment-from-jp",
+				"jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateTakeWinFromJackpot",
+			"params": [
+				"take-win-from-jp",
+				"jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameTrasition",
+			"params": [
+				"fg-transition",
+				"fg-transition"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameCheat",
+			"params": [
+				"fg-cheat",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameInit",
+			"params": [
+				"fg-init",
+				"fg-init"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameSpin",
+			"params": [
+				"fg-spin",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGamePrizeBoostMultiplier",
+			"params": [
+				"fg-prize-boost-multiplier",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGamePrizeBoostMultiplierTransformation",
+			"params": [
+				"fg-prize-boost-multiplier-transformation",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameFirstPopAnimation",
+			"params": [
+				"fg-first-pop-animation",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameWinIncrementNonSkip",
+			"params": [
+				"fg-win-increment-non-skip",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameWinIncrement",
+			"params": [
+				"fg-win-increment",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameFeatureAnimation",
+			"params": [
+				"fg-feature-animation",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameEnd",
+			"params": [
+				"fg-end",
+				"fg-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameEndPanel",
+			"params": [
+				"fg-end-panel",
+				"fg-end-panel"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameSessionEnd",
+			"params": [
+				"fg-session-end",
+				"idle"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameJackpotAnnouncement",
+			"params": [
+				"fg-jp-announcement",
+				"fg-jp-announcement"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameJackpotSessionEnd",
+			"params": [
+				"fg-jp-session-end",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGamePrizeBoostMultiplierFromJackpot",
+			"params": [
+				"fg-prize-boost-multiplier-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGamePrizeBoostMultiplierTransformationFromJackpot",
+			"params": [
+				"fg-prize-boost-multiplier-transformation-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameFirstPopAnimationFromJackpot",
+			"params": [
+				"fg-first-pop-animation-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameWinIncrementNonSkipFromJackpot",
+			"params": [
+				"fg-win-increment-non-skip-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameWinIncrementFromJackpot",
+			"params": [
+				"fg-win-increment-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameFeatureAnimationFromJackpot",
+			"params": [
+				"fg-feature-animation-from-jackpot",
+				"fg-jp-session-end"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameEndFromJackpot",
+			"params": [
+				"fg-end-from-jackpot",
+				"fg-end-from-jackpot"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameReelNudge",
+			"params": [
+				"fg-reel-nudge",
+				"fg-spin"
+			]
+		},
+		{
+			"Name": "JIXRYStateFreeGameReelNudgeEnd",
+			"params": [
+				"fg-reel-nudge-end",
+				"fg-spin"
+			]
+		}
+	],
+	"Transitions": [
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"idle-to-help",
+				"idle",
+				"help",
+				[
+					"Cmd_EnterHelpPage"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"help-to-idle",
+				"help",
+				"idle",
+				[
+					"Cmd_ExitHelpPage"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"idle-to-demo",
+				"idle",
+				"demo",
+				[
+					"Cmd_EnableDemoPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"demo-to-idle",
+				"demo",
+				"idle",
+				[
+					"Cmd_DisableDemoPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"demo-to-cheat",
+				"demo",
+				"cheat",
+				[
+					"Cmd_EnableCheatPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"cheat-to-spin",
+				"cheat",
+				"spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"cheat-to-demo",
+				"cheat",
+				"demo",
+				[
+					"Cmd_DisableCheatPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"idle-to-spin",
+				"idle",
+				"spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"spin-to-main-game-end",
+				"spin",
+				"main-game-end",
+				[
+					"Cmd_NoWin",
+					"Cmd_ReelStopSpinning",
+					"Cmd_NoJackpot",
+					"Cmd_NoFeatureGame",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"main-game-end-to-spin",
+				"main-game-end",
+				"spin",
+				[
+					"Cmd_Spin"
+				],
+				2
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"main-game-end-to-idle",
+				"main-game-end",
+				"idle",
+				[
+					"Cmd_BackToIdle"
+				],
+				2
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"spin-to-first-pop-animation",
+				"spin",
+				"first-pop-animation",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_GotWin",
+					"Cmd_NoJackpot",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"first-pop-animation-to-win-increment",
+				"first-pop-animation",
+				"win-increment",
+				[
+					"Cmd_NoBigWin",
+					"Cmd_FinishFirstPop"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"first-pop-animation-to-win-increment-non-skip",
+				"first-pop-animation",
+				"win-increment-non-skip",
+				[
+					"Cmd_BigWin",
+					"Cmd_FinishFirstPop"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"win-increment-non-skip-to-win-increment",
+				"win-increment-non-skip",
+				"win-increment",
+				[
+					"Cmd_NonSkipTimerOut"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"win-increment-to-take-win",
+				"win-increment",
+				"take-win",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_NoFeatureGame"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"take-win-to-main-game-end",
+				"take-win",
+				"main-game-end",
+				[
+					"Cmd_FinishTakeWin",
+					"Cmd_Spin"
+				],
+				2
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"spin-to-jp-announcement",
+				"spin",
+				"jp-announcement",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_GotJackpot",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"jp-announcement-to-jp-session-end",
+				"jp-announcement",
+				"jp-session-end",
+				[
+					"Cmd_FinishAnnouncement"					
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"jp-session-end-to-first-pop-animation-from-jp",
+				"jp-session-end",
+				"first-pop-animation-from-jp",
+				[
+					"Cmd_FinishJackpot",
+					"Cmd_GotWin",
+					"Cmd_JackpotPrizeReady"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"first-pop-animation-from-jp-to-win-increment-non-skip-from-jp",
+				"first-pop-animation-from-jp",
+				"win-increment-non-skip-from-jp",
+				[
+					"Cmd_FinishFirstPop",
+					"Cmd_BigWin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"win-increment-non-skip-from-jp-to-win-increment-from-jp",
+				"win-increment-non-skip-from-jp",
+				"win-increment-from-jp",
+				[
+					"Cmd_NonSkipTimerOut"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"win-increment-from-jp-to-take-win-from-jp",
+				"win-increment-from-jp",
+				"take-win-from-jp",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_NoFeatureGame"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"take-win-from-jp-to-main-game-end",
+				"take-win-from-jp",
+				"main-game-end",
+				[
+					"Cmd_FinishTakeWin",
+					"Cmd_Spin"
+				],
+				2
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"win-increment-to-fg-transition",
+				"win-increment",
+				"fg-transition",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_GotFeatureGame",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-transition-to-fg-init",
+				"fg-transition",
+				"fg-init",
+				[
+					"Cmd_FinishFeatureGameTransition"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-init-to-fg-cheat",
+				"fg-init",
+				"fg-cheat",
+				[
+					"Cmd_EnableCheatPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-cheat-to-fg-spin",
+				"fg-cheat",
+				"fg-spin",
+				[
+					"Cmd_Spin",
+					"Cmd_DisableCheatPanel"
+				],
+				2
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-init-to-fg-spin",
+				"fg-init",
+				"fg-spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-to-fg-prize-boost-multiplier-transformation",
+				"fg-prize-boost-multiplier",
+				"fg-prize-boost-multiplier-transformation",
+				[
+					"Cmd_FinishPrizeBoostMultiplierAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-transformation-to-fg-prize-boost-multiplier",
+				"fg-prize-boost-multiplier-transformation",
+				"fg-prize-boost-multiplier",
+				[
+					"Cmd_FinishPrizeBoostMultiplierTransformation",
+					"Cmd_GotPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-transformation-to-fg-first-pop-animation",
+				"fg-prize-boost-multiplier-transformation",
+				"fg-first-pop-animation",
+				[
+					"Cmd_FinishPrizeBoostMultiplierTransformation",
+					"Cmd_NoPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-first-pop-animation-to-fg-win-increment-non-skip",
+				"fg-first-pop-animation",
+				"fg-win-increment-non-skip",
+				[
+					"Cmd_FinishFirstPop",
+					"Cmd_BigWin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-first-pop-animation-to-fg-win-increment",
+				"fg-first-pop-animation",
+				"fg-win-increment",
+				[
+					"Cmd_FinishFirstPop",
+					"Cmd_NoBigWin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-to-fg-feature-animation",
+				"fg-win-increment",
+				"fg-feature-animation",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_GotHitNewFeature"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-to-fg-end",
+				"fg-win-increment",
+				"fg-end",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_NoHitNewFeature",
+					"Cmd_NoNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-feature-animation-to-fg-end",
+				"fg-feature-animation",
+				"fg-end",
+				[
+					"Cmd_FinishFeatureAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-to-fg-end-panel",
+				"fg-end",
+				"fg-end-panel",
+				[
+					"Cmd_FinishFeatureGame"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-panel-to-fg-session-end",
+				"fg-end-panel",
+				"fg-session-end",
+				[
+					"Cmd_FinishTakeWin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-session-end-to-idle",
+				"fg-session-end",
+				"idle",
+				[
+					"Cmd_FGSessionEnd"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-end",
+				"fg-spin",
+				"fg-end",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_NoJackpot",
+					"Cmd_NoPrizeBoostMultiplier",
+					"Cmd_NoHitNewFeature",
+					"Cmd_NoWin",
+					"Cmd_FinishScatterAnimation",
+					"Cmd_NoNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-prize-boost-multiplier",
+				"fg-spin",
+				"fg-prize-boost-multiplier",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_NoJackpot",
+					"Cmd_GotPrizeBoostMultiplier",
+					"Cmd_FinishScatterAnimation",
+					"Cmd_NoNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-first-pop-animation-with-nudge",
+				"fg-spin",
+				"fg-first-pop-animation",
+				[
+					"Cmd_ReelStopSpinning",					
+					"Cmd_NoPrizeBoostMultiplier",
+					"Cmd_GotNudge",
+					"Cmd_GotWin",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-first-pop-animation",
+				"fg-spin",
+				"fg-first-pop-animation",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_NoPrizeBoostMultiplier",
+					"Cmd_NoNudge",
+					"Cmd_NoJackpot",
+					"Cmd_GotWin",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-feature-animation",
+				"fg-spin",
+				"fg-feature-animation",
+				[
+					"Cmd_NoWin",
+					"Cmd_NoPrizeBoostMultiplier",
+					"Cmd_NoJackpot",
+					"Cmd_GotHitNewFeature",
+					"Cmd_ReelStopSpinning",
+					"Cmd_FinishScatterAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-to-fg-spin",
+				"fg-end",
+				"fg-spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-to-fg-cheat",
+				"fg-end",
+				"fg-cheat",
+				[
+					"Cmd_EnableCheatPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-jp-announcement",
+				"fg-spin",
+				"fg-jp-announcement",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_GotJackpot",
+					"Cmd_FinishScatterAnimation",
+					"Cmd_NoNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-jp-announcement-to-fg-jp-session-end",
+				"fg-jp-announcement",
+				"fg-jp-session-end",
+				[
+					"Cmd_FinishAnnouncement"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-jp-session-end-to-fg-spin-boost-from-jackpot",
+				"fg-jp-session-end",
+				"fg-spin-boost-from-jackpot",
+				[
+					"Cmd_FinishJackpot",
+					"Cmd_GotSpinBoost",
+					"Cmd_JackpotPrizeReady"
+				],
+				1
+			]
+		}
+		
+		,
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-jp-session-end-to-fg-prize-boost-multiplier-from-jackpot",
+				"fg-jp-session-end",
+				"fg-prize-boost-multiplier-from-jackpot",
+				[
+					"Cmd_FinishJackpot",
+					"Cmd_GotPrizeBoostMultiplier",
+					"Cmd_JackpotPrizeReady"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-jp-session-end-to-fg-first-pop-animation-from-jackpot",
+				"fg-jp-session-end",
+				"fg-first-pop-animation-from-jackpot",
+				[
+					"Cmd_FinishJackpot",
+					"Cmd_NoPrizeBoostMultiplier",
+					"Cmd_JackpotPrizeReady"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-boost-from-jackpot-to-fg-spin-boost-transformation-from-jackpot",
+				"fg-spin-boost-from-jackpot",
+				"fg-spin-boost-transformation-from-jackpot",
+				[
+					"Cmd_FinishSpinBoostAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-boost-transformation-from-jackpot-to-fg-prize-boost-addition-from-jackpot",
+				"fg-spin-boost-transformation-from-jackpot",
+				"fg-prize-boost-addition-from-jackpot",
+				[
+					"Cmd_FinishSpinBoostTransformation",
+					"Cmd_GotPrizeBoostAddition"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-boost-transformation-from-jackpot-to-fg-prize-boost-multiplier-from-jackpot",
+				"fg-spin-boost-transformation-from-jackpot",
+				"fg-prize-boost-multiplier-from-jackpot",
+				[
+					"Cmd_FinishSpinBoostTransformation",
+					"Cmd_GotPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-boost-transformation-from-jackpot-to-fg-first-pop-animation-from-jackpot",
+				"fg-spin-boost-transformation-from-jackpot",
+				"fg-first-pop-animation-from-jackpot",
+				[
+					"Cmd_FinishSpinBoostTransformation",
+					"Cmd_NoPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-addition-from-jackpot-to-fg-prize-boost-addition-transformation-from-jackpot",
+				"fg-prize-boost-addition-from-jackpot",
+				"fg-prize-boost-addition-transformation-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostAdditionAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-addition-transformation-from-jackpot-to-fg-prize-boost-addition-from-jackpot",
+				"fg-prize-boost-addition-transformation-from-jackpot",
+				"fg-prize-boost-addition-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostAdditionTransformation",
+					"Cmd_GotPrizeBoostAddition"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-addition-transformation-from-jackpot-to-fg-prize-boost-multiplier-from-jackpot",
+				"fg-prize-boost-addition-transformation-from-jackpot",
+				"fg-prize-boost-multiplier-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostAdditionTransformation",
+					"Cmd_GotPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-addition-transformation-from-jackpot-to-fg-first-pop-animation-from-jackpot",
+				"fg-prize-boost-addition-transformation-from-jackpot",
+				"fg-first-pop-animation-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostAdditionTransformation",
+					"Cmd_NoPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-from-jackpot-to-fg-prize-boost-multiplier-transformation-from-jackpot",
+				"fg-prize-boost-multiplier-from-jackpot",
+				"fg-prize-boost-multiplier-transformation-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostMultiplierAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-transformation-from-jackpot-to-fg-prize-boost-multiplier-from-jackpot",
+				"fg-prize-boost-multiplier-transformation-from-jackpot",
+				"fg-prize-boost-multiplier-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostMultiplierTransformation",
+					"Cmd_GotPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-prize-boost-multiplier-transformation-from-jackpot-to-fg-first-pop-animation-from-jackpot",
+				"fg-prize-boost-multiplier-transformation-from-jackpot",
+				"fg-first-pop-animation-from-jackpot",
+				[
+					"Cmd_FinishPrizeBoostMultiplierTransformation",
+					"Cmd_NoPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-first-pop-animation-from-jackpot-to-fg-win-increment-non-skip-from-jackpot",
+				"fg-first-pop-animation-from-jackpot",
+				"fg-win-increment-non-skip-from-jackpot",
+				[
+					"Cmd_FinishFirstPop"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-non-skip-to-fg-win-increment",
+				"fg-win-increment-non-skip",
+				"fg-win-increment",
+				[
+					"Cmd_NonSkipTimerOut"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-non-skip-from-jackpot-to-fg-win-increment-from-jackpot",
+				"fg-win-increment-non-skip-from-jackpot",
+				"fg-win-increment-from-jackpot",
+				[
+					"Cmd_NonSkipTimerOut"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-from-jackpot-to-fg-feature-animation-from-jackpot",
+				"fg-win-increment-from-jackpot",
+				"fg-feature-animation-from-jackpot",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_GotHitNewFeature"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-from-jackpot-to-fg-end-from-jackpot",
+				"fg-win-increment-from-jackpot",
+				"fg-end-from-jackpot",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_NoHitNewFeature"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-feature-animation-from-jackpot-to-fg-end-from-jackpot",
+				"fg-feature-animation-from-jackpot",
+				"fg-end-from-jackpot",
+				[
+					"Cmd_FinishFeatureAnimation"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-from-jackpot-to-fg-spin",
+				"fg-end-from-jackpot",
+				"fg-spin",
+				[
+					"Cmd_Spin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-from-jackpot-to-fg-cheat",
+				"fg-end-from-jackpot",
+				"fg-cheat",
+				[
+					"Cmd_EnableCheatPanel"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-end-from-jackpot-to-fg-end-panel",
+				"fg-end-from-jackpot",
+				"fg-end-panel",
+				[
+					"Cmd_FinishFeatureGame"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-win-increment-to-fg-reel-nudge",
+				"fg-win-increment",
+				"fg-reel-nudge",
+				[
+					"Cmd_FinishIncrementing",
+					"Cmd_GotNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-reel-nudge-end-to-fg-first-pop-animation",
+				"fg-reel-nudge-end",
+				"fg-first-pop-animation",
+				[
+					"Cmd_NoJackpot",
+					"Cmd_NoPrizeBoostMultiplier"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-spin-to-fg-reel-nudge",
+				"fg-spin",
+				"fg-reel-nudge",
+				[
+					"Cmd_ReelStopSpinning",
+					"Cmd_GotNudge",
+					"Cmd_NoWin"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-reel-nudge-to-fg-reel-nudge-end",
+				"fg-reel-nudge",
+				"fg-reel-nudge-end",
+				[
+					"Cmd_FinishReelNudge"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-reel-nudge-end-fg-jp-announcement",
+				"fg-reel-nudge-end",
+				"fg-jp-announcement",
+				[
+					"Cmd_GotJackpot"
+				],
+				1
+			]
+		},
+		{
+			"Name": "WkTransitionEvent",
+			"params": [
+				"fg-reel-nudge-end-to-fg-prize-boost-multiplier",
+				"fg-reel-nudge-end",
+				"fg-prize-boost-multiplier",
+				[
+					"Cmd_GotPrizeBoostMultiplier",
+					"Cmd_NoJackpot"
+				],
+				1
+			]
+		}
+		
+	]
+}
