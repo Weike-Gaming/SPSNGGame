@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <GameInfoWrapper xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<lang>0</lang>
-	<gamePackageID>MCQNG</gamePackageID>
-	<gameID>2513_MCQNG_1.01 (23072026)</gameID>
-	<gameDesc>MAJESTIC QING</gameDesc>
+	<gamePackageID>SPSNG</gamePackageID>
+	<gameID>2612_SPSNG_1.01 (23072026)</gameID>
+	<gameDesc>SPLENDID SONG</gameDesc>
 	<useBetAsPlayline>false</useBetAsPlayline>
 	<gameTypeDesc>243 WAYS, 3X5 REELS</gameTypeDesc>
 	<betOptDesc>1, 2, 3, 6, 10</betOptDesc>

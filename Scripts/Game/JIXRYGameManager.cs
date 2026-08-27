@@ -795,32 +795,32 @@ namespace Weike.Games.JIXRY
             uint freeGameMultiplier = 1;
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
 
-            if (feature.ToString().Contains("RN"))
-            {
-                // First call after spin
-                (byte maxWayWin, _) = wm.CheckIngotTrigger(
-                    reelManager,
-                    fgDm.fgIngotValue,
-                    fgDm.extraPrizeMultiplier,
-                    fgDm.extraPrizeMultiplierIngotValue,
-                    true,
-                    modifyWinAmount
-                );
-                dm.maxIngotWayWin = maxWayWin;
-                (rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
-                nudgeChecked = true;
+            //if (feature.ToString().Contains("RN"))
+            //{
+            //    // First call after spin
+            //    (byte maxWayWin, _) = wm.CheckIngotTrigger(
+            //        reelManager,
+            //        fgDm.fgIngotValue,
+            //        fgDm.extraPrizeMultiplier,
+            //        fgDm.extraPrizeMultiplierIngotValue,
+            //        true,
+            //        modifyWinAmount
+            //    );
+            //    dm.maxIngotWayWin = maxWayWin;
+            //    (rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
+            //    nudgeChecked = true;
 
-                if (maxWayWin > 1)
-                {
-                    rm.haveNudge = true;
-                    CmdGotNudge(false);
-                }
-                else
-                {
-                    CmdNoNudge(false);
-                }
-            }
-            else
+            //    if (maxWayWin > 1)
+            //    {
+            //        rm.haveNudge = true;
+            //        CmdGotNudge(false);
+            //    }
+            //    else
+            //    {
+            //        CmdNoNudge(false);
+            //    }
+            //}
+            //else
             {
                 CmdNoNudge(false);
             }

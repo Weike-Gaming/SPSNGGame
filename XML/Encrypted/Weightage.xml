@@ -1,4 +1,4 @@
-<root GameCode="MCQNG" GameName="MAJESTIC QING" Total_VarLevel_Cnt="10" checksum="" demo="FALSE">
+<root GameCode="SPSNG" GameName="SPLENDID SONG" Total_VarLevel_Cnt="10" checksum="" demo="FALSE">
 	<rtp level = "1" rtpName = "INT_N21" BetOption_cnt = "1">
 		<Bet betOption = "30" TotalRTPValue = "90.00">
 			<Game GameType="MAIN_GAME" TotalReelSet_Weight_Cnt="100000" ReelSet_Cnt="1">

@@ -1,4 +1,4 @@
-<StandardProgressive GameCode="MCQNG" GameName="MAJESTIC QING" type="2" total_VarLevel="10" total_JPlevel="4" denom_ratio="1 2 2.5 4 5 10 20 25 40 50 100" checksum="" demo="FALSE">
+<StandardProgressive GameCode="SPSNG" GameName="SPLENDID SONG" type="2" total_VarLevel="10" total_JPlevel="4" denom_ratio="1 2 2.5 4 5 10 20 25 40 50 100" checksum="" demo="FALSE">
 	<rtp level="1" rtpName="INT_N21" Jackpot_Set_Count="3">
 		<set index="1" name="set_A" Group_count="1">
 			<group index="1" name="grp_1" Item_count="19">

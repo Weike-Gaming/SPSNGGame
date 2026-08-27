@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<root GameCode="MCQNG" GameName="MAJESTIC QING" Total_VarLevel_Cnt="10" checksum="">
+<root GameCode="SPSNG" GameName="SPLENDID SONG" Total_VarLevel_Cnt="10" checksum="">
 	<rtp level="1" rtpName="INT_N21" BetOption_Cnt="1">
 		<Bet betOption = "30" TotalRTPValue = "90.00" > 
 			<Game GameType="MainGame" TotalWeight_Cnt="1000000" ReelSet_Cnt="1">
