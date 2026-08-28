@@ -59,16 +59,16 @@ namespace Weike.Games.JIXRY
             subBtn.interactable = gm.replayHistorySubRecoverData.Count > 0;
 
             // Nudge Button
-            if (gm.currentlyInSubGame && gm.HasNudge())
-            {
-                nudgeButton.interactable = true;
-                nudgeButtonText.text = gm.IsInPreNudge() ? "AFTER" : "BEFORE";
-            }
-            else
-            {
+            //if (gm.currentlyInSubGame && gm.HasNudge())
+            //{
+            //    nudgeButton.interactable = true;
+            //    nudgeButtonText.text = gm.IsInPreNudge() ? "AFTER" : "BEFORE";
+            //}
+            //else
+            //{
                 nudgeButton.interactable = false;
                 nudgeButtonText.text = "N/A";
-            }
+           // }
         }
 
         protected void OnClickNudgeButton()

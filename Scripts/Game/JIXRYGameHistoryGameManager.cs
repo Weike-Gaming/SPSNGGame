@@ -118,15 +118,7 @@ namespace Weike.Games.JIXRY
 
             // Store local vars for rng
             // Will set subGameData.rng to pre-nudge rng, then immeditately reset, as base class uses .rng
-            uint[] preNudgeRng = thisSubGameData.savedPreNudgeRng.ToArray();
-            uint[] postNudgeRng = thisSubGameData.rng.ToArray();
-            bool hasNudge = HasNudge();  
-
-            if (hasNudge)
-            {
-                // set subGameData.rng to prenudge/final rng
-                subGameData.rng = currentlyInPreNudge ? preNudgeRng.ToArray() : postNudgeRng.ToArray();
-            }
+            uint[] postNudgeRng = thisSubGameData.rng.ToArray(); 
 
             base.StartHistoryFgSpin();
 
@@ -167,73 +159,23 @@ namespace Weike.Games.JIXRY
                 }
             }
 
-            // Overwrite ingotValues with pre-nudge ingot values if in pre-nudge state, otherwise use post-nudge ingot values for win check
-            if (hasNudge && IsInPreNudge()) 
-            {
-                int numRows = rd[0].numRows;
-                // If in pre-nudge, use pre-nudge ingot values instead of previous ingot values for win check
-                for (int reel = 0; reel < rd.Length; reel++)
-                {
-                    int sourceIndex = reel * numRows;
-                    int destIndex = reel * numRows;
-                    for (int row = 0; row < rd[0].numRows; row++)
-                    {
-                        ingotValues[destIndex + row] = histGameData.savedPreNudgeIngotValue[sourceIndex + row];
-                    }
-                }
-            }
-
             // Do ingot win check
-            if (hasNudge && !IsInPreNudge() || !hasNudge)
-            {
-                (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
+            (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                     reelManager,
                     ingotValues,
                     histGameData.extraPrizeMultiplier,
                     histGameData.extraPrizeMultiplierIngotValue,
                     true,
                     true,
-                    hasNudge,
+                    false,
                     true
                 );
-            }
 
-            // Update ingot value visual digits via reelIngotValue if in prenudge
-            if (hasNudge && IsInPreNudge())
-            {
-                JIXRYReelManager jixryReelManager = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-
-                // Convert preNudgeIngotValue[15] to uint[35] to use in rm.UpdateIngotValueData
-                int totalRows = rd[0].numRows + rd[0].numDummy;
-                int start = rd[0].numDummy / 2;
-                int end = start + rd[0].numRows;
-                uint[] preNudgeIngotValueExpanded = new uint[rd.Length * totalRows];
-                for (int reel = 0; reel < rd.Length; reel++)
-                {
-                    int uint15Index = reel * rd[0].numRows;
-                    int uint35Index = reel * totalRows;
-                    for (int row = 0; row < totalRows; row++)
-                    {
-                        preNudgeIngotValueExpanded[uint35Index] = (start <= row && row < end) ?
-                            histGameData.savedPreNudgeIngotValue[uint15Index++] : (uint)1;
-                        ++uint35Index;
-                    }
-                }
-                // Sets rd.reelIngotInfo but doesn't change symbol.ingotValueToAdd
-                jixryReelManager.UpdateIngotValueData(preNudgeIngotValueExpanded);
-            }
 
             reelManager.HardCodeReelSymbol(subGameData.rng);
             PlayWinAnimation();
-
             // Force history to 'skip' animation for special ingots
-            if (hasNudge && !IsInPreNudge() || !hasNudge)
-                rm.RecoverPreviousTransformedIngot();
-            else
-            // Force ingot to update visual
-                rm.ForceUpdateIngotValueVisual(subGameData.rng);
-
-            // Revert subGameData.rng back to post-nudge rng if it was changed for the spin
+            rm.RecoverPreviousTransformedIngot();
             subGameData.rng = postNudgeRng.ToArray();
 
             OnStatisticUpdate.Invoke();
@@ -245,12 +187,7 @@ namespace Weike.Games.JIXRY
         {
             return currentFgIndex;
         }
-
-        public void SetCurrentFgIndex(int index)
-        {
-            currentFgIndex = index;
-        }
-
+     
         public bool HasPrevSubGame()
         {
             return currentFgIndex < replayHistorySubRecoverData.Count - 1;
@@ -311,18 +248,6 @@ namespace Weike.Games.JIXRY
             StartHistorySpin();
             OnStatisticUpdate.Invoke();
             currentlyInSubGame = false;
-        }
-
-        public bool HasNudge()
-        {
-            subGameData = replayHistorySubRecoverData[currentFgIndex] as WkSlotHistorySubGameData ?? throw new NullReferenceException();
-            JIXRYHistorySubGameData thisSubGameData = subGameData as JIXRYHistorySubGameData ?? throw new InvalidCastException();
-            return !thisSubGameData.savedPreNudgeRng.SequenceEqual(thisSubGameData.rng);
-        }
-
-        public bool IsInPreNudge()
-        {
-            return currentlyInPreNudge;
         }
 
         public void ToggleNudge()

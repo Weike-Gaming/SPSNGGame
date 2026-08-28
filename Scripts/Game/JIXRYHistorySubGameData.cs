@@ -22,9 +22,6 @@ namespace Weike.Games.JIXRY
 
         public byte extraJackpotType;
 
-        public uint[] savedPreNudgeRng = new uint[5];
-        public uint[] savedPostNudgeIngotValue = new uint[15];
-        public uint[] savedPreNudgeIngotValue = new uint[15];
 #pragma warning restore CS1591
     }
 }

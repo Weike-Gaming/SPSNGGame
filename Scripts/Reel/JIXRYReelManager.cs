@@ -410,17 +410,6 @@ namespace Weike.Games.JIXRY
             }
         }
 
-        public void ForceUpdateIngotValueVisual(uint[] rng)
-        {
-            JIXRYReelData[] rd = reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-            for (int reel = 0; reel < reelData.Length; reel++)
-            {
-                rd[reel].finalReelStop = (int)rng[reel];
-                rd[reel].redrawSymbols = true;
-                rd[reel].redrawSymbols = false;
-            }
-        }
-
         /// <summary>
         /// Called in JIXRYReel.OnNudgeComplete to udpate ingot values after nudging.
         /// </summary>

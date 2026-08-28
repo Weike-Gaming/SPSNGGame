@@ -18,7 +18,7 @@ namespace Weike.Games.JIXRY
             gm.SaveFreeGameCount();
             gm.SetCurrentFeature();
             gm.SavePreviousPotFeatureState();
-            gm.SavePostNudgeIngotValue();
+            //gm.SavePostNudgeIngotValue();
             base.EnterState();
         }
 
@@ -28,7 +28,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = GetGameManagerChecked<JIXRYGameManager>();
             gm.RecoverFgCounter();
             gm.RecoverPreviousPotFeatureState();
-            gm.RecoverFgIngotDigit();
+            //gm.RecoverFgIngotDigit();
             gm.RecoverReel();
             JIXRYReelManager rm = gm.reelManager as JIXRYReelManager;
             rm.PlayPrizeMultiplierTransformationWithoutAnimation();

@@ -736,8 +736,8 @@
 				"fg-end",
 				[
 					"Cmd_FinishIncrementing",
-					"Cmd_NoHitNewFeature",
-					"Cmd_NoNudge"
+					"Cmd_NoHitNewFeature"
+					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -802,8 +802,8 @@
 					"Cmd_NoPrizeBoostMultiplier",
 					"Cmd_NoHitNewFeature",
 					"Cmd_NoWin",
-					"Cmd_FinishScatterAnimation",
-					"Cmd_NoNudge"
+					"Cmd_FinishScatterAnimation"
+					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -818,8 +818,8 @@
 					"Cmd_ReelStopSpinning",
 					"Cmd_NoJackpot",
 					"Cmd_GotPrizeBoostMultiplier",
-					"Cmd_FinishScatterAnimation",
-					"Cmd_NoNudge"
+					"Cmd_FinishScatterAnimation"
+					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -833,7 +833,7 @@
 				[
 					"Cmd_ReelStopSpinning",					
 					"Cmd_NoPrizeBoostMultiplier",
-					"Cmd_GotNudge",
+					//"Cmd_GotNudge",
 					"Cmd_GotWin",
 					"Cmd_FinishScatterAnimation"
 				],
@@ -849,7 +849,7 @@
 				[
 					"Cmd_ReelStopSpinning",
 					"Cmd_NoPrizeBoostMultiplier",
-					"Cmd_NoNudge",
+					//"Cmd_NoNudge",
 					"Cmd_NoJackpot",
 					"Cmd_GotWin",
 					"Cmd_FinishScatterAnimation"
@@ -907,8 +907,8 @@
 				[
 					"Cmd_ReelStopSpinning",
 					"Cmd_GotJackpot",
-					"Cmd_FinishScatterAnimation",
-					"Cmd_NoNudge"
+					"Cmd_FinishScatterAnimation"
+					//"Cmd_NoNudge"
 				],
 				1
 			]

@@ -32,7 +32,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.RecoverFgCounter();
             gm.RecoverPreviousPotFeatureState();
-            gm.RecoverFgIngotDigit();
+            //gm.RecoverFgIngotDigit();
             gm.RecoverTempIngotDigit();
             gm.ForceResetAnimationBitMask();
             gm.UpdateBetDisplay();

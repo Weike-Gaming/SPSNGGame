@@ -190,7 +190,7 @@ namespace Weike.Games.JIXRY
             if (!isRecovery)
             {
                 GenerateIngotsDigit(true);
-                SavePreNudgeIngotValue();
+                //SavePreNudgeIngotValue();
                 FgGenerateExtraPrizeMultiplier();
                 FgGenerateExtraJackpotIngot();
             }
@@ -766,23 +766,6 @@ namespace Weike.Games.JIXRY
             CheckAndSetScatterHitSfx();
         }
 
-        protected override void GenerateFgRngAndSpin(bool isRecovery = false)
-        {
-            JIXRYFreeGameDataModel fgdm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-
-            // Load savedPreNudgeRng as predetermineRng
-            if (isRecovery)
-            {
-                predetermineRng = fgdm.savedPreNudgeRng.ToArray();
-            }
-
-            // (Re)Generate rng and spin
-            base.GenerateFgRngAndSpin(isRecovery);
-
-            // Save preNudgeRng
-            fgdm.savedPreNudgeRng = reelManager.reelManagerDataModel.rng.ToArray();
-        }
-
         public void FgCheckWinIcon(bool modifyWinAmount = true)
         {
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
@@ -797,33 +780,33 @@ namespace Weike.Games.JIXRY
 
             //if (feature.ToString().Contains("RN"))
             //{
-            //    // First call after spin
-            //    (byte maxWayWin, _) = wm.CheckIngotTrigger(
-            //        reelManager,
-            //        fgDm.fgIngotValue,
-            //        fgDm.extraPrizeMultiplier,
-            //        fgDm.extraPrizeMultiplierIngotValue,
-            //        true,
-            //        modifyWinAmount
-            //    );
-            //    dm.maxIngotWayWin = maxWayWin;
-            //    (rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
-            //    nudgeChecked = true;
+                // First call after spin
+                //(byte maxWayWin, _) = wm.CheckIngotTrigger(
+                //    reelManager,
+                //    fgDm.fgIngotValue,
+                //    fgDm.extraPrizeMultiplier,
+                //    fgDm.extraPrizeMultiplierIngotValue,
+                //    true,
+                //    modifyWinAmount
+                //);
+                //dm.maxIngotWayWin = maxWayWin;
+                //(rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
+                //nudgeChecked = true;
 
-            //    if (maxWayWin > 1)
+                //    if (maxWayWin > 1)
+                //    {
+                //        rm.haveNudge = true;
+                //        CmdGotNudge(false);
+                //    }
+                //    else
+                //    {
+                //        CmdNoNudge(false);
+                //    }
+                //}
+                //else
             //    {
-            //        rm.haveNudge = true;
-            //        CmdGotNudge(false);
-            //    }
-            //    else
-            //    {
-            //        CmdNoNudge(false);
-            //    }
+            //    CmdNoNudge(false);
             //}
-            //else
-            {
-                CmdNoNudge(false);
-            }
 
             WkWinCheckingInfo info = new WkWinCheckingInfo()
             {
@@ -860,17 +843,7 @@ namespace Weike.Games.JIXRY
 
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
             bool isInReelNudge = feature.ToString().Contains("RN") ? true : false;
-            bool hadNudge = !fgDm.savedPreNudgeRng.SequenceEqual(rm.reelManagerDataModel.rng);
-
-            if (!(hadNudge && isInReelNudge))
-            {
-                FgCheckWinIcon();
-                FgEndPanelCheckWinIngot(false);
-            }
-            else
-            {
-                FgEndPanelCheckWinIngot(true);
-            }
+            FgEndPanelCheckWinIngot(true);
         }
 
         /// <summary>
@@ -951,14 +924,6 @@ namespace Weike.Games.JIXRY
                 !WkAssert.EnsureMsgf(reelManager, "ReelManager is missing during check win"))
                 return;
 
-            // Check if in nudge state and have nudge
-            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
-            bool isInReelNudge = feature.ToString().Contains("RN") ? true : false;
-            if (isInReelNudge && !rm.nudgeDoneThisSpin)
-            {
-                return;
-            }
-
             // Isolate only visible ingots from dm.ingotValue to pass into CheckIngotTrigger
             int totalNumRows = rd[0].numRows + rd[0].numDummy;
             int startRow = rd[0].numDummy / 2;
@@ -981,8 +946,8 @@ namespace Weike.Games.JIXRY
                 fgDm.extraPrizeMultiplier,
                 fgDm.extraPrizeMultiplierIngotValue,
                 true,
-                modifyWinAmount,
-                isInReelNudge
+                modifyWinAmount
+                //isInReelNudge
             );
 
             dm.maxIngotWayWin = maxIngotWayWin;
@@ -1337,143 +1302,6 @@ namespace Weike.Games.JIXRY
             dm.triggerFinalAnim = false;
         }
 
-        #region Reel Nudge
-
-        /// <summary>
-        /// Called in RecoverFgIngotDigit() in fg-end to recover ingot value if there's nudge
-        /// </summary>
-        /// <exception cref="InvalidCastException"></exception>
-        public void RecoverPostNudgeIngotValue()
-        {
-            // check if even had nudge
-            JIXRYFreeGameDataModel fgdm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-            if (fgdm.savedPreNudgeRng.SequenceEqual(reelManager.reelManagerDataModel.rng))
-            {
-                return; // No nudge - don't do anything.
-            }
-            else
-            {
-                JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-                JIXRYReelData[] rd = rm.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-
-                // Convert preNudgeIngotValue[15] to uint[35] to use in rm.UpdateIngotValueData
-                int totalRows = rd[0].numRows + rd[0].numDummy;
-                int start = rd[0].numDummy / 2;
-                int end = start + rd[0].numRows;
-                uint[] preNudgeIngotValueExpanded = new uint[rd.Length * totalRows];
-                for (int reel = 0; reel < rd.Length; reel++)
-                {
-                    int uint15Index = reel * rd[0].numRows;
-                    int uint35Index = reel * totalRows;
-                    for (int row = 0; row < totalRows; row++)
-                    {
-                        preNudgeIngotValueExpanded[uint35Index] = (start <= row && row < end) ?
-                            fgdm.savedPostNudgeIngotValue[uint15Index++] : 1; // 1 is effectively dummy value
-                        ++uint35Index;
-                    }
-                    rm.UpdateIngotValueData(preNudgeIngotValueExpanded);
-                }
-
-                fgdm.fgIngotValue = preNudgeIngotValueExpanded.ToArray();
-            }
-        }
-
-        public void SavePostNudgeIngotValue()
-        {
-            JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-            JIXRYReelData[] rd = reelManager.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-
-            // Isolate only visible ingots from dm.ingotValue to pass into CheckIngotTrigger
-            int totalNumRows = rd[0].numRows + rd[0].numDummy;
-            int startRow = rd[0].numDummy / 2;
-            uint[] ingotValues = new uint[rd.Length * rd[0].numRows];
-            for (int reel = 0; reel < rd.Length; reel++)
-            {
-                int sourceIndex = reel * totalNumRows + startRow;
-                int destIndex = reel * rd[0].numRows;
-                for (int row = 0; row < rd[0].numRows; row++)
-                {
-                    ingotValues[destIndex + row] = fgDm.fgTempIngotValue[sourceIndex + row];
-                }
-            }
-            fgDm.savedPostNudgeIngotValue = ingotValues.ToArray();
-        }
-
-        public void SavePreNudgeIngotValue()
-        {
-            JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-            JIXRYReelData[] rd = reelManager.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-
-            // Isolate only visible ingots from dm.ingotValue to pass into CheckIngotTrigger
-            int totalNumRows = rd[0].numRows + rd[0].numDummy;
-            int startRow = rd[0].numDummy / 2;
-            uint[] ingotValues = new uint[rd.Length * rd[0].numRows];
-            for (int reel = 0; reel < rd.Length; reel++)
-            {
-                int sourceIndex = reel * totalNumRows + startRow;
-                int destIndex = reel * rd[0].numRows;
-                for (int row = 0; row < rd[0].numRows; row++)
-                {
-                    ingotValues[destIndex + row] = fgDm.fgTempIngotValue[sourceIndex + row];
-                }
-
-            }
-            fgDm.savedPreNudgeIngotValue = ingotValues.ToArray();
-        }
-
-        public void CmdGotNudge(bool shouldResetinput = true)
-        {
-            gameState!.AddInputAtomAndRunState("Cmd_GotNudge", shouldResetinput);
-        }
-        public void CmdNoNudge(bool shouldResetinput = true)
-        {
-            gameState!.AddInputAtomAndRunState("Cmd_NoNudge", shouldResetinput);
-        }
-        public void CmdFinishReelNudge()
-        {
-            gameState!.AddInputAtomAndRunState("Cmd_FinishReelNudge");
-        }
-
-        private (bool[], uint[]) GetNudgeData(byte maxIngotWayWin)
-        {
-            bool[] useDefaultSpinDir = { false, false, false, false, false };
-            uint[] nudgeSteps = { 0, 0, 0, 0, 0 };
-
-            if (maxIngotWayWin < 2) return (useDefaultSpinDir, nudgeSteps);
-
-            for (int reel = 0; reel < maxIngotWayWin; reel++)
-            {
-                // Check the 3 visible reels and set nudge steps
-                int indexTop = reelManager.GetReelIconIndex(reel, 2) - 1;
-                int indexCenter = reelManager.GetReelIconIndex(reel, 1) - 1;
-                int indexBottom = reelManager.GetReelIconIndex(reel, 0) - 1;
-
-                bool isIngotTop = reelManager.symbolInfo.symbolTemplate.symbols[indexTop].symbolType.Contains("INGOT");
-                bool isIngotCenter = reelManager.symbolInfo.symbolTemplate.symbols[indexCenter].symbolType.Contains("INGOT");
-                bool isIngotBottom = reelManager.symbolInfo.symbolTemplate.symbols[indexBottom].symbolType.Contains("INGOT");
-
-                if (isIngotTop && isIngotCenter && isIngotBottom)
-                {
-                    continue;
-                }
-
-                // Set spin direction
-                if (isIngotTop)
-                    useDefaultSpinDir[reel] = false;
-                if (isIngotBottom)
-                    useDefaultSpinDir[reel] = true;
-
-                // Set nudge steps
-                if (isIngotCenter)
-                    nudgeSteps[reel] = 1;
-                else
-                    nudgeSteps[reel] = 2;
-            }
-
-            return (useDefaultSpinDir, nudgeSteps);
-        }
-        #endregion
-
         #region Pot Coin
         public void UpdatePotCoinValue(int blueScatter, int redScatter, int greenScatter)
         {
@@ -1804,17 +1632,6 @@ namespace Weike.Games.JIXRY
         {
             JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
             fgDm.fgTempIngotValue = fgDm.fgIngotValue.ToArray();
-        }
-
-        public void RecoverFgIngotDigit()
-        {
-            JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-            fgDm.fgIngotValue = fgDm.fgPreviousIngotValue.ToArray();
-
-            if (!fgDm.savedPreNudgeRng.SequenceEqual(reelManager.reelManagerDataModel.rng))
-            {
-                RecoverPostNudgeIngotValue();
-            }
         }
 
         public void SaveFinalIngotAmount(bool isFreeGame = false)

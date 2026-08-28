@@ -27,10 +27,8 @@ namespace Weike.Games.JIXRY
                 extraPrizeMultiplierIngotValue == other.extraPrizeMultiplierIngotValue &&
                 previousExtraPrizeMultiplier == other.previousExtraPrizeMultiplier &&
                 extraJackpotType == other.extraJackpotType &&
-                previousExtraJackpotType == other.previousExtraJackpotType &&
-                savedPreNudgeRng.SequenceEqual(other.savedPreNudgeRng) &&
-                savedPostNudgeIngotValue.SequenceEqual(other.savedPostNudgeIngotValue) &&
-                savedPreNudgeIngotValue.SequenceEqual(other.savedPreNudgeIngotValue);
+                previousExtraJackpotType == other.previousExtraJackpotType;
+
         }
 
         public override bool Equals(object obj)
@@ -64,9 +62,6 @@ namespace Weike.Games.JIXRY
             hashCode.Add(previousExtraPrizeMultiplier);
             hashCode.Add(extraJackpotType);
             hashCode.Add(previousExtraJackpotType);
-            hashCode.Add(savedPreNudgeRng);
-            hashCode.Add(savedPostNudgeIngotValue);
-            hashCode.Add(savedPreNudgeIngotValue);
             return hashCode.ToHashCode();
         }
 
@@ -98,8 +93,5 @@ namespace Weike.Games.JIXRY
         public byte extraJackpotType = 0;
         public byte previousExtraJackpotType = 0;
 
-        public uint[] savedPreNudgeRng = new uint[5];
-        public uint[] savedPostNudgeIngotValue = new uint[15];
-        public uint[] savedPreNudgeIngotValue = new uint[15];
     }
 }

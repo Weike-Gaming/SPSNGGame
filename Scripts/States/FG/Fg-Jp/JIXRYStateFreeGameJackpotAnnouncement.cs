@@ -17,7 +17,7 @@ namespace Weike.Games.JIXRY
             base.EnterState();
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.UpdateFreeGameWinAmount();
-            gm.SavePostNudgeIngotValue();
+            //gm.SavePostNudgeIngotValue();
             InvokeMethod(RunFinishJp, PanelDelay);
         }
 
@@ -27,7 +27,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.RecoverFgCounter();
             gm.RecoverPreviousPotFeatureState();
-            gm.RecoverFgIngotDigit();
+            //gm.RecoverFgIngotDigit();
             gm.RecoverTempIngotDigit();
             gm.ForceResetAnimationBitMask();
             gm.UpdateBetDisplay();

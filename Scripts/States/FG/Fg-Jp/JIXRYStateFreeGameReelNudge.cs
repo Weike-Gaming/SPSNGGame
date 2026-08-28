@@ -29,7 +29,7 @@ namespace Weike.Games.JIXRY
             }
 
             float totalNudgeDuration = (maxNudgeStep > 0) ? rmdm.durationReelNudgeAnim + rmdm.durationReelNudgeLinger : 0;
-            InvokeMethod(gm.CmdFinishReelNudge, totalNudgeDuration);
+            //InvokeMethod(gm.CmdFinishReelNudge, totalNudgeDuration);
         }
 
         public override void ExitState()
@@ -47,7 +47,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             JIXRYReelManager rm = gm.reelManager as JIXRYReelManager ?? throw new InvalidCastException();
             rm.DisableReelNudgeBorder();
-            CancelInvokeMethod(gm.CmdFinishReelNudge);
+            //CancelInvokeMethod(gm.CmdFinishReelNudge);
         }
     }
 }

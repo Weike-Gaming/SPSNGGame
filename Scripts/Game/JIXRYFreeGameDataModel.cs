@@ -154,59 +154,6 @@ namespace Weike.Games.JIXRY
             }
         }
 
-
-
-
-        /// <summary>
-        /// int[5] of the rng before reel nudge.
-        /// </summary>
-        [WkSaveToHistory(WkHistorySaveType.SubGame)]
-        [WkSaveToSram]
-        public uint[] savedPreNudgeRng
-        {
-            get => _savedPreNudgeRng;
-            set
-            {
-                if (_savedPreNudgeRng.SequenceEqual(value))
-                    return;
-                _savedPreNudgeRng = value.ToArray();
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// int[15] of the ingot value AFTER reel nudge, only used for recovery.
-        /// </summary>
-        [WkSaveToHistory(WkHistorySaveType.SubGame)]
-        [WkSaveToSram]
-        public uint[] savedPostNudgeIngotValue
-        {
-            get => _savedPostNudgeIngotValue;
-            set
-            {
-                if (_savedPostNudgeIngotValue.SequenceEqual(value))
-                    return;
-                _savedPostNudgeIngotValue = value.ToArray();
-                OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// int[15] of the ingot value BEFORE reel nudge, only used for History.
-        /// </summary>
-        [WkSaveToHistory(WkHistorySaveType.SubGame)]
-        [WkSaveToSram]
-        public uint[] savedPreNudgeIngotValue
-        {
-            get => _savedPreNudgeIngotValue;
-            set
-            {
-                if (_savedPreNudgeIngotValue.SequenceEqual(value))
-                    return;
-                _savedPreNudgeIngotValue = value.ToArray();
-                OnPropertyChanged();
-            }
-        }
         #endregion
 
         private uint[] _fgIngotValue = new uint[35];
@@ -220,9 +167,6 @@ namespace Weike.Games.JIXRY
         private byte _extraJackpotType = 0;
         private byte _previousExtraJackpotType = 0;
 
-        private uint[] _savedPreNudgeRng = new uint[5];
-        private uint[] _savedPostNudgeIngotValue = new uint[15];
-        private uint[] _savedPreNudgeIngotValue = new uint[15];
         private bool _isLuckyWin;
     }
 }
