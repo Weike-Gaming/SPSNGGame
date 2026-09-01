@@ -20,25 +20,11 @@ namespace Weike.Games.JIXRY
 
         private float _animSpeed = 0;
 
-        [Header("")]
-        [Header("Reel Nudge Animation")]
-        [SerializeField] private AnimationCurve movementCurve;
-        [SerializeField] private Transform[] startPosition = new Transform[2]; // 2 startPos - top and bottom
-        [SerializeField] private Transform endPosition;
-
-        [SerializeField] private GameObject rnWrapper = null;
-        [SerializeField] private GameObject rnTop = null;
-        [SerializeField] private GameObject rnBottom = null;
-        [SerializeField] private GameObject rnSides = null;
-        [SerializeField] private GameObject rnSparkle = null;
-
         #region Reel Nudge Vars
         public int nudgeSteps { get; set; }
         public bool wantToNudgeInDefaultDir { get; set; }
         public bool playReelNudgeBorderExitAnim { get; set; }
         public bool wantToPlayNudgeAnim { get; set; }
-        private Coroutine _reelNudgeCoroutine;
-        private Coroutine _reelNudgeBorderCoroutine;
 
         private bool _postSpinStop2 = false;    // 'duplicate' var from base due to need for overriding CheckBoundBack() and PlayReelStopSound()
         private bool _playCustomSfx2 = false;   // 'duplicate' var from base due to need for overriding CheckBoundBack() and PlayReelStopSound()
@@ -293,26 +279,12 @@ namespace Weike.Games.JIXRY
             base.ResetToDefault();
             holder = 0.143f;
             index = symbols.Length;
-            BorderDisable();
         }
 
         #endregion
 
         protected override void UpdateUI()
         {
-            #region Reel Nudge
-            if (wantToPlayNudgeAnim)
-            {
-                bool hasNudgeMovement = nudgeSteps > 0;
-                if (hasNudgeMovement)
-                {
-                    // Prevent the base class from starting a normal spin while nudging
-                    flags &= (byte)~WkReelDataFlag.WantToSpin;
-                    PerformNudgeMovement();
-                }
-            }
-            #endregion
-
             _postSpinStop2 = (flags & (byte)WkReelDataFlag.PostSpinStop) == (byte)WkReelDataFlag.PostSpinStop;
             _playCustomSfx2 = (flags & (byte)WkReelDataFlag.PlayCustomSfx) == (byte)WkReelDataFlag.PlayCustomSfx;
 
@@ -357,10 +329,6 @@ namespace Weike.Games.JIXRY
             if (playExtraPrizeMultiplierTransformationWithoutAnimation)
             {
                 PlayExtraPrizeMultiplierTransformationWithoutAnimation();
-            }
-            if (playReelNudgeBorderExitAnim)
-            {
-                DisableReelNudgeBorder();
             }
             if (redrawSymbols)
             {
@@ -473,209 +441,6 @@ namespace Weike.Games.JIXRY
                 }
             }
         }
-
-        #region Reel Nudge
-
-        protected void PerformNudgeMovement()
-        {
-            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-
-            if (rm.nudgeDoneThisSpin) return;
-
-            if (_reelNudgeCoroutine is not null)
-                StopCoroutine(_reelNudgeCoroutine);
-
-            if (_reelNudgeBorderCoroutine is not null)
-                StopCoroutine(_reelNudgeBorderCoroutine);
-
-            rng = finalReelStop;
-            double newAlpha = ((double)1 / (double)(numRows + numDummy));
-            newAlpha = Math.Round(newAlpha, 2);
-            double totalPixelMovement = nudgeSteps * newAlpha;
-
-            // Set initial position based on direction
-            if (wantToNudgeInDefaultDir)
-            {
-                totalPixelMovement = -totalPixelMovement;
-            }
-
-            // Play nudge sound if available
-            getActiveAudioManager?.PlayAudioUnique("Nudge");
-
-            // Start nudge animation
-            _reelNudgeCoroutine = WkCoroutine.instance.StartTrackedCoroutine(AnimateNudgeMovement(totalPixelMovement));
-
-            // Start nudge border animation
-            _reelNudgeBorderCoroutine = WkCoroutine.instance.StartTrackedCoroutine(PerformNudgeMovementAnimation());
-        }
-
-        /// <summary>
-        /// Animate the nudge movement
-        /// </summary>
-        private IEnumerator AnimateNudgeMovement(double totalMovement)
-        {
-            JIXRYReelManagerDataModel rmdm = reelManager!.reelManagerDataModel.GetModelDataChecked<JIXRYReelManagerDataModel>();
-            float duration = rmdm.durationReelNudgeAnim; // Short animation for nudge
-            float elapsedTime = 0f;
-
-            //Stop anim and set to spin layer
-            foreach (GameObject symbol in symbols)
-            {
-                symbol.GetComponent<WkSymbol>().StopAnimation();
-                symbol.GetComponent<WkSymbol>().SpinLayer();
-                symbol.GetComponent<WkSymbol>().StopGameSpecificAnimation();
-                symbol.GetComponent<WkSymbol>().ShowSymbol();
-            }
-
-            // Animate nudging with linear interp
-            while (elapsedTime < duration)
-            {
-                elapsedTime += Time.deltaTime;
-                float t = elapsedTime / duration;
-                offset = Mathf.Lerp(0, (float)totalMovement, t);
-                yield return null;
-            }
-
-            yield return new WaitForEndOfFrame();
-
-            // Complete the nudge
-            OnNudgeComplete();
-        }
-
-        /// <summary>
-        /// Called when nudge movement is complete
-        /// </summary>
-        protected void OnNudgeComplete()
-        {
-            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            rm.NudgeIngotValues(this);
-            SetIngotInfo();
-            OnNudgeCompleteAnimation();
-
-            offset = 0;
-            spin = false;
-
-            // Reset nudge flags
-            nudgeSteps = 0;
-            wantToNudgeInDefaultDir = true;
-            flags &= (byte)~WkReelDataFlag.HardCodeRng;
-
-            // Update final symbol positions
-            UpdateSymbol(rng);
-
-            // Notify reel manager
-            reelManager?.OnReelStopped(reelData!);
-
-            // Play win animation on symbols
-            JIXRYReelManagerDataModel rmdm = reelManager.reelManagerDataModel as JIXRYReelManagerDataModel;
-            for (int row = centerRow - 1; row <= centerRow + 1; row++)
-            {
-                JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckNormalIngot() || symbol.CheckPrizeMultiplierIngot() || symbol.CheckJackpotIngot())
-                {
-                    if (reelNo > rm.GetMaxIngotWayWin()) continue;
-
-                    symbol.PlayNudgeAnimation(0.11f, "Win");
-                    WkCoroutine.instance.StartTrackedCoroutine(PlayIngotAnimSfxWithDelay(0.1f, 0.6f));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Play the sfx for the ingot spin and glow for first-pop-animation
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerator PlayIngotAnimSfxWithDelay(float firstDelay, float secondDelay)
-        {
-            yield return new WaitForSeconds(firstDelay);
-            WkAudioManager.instance.PlayAudioUnique($"ReelNudgeIngotSpinSfx");
-            yield return new WaitForSeconds(secondDelay);
-            WkAudioManager.instance.PlayAudioUnique($"ReelNudgeIngotGlowSfx");
-        }
-
-        private void SetReelNudgeVisualsLayer(bool putInFrontOfMask)
-        {
-            int sortOrder = putInFrontOfMask ? mask.frontSortingOrder + 100 : mask.frontSortingOrder;
-            SpriteMaskInteraction maskInteraction = putInFrontOfMask ? SpriteMaskInteraction.None : SpriteMaskInteraction.VisibleInsideMask;
-
-            rnTop.GetComponent<SpriteRenderer>().sortingOrder = sortOrder;
-            rnTop.GetComponent<SpriteRenderer>().maskInteraction = maskInteraction;
-            rnBottom.GetComponent<SpriteRenderer>().sortingOrder = sortOrder - 1; // Need shift it behind sides
-            rnBottom.GetComponent<SpriteRenderer>().maskInteraction = maskInteraction;
-            rnSides.GetComponent<SpriteRenderer>().sortingOrder = sortOrder;
-            rnSides.GetComponent<SpriteRenderer>().maskInteraction = maskInteraction;
-        }
-
-        /// <summary>
-        /// Control the UI that appears around reel's border.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerator PerformNudgeMovementAnimation()
-        {
-            rnWrapper.SetActive(true);
-            float elapsedTime = 0;
-            float duration = (reelManager.reelManagerDataModel as JIXRYReelManagerDataModel).durationReelNudgeAnim;
-            Vector3 startPos = (wantToNudgeInDefaultDir) ? startPosition[1].position : startPosition[0].position;
-
-            rnTop.SetActive(false);
-            rnBottom.SetActive(false);
-            rnSparkle.SetActive(false);
-
-            SetReelNudgeVisualsLayer(false);
-
-            while (elapsedTime < duration)
-            {
-                // Update elapsed time
-                elapsedTime += Time.deltaTime;
-
-                // Calculate the linear progress (0 to 1)
-                float t = elapsedTime / duration;
-
-                // Use the curve value for the Lerp
-                rnSides.transform.position = Vector3.Lerp(startPos, endPosition.position, t);
-
-                yield return null;
-            }
-
-            // Ensure the object reaches the exact end position
-            rnSides.transform.position = endPosition.position;
-        }
-
-
-        private void OnNudgeCompleteAnimation()
-        {
-            BorderEnable();
-            getActiveAudioManager.PlayAudioUnique($"ReelNudgeSFX");
-        }
-
-        /// <summary>
-        /// Called by StateFreeGameReelNudge.OnExit to disable the reel border
-        /// </summary>
-        public void DisableReelNudgeBorder()
-        {
-            BorderDisable();
-        }
-
-        private void BorderEnable()
-        {
-            SetReelNudgeVisualsLayer(true);
-
-            rnTop.SetActive(true);
-            rnBottom.SetActive(true);
-            rnSparkle.transform.position = wantToNudgeInDefaultDir ? rnTop.transform.position : rnBottom.transform.position;
-            rnSparkle.SetActive(true);
-        }
-
-        private void BorderDisable()
-        {
-            rnTop.SetActive(false);
-            rnBottom.SetActive(false);
-            rnSparkle.SetActive(false);
-            rnWrapper.SetActive(false);
-        }
-
-        #endregion
-
         protected override void OnFastStop()
         {
             base.OnFastStop();
@@ -1069,7 +834,6 @@ namespace Weike.Games.JIXRY
                 }
             }
 
-            BorderDisable();
         }
 
         #region History
