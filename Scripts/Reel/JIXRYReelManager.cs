@@ -377,20 +377,25 @@ namespace Weike.Games.JIXRY
                 }
 
                 int n = reelData[reelIndex].numRows;
-                byte[] reelStripCollection = reelSet.reelStrips.ElementAt(reelIndex);
-                int centerPoint = Mathf.CeilToInt((float)n / 2);
-                for (int i = 0; i < n; i++)
+                if (n == 3)
                 {
-                    int pos = (int)(symbolIndex + centerPoint - i);
-
-                    if (pos < 0)
+                    byte[] reelStripCollection = reelSet.reelStrips.ElementAt(reelIndex);
+                    int centerPoint = Mathf.CeilToInt((float)n / 2);
+                    for (int i = 0; i < n; i++)
                     {
-                        pos += reelStripCollection.Length;
+                        int pos = (int)(symbolIndex + centerPoint - i);
+                        if (pos < 0)
+                        {
+                            pos += reelStripCollection.Length;
+                        }
+                        pos = pos % reelStripCollection.Length;
+                        pos = reelStripCollection[pos];
+                        reelIconIndexList[reelIndex * n + i] = (byte)pos;
                     }
-
-                    pos = pos % reelStripCollection.Length;
-                    pos = reelStripCollection[pos];
-                    reelIconIndexList[reelIndex * n + i] = (byte)pos;
+                }
+                else
+                {
+                    base.GenerateReelIconIndex(reelIndex, symbolIndex);
                 }
             }
         }
@@ -736,6 +741,32 @@ namespace Weike.Games.JIXRY
                     return gmHist.GetPreviousMaxIngotWayWin();
                 default:
                     return 0;
+            }
+        }
+
+        public void ChangeNumRows(int index)
+        {
+            JIXRYReelData[] rd = reelData as JIXRYReelData[] ?? throw new InvalidCastException();
+            for (int i = 0; i < reelData.Length; i++)
+            {
+                rd[i].numRows = index;
+            }
+            reelIconIndexList = new byte[reelData.Length * rd[0].numRows];
+            if (index == 4)
+            {
+                for (int i = 0; i < reelData.Length; ++i)
+                {
+                   rd[i].isLuckyBoost = true;
+                   rd[i].isLuckyBoost = false;
+                }
+            }
+            else if (index == 3)
+            {
+                for (int i = 0; i < reelData.Length; ++i)
+                {
+                    rd[i].noLuckyBoost = true;
+                    rd[i].noLuckyBoost = false;
+                }
             }
         }
     }

@@ -70,8 +70,8 @@ namespace Weike.Games.JIXRY
 
         // From JIXRYGameDataModel
         public byte previousMaxWayWin = 0;
-        public uint[] ingotValue = new uint[35];
-        public uint[] previousIngotValue = new uint[35];
+        public uint[] ingotValue = new uint[40];
+        public uint[] previousIngotValue = new uint[40];
 
         public byte potFeatureGameFlag;
         public byte upcomingPotFeatureGameFlag;
@@ -83,8 +83,8 @@ namespace Weike.Games.JIXRY
         public int savedGreenPotScatter;
 
         // From JIXRYfreeGameDataModel
-        public uint[] fgIngotValue = new uint[35];
-        public uint[] fgPreviousIngotValue = new uint[35];
+        public uint[] fgIngotValue = new uint[40];
+        public uint[] fgPreviousIngotValue = new uint[40];
 
         public uint extraPrizeMultiplier = 0;
         public uint extraPrizeMultiplierIngotValue = 0;

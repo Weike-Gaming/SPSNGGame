@@ -13,9 +13,11 @@ namespace Weike.Games.JIXRY
 
         public override void EnterState()
         {
-            base.EnterState();
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
+
+            base.EnterState();
             gm.InitiateFreeGame();
+            
 
             #region burn-in
             if (machineContext!.platformInterface!.IsBurnInMode())
@@ -82,6 +84,8 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.ResetRngForFirstFgSpin();
             gm.CloseFgInitHelpPage();
+            gm.StopWinAnimation();
+            gm.ChangeReelToLuckyBoost(4);
         }
 
         public override void PIIdle()

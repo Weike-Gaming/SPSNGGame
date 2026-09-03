@@ -280,6 +280,32 @@ namespace Weike.Games.JIXRY
             }
         }
 
+        public bool isLuckyBoost
+        {
+            get => _isLuckyBoost;
+            set
+            {
+                if (value == _isLuckyBoost)
+                {
+                    return;
+                }
+                _isLuckyBoost = value;
+                OnPropertyChanged();
+            }
+        }
+        public bool noLuckyBoost
+        {
+            get => _noLuckyBoost;
+            set
+            {
+                if (value == _noLuckyBoost)
+                {
+                    return;
+                }
+                _noLuckyBoost = value;
+                OnPropertyChanged();
+            }
+        }
         #region Reel Nudge
 
         /// <summary>
@@ -346,7 +372,7 @@ namespace Weike.Games.JIXRY
         #endregion
 
         private bool _haveMultiplierIngot = false;
-        private uint[] _reelIngotValue = new uint[7];
+        private uint[] _reelIngotValue = new uint[8];
         private bool _possibleJackpotIngotWin = false;
         private byte _extraPrizeMultiplierType = 0;
         private byte _extraJackpotType = 0;
@@ -368,6 +394,9 @@ namespace Weike.Games.JIXRY
 
         // History
         private bool _playExtraPrizeMultiplierTransformationWithoutAnimation = false;
-        private bool _redrawSymsbols = false;       
+        private bool _redrawSymsbols = false;
+
+        private bool _isLuckyBoost;
+        private bool _noLuckyBoost;
     }
 }

@@ -7,7 +7,7 @@ namespace Weike.Games.JIXRY
     public class JIXRYHistoryMainGameData : WkSlotHistoryMainGameData
     {
 #pragma warning disable CS1591
-        public uint[] ingotValue = new uint[35];
+        public uint[] ingotValue = new uint[40];
         public byte savedTriggerPotFeatureGameFlag;
 #pragma warning restore CS1591
     }

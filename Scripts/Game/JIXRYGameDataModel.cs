@@ -381,8 +381,8 @@ namespace Weike.Games.JIXRY
         // Help page UI
         private bool _enableSelectionHelpPage = false;
 
-        private uint[] _ingotValue = new uint[35];       
-        private uint[] _previousIngotValue = new uint[35];
+        private uint[] _ingotValue = new uint[40];       
+        private uint[] _previousIngotValue = new uint[40];
         
         private byte _potFeatureGameFlag = 0;
         private byte _upcomingPotFeatureGameFlag = 0;

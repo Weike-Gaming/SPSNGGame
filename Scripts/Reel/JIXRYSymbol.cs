@@ -6,6 +6,7 @@ using Weike.SlotCore;
 using System;
 using System.Collections;
 using Weike.LobbyManagement;
+using UnityEditor;
 
 namespace Weike.Games.JIXRY
 {
@@ -50,6 +51,8 @@ namespace Weike.Games.JIXRY
 
         private ITween _cachedTween;
 
+        public bool isChangeAnim;
+        private readonly AnimationCurve _curve = new AnimationCurve(new Keyframe(0f, 0.77f, 0.0172079261f, 0.0172079261f), new Keyframe(0.1333f, 1.03f, -0.00450215442f, -0.00450215442f), new Keyframe(0.2444f, 0.77f, -0.120354414f, 0.0352805071f), new Keyframe(0.4222f, 0.87f, -0.0002667665f, -0.0002667665f), new Keyframe(0.6f, 0.77f, -0.0446761064f, -7.535286E-05f), new Keyframe(0.7778f, 0.77f, 0f, 0f), new Keyframe(1.6f, 0.77f, 0f, 0f));
         #region Checking
         public bool CheckNormalIngot()
         {
@@ -937,5 +940,40 @@ namespace Weike.Games.JIXRY
             IngotValueTransform(ingotValue);
         }
         #endregion
+
+        public void SetSymbolSize(float size)
+        {
+            if(size == 0.77f)
+            {
+                isChangeAnim = true;
+            }
+            else if (size == 1f)
+            {
+                isChangeAnim = false;
+            }
+            normalSize = new Vector3(size, size, size);
+            SetGraphicsSize();
+        }
+
+        protected override void PlayNormalWinAnimation(float duration)
+        {
+            if (isChangeAnim)
+            {
+                int num = 2;
+                float duration2 = duration / (float)num;
+                WkAnimationKeyFrame<Vector3>[] collection = new WkAnimationKeyFrame<Vector3>[1]
+                {
+                    new WkAnimationKeyFrame<Vector3>(Vector3.one, duration2, _curve)
+                };
+                Stack<WkAnimationKeyFrame<Vector3>> keyFrameCollection = new Stack<WkAnimationKeyFrame<Vector3>>(collection);
+                WkAnimationClip<Vector3> clip = new WkAnimationClip<Vector3>(num, keyFrameCollection);
+                WkLocalScaleWithAnimationCurveAnimatorTask task = new WkLocalScaleWithAnimationCurveAnimatorTask(uniqueID, clip, rendererWrapper);
+                CallAnimatorPlayAnimation(task);
+            }
+            else
+            {
+                base.PlayNormalWinAnimation(duration);
+            }
+        }
     }
 }

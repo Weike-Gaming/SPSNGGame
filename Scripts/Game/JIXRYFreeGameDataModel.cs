@@ -156,9 +156,9 @@ namespace Weike.Games.JIXRY
 
         #endregion
 
-        private uint[] _fgIngotValue = new uint[35];
-        private uint[] _fgTempIngotValue = new uint[35];
-        private uint[] _fgPreviousIngotValue = new uint[35];
+        private uint[] _fgIngotValue = new uint[40];
+        private uint[] _fgTempIngotValue = new uint[40];
+        private uint[] _fgPreviousIngotValue = new uint[40];
 
         private uint _extraPrizeMultiplier = 0;
         private uint _extraPrizeMultiplierIngotValue = 0;

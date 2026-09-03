@@ -2974,10 +2974,20 @@ namespace Weike.Games.JIXRY
                 if(fd.isLuckyWin && !rm.haveNudge)
                 {
                     fd.totalFreeGameAmount += 1;
-                }
-               
+                } 
             }
         }
         #endregion
+        #region Lucky Boost
+        public void ChangeReelToLuckyBoost(int index)
+        {
+            JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+            if (feature.ToString().Contains("RU"))
+                rm.ChangeNumRows(index);
+        }
+        #endregion
+
     }
 }

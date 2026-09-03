@@ -14,8 +14,8 @@ namespace Weike.Games.JIXRY
         public byte savedPreviousPotFeatureGameFlag;
 
         // From JIXRYFreeGameDataModel
-        public uint[] fgIngotValue = new uint[35];
-        public uint[] fgPreviousIngotValue = new uint[35];
+        public uint[] fgIngotValue = new uint[40];
+        public uint[] fgPreviousIngotValue = new uint[40];
 
         public uint extraPrizeMultiplier = 0;
         public uint extraPrizeMultiplierIngotValue = 0;
