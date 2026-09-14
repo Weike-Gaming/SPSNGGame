@@ -778,37 +778,6 @@ namespace Weike.Games.JIXRY
             bool isFgTriggered = dm.previousPotFeatureGameFlag != (byte)JIXRYStateDataFlag.MAIN_GAME;
             uint freeGameMultiplier = 1;
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
-
-            //if (feature.ToString().Contains("RN"))
-            //{
-                // First call after spin
-                //(byte maxWayWin, _) = wm.CheckIngotTrigger(
-                //    reelManager,
-                //    fgDm.fgIngotValue,
-                //    fgDm.extraPrizeMultiplier,
-                //    fgDm.extraPrizeMultiplierIngotValue,
-                //    true,
-                //    modifyWinAmount
-                //);
-                //dm.maxIngotWayWin = maxWayWin;
-                //(rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
-                //nudgeChecked = true;
-
-                //    if (maxWayWin > 1)
-                //    {
-                //        rm.haveNudge = true;
-                //        CmdGotNudge(false);
-                //    }
-                //    else
-                //    {
-                //        CmdNoNudge(false);
-                //    }
-                //}
-                //else
-            //    {
-            //    CmdNoNudge(false);
-            //}
-
             WkWinCheckingInfo info = new WkWinCheckingInfo()
             {
                 betMultiplier = dm.getBetMultiplier,
@@ -987,7 +956,6 @@ namespace Weike.Games.JIXRY
             rm.haveNudge = false;
             rm.doingNudge = false;
             rm.doneNudge = false;
-
             FgCheckWinIcon(modifyWinAmount);
             FgCheckWinIngot(modifyWinAmount);
         }
@@ -3003,6 +2971,14 @@ namespace Weike.Games.JIXRY
         {
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+            if (feature.ToString().Contains("RU"))
+                rm.ChangeNumRows(index);
+        }
+        public void ChangeReelToLuckyBoostinFeature(int index)
+        {
+            JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
             if (feature.ToString().Contains("RU"))
                 rm.ChangeNumRows(index);

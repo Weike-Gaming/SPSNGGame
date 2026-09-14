@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using Weike.Core;
 using Weike.SlotCore;
 
@@ -15,6 +16,16 @@ namespace Weike.Games.JIXRY
             base.EnterState();
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.PlayHitNewFeaturePanel();
+        }
+
+        public override void ExitState()
+        {
+            base.ExitState();
+            JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
+            JIXRYGameDataModel dm = gm.dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
+            if (!feature.ToString().Contains("RU"))
+                gm.ChangeReelToLuckyBoostinFeature(4);
         }
     }
 }

@@ -392,7 +392,6 @@ namespace Weike.Games.JIXRY
             for (int row = 0; row < numRows + numDummy; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-
                 JIXRYReelData rd = reelData.GetModelDataChecked<JIXRYReelData>();
                 uint reelIngotValue = rd.reelIngotValue[index];
                 reelIngotValue = reelIngotValue > 0 ? reelIngotValue : 1234;
