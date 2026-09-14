@@ -6,7 +6,6 @@ using Weike.SlotCore;
 using System;
 using System.Collections;
 using Weike.LobbyManagement;
-using UnityEditor;
 
 namespace Weike.Games.JIXRY
 {

@@ -28,8 +28,9 @@ namespace Weike.Games.JIXRY
 
         public override void RecoverState()
         {
-            base.RecoverState();
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
+            gm.ChangeReelToLuckyBoost(4);
+            base.RecoverState();
             gm.RecoverFgCounter();
             gm.RecoverPreviousPotFeatureState();
             //gm.RecoverFgIngotDigit();

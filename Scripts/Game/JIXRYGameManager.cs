@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Weike.Common;
 using Weike.Core;
@@ -1231,22 +1232,41 @@ namespace Weike.Games.JIXRY
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            rm.UpdateFreeGameCheatData();
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
+            
+                rm.UpdateFreeGameCheatData();
 
             uint betMultiplier = dm.getBetMultiplier;
 
             cdm.mgCheatEnable = false;
             cdm.predetermineJackpotType = 1;
             cdm.predetermineExtraPrizeMultiplierType = 2;
-
+            uint[] baseIngotValues;
+            //if (feature.ToString().Contains("RU"))
+            //{
+                baseIngotValues = new uint[]
+                {
+            10, 10, 10, 10, 10, 10, 10, 10,
+            20, 20, 20, 20, 20, 20, 20, 20,
+            30, 30, 30, 30, 30, 30, 30, 30,
+            50, 50, 50, 50, 50, 50, 50, 40,
+            80, 80, 80, 80, 80, 80, 80, 80
+                };
+            //}
+            //else
+            //{
+            //    baseIngotValues = new uint[]
+            //    {
+            //10, 10, 10, 10, 10, 10, 10,
+            //20, 20, 20, 20, 20, 20, 20,
+            //30, 30, 30, 30, 30, 30, 30,
+            //50, 50, 50, 50, 50, 50, 50,
+            //80, 80, 80, 80, 80, 80, 80
+            //    };
+            //}
             // Base values
-            uint[] baseIngotValues = {
-                10, 10, 10, 10, 10, 10, 10,
-                20, 20, 20, 20, 20, 20, 20,
-                30, 30, 30, 30, 30, 30, 30,
-                50, 50, 50, 50, 50, 50, 50,
-                80, 80, 80, 80, 80, 80, 80
-            };
+
+
             uint[] baseExtraPrizeAdditions = { 30, 80 };
 
             // Apply multiplier

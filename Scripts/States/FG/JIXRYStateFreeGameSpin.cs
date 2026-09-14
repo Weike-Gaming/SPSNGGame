@@ -81,6 +81,7 @@ namespace Weike.Games.JIXRY
         public override void RecoverState()
         {
             JIXRYGameManager gm = GetGameManagerChecked<JIXRYGameManager>();
+            gm.ChangeReelToLuckyBoost(4);
             gm.RecoverFgCounter();
             gm.RecoverPreviousPotFeatureState();
             gm.RecoverTempIngotDigit();
