@@ -458,19 +458,19 @@ namespace Weike.Games.JIXRY
             {
                 case JIXRYStateDataFlag.MAIN_GAME:
                     return 0;
-                case JIXRYStateDataFlag.FREE_GAME_RN: // Blue
+                case JIXRYStateDataFlag.FREE_GAME_LW: // Blue
                     return 1;
                 case JIXRYStateDataFlag.FREE_GAME_JP: // Red
                     return 2;
-                case JIXRYStateDataFlag.FREE_GAME_RU: // Green
+                case JIXRYStateDataFlag.FREE_GAME_LB: // Green
                     return 3;
-                case JIXRYStateDataFlag.FREE_GAME_RNJP: // Blue Red
+                case JIXRYStateDataFlag.FREE_GAME_LWJP: // Blue Red
                     return 4;
-                case JIXRYStateDataFlag.FREE_GAME_RNRU: // Blue Green
+                case JIXRYStateDataFlag.FREE_GAME_LWLB: // Blue Green
                     return 5;
-                case JIXRYStateDataFlag.FREE_GAME_JPRU: // Red Green
+                case JIXRYStateDataFlag.FREE_GAME_JPLB: // Red Green
                     return 6;
-                case JIXRYStateDataFlag.FREE_GAME_RNJPRU: // Blue Red Green
+                case JIXRYStateDataFlag.FREE_GAME_LWJPLB: // Blue Red Green
                     return 7;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(flag), flag, null);

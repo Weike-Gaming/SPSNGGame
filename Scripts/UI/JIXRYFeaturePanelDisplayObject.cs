@@ -123,8 +123,8 @@ namespace Weike.Games.JIXRY
             bool fromMainGame = dm.previousPotFeatureGameFlag == (byte)JIXRYStateDataFlag.MAIN_GAME && 
                                 dm.upcomingPotFeatureGameFlag != (byte)JIXRYStateDataFlag.MAIN_GAME;
 
-            byte allPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU;
-            byte twoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJP;
+            byte allPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB;
+            byte twoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJP;
 
             if (fromMainGame)
             {
@@ -183,13 +183,13 @@ namespace Weike.Games.JIXRY
                 {
                     switch (part)
                     {
-                        case JIXRYStateDataFlag.FREE_GAME_RN:
+                        case JIXRYStateDataFlag.FREE_GAME_LW:
                             spinTextSolo.SetActive(true);
                             break;
                         case JIXRYStateDataFlag.FREE_GAME_JP:
                             jackpotTextSolo.SetActive(true);
                             break;
-                        case JIXRYStateDataFlag.FREE_GAME_RU:
+                        case JIXRYStateDataFlag.FREE_GAME_LB:
                             prizeTextSolo.SetActive(true);
                             break;
                     }
@@ -202,13 +202,13 @@ namespace Weike.Games.JIXRY
                 {
                     switch (part)
                     {
-                        case JIXRYStateDataFlag.FREE_GAME_RN:
+                        case JIXRYStateDataFlag.FREE_GAME_LW:
                             spinText.SetActive(true);
                             break;
                         case JIXRYStateDataFlag.FREE_GAME_JP:
                             jackpotText.SetActive(true);
                             break;
-                        case JIXRYStateDataFlag.FREE_GAME_RU:
+                        case JIXRYStateDataFlag.FREE_GAME_LB:
                             prizeText.SetActive(true);
                             break;
                     }

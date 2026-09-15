@@ -24,7 +24,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             JIXRYGameDataModel dm = gm.dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
-            if (!feature.ToString().Contains("RU"))
+            if (!feature.ToString().Contains("LB"))
                 gm.ChangeReelToLuckyBoostinFeature(4);
         }
     }

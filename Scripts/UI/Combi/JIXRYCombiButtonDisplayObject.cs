@@ -204,25 +204,25 @@ namespace Weike.Games.JIXRY
                 case JIXRYStateDataFlag.MAIN_GAME:
                     valueFeatureSelected.text = "NONE";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RN:
+                case JIXRYStateDataFlag.FREE_GAME_LW:
                     valueFeatureSelected.text = "GREEN";
                     break;
                 case JIXRYStateDataFlag.FREE_GAME_JP:
                     valueFeatureSelected.text = "RED";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RU:
+                case JIXRYStateDataFlag.FREE_GAME_LB:
                     valueFeatureSelected.text = "PURPLE";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNJP:
+                case JIXRYStateDataFlag.FREE_GAME_LWJP:
                     valueFeatureSelected.text = "GREEN RED";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNRU:
+                case JIXRYStateDataFlag.FREE_GAME_LWLB:
                     valueFeatureSelected.text = "GREEN PURPLE";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_JPRU:
+                case JIXRYStateDataFlag.FREE_GAME_JPLB:
                     valueFeatureSelected.text = "RED PURPLE";
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNJPRU:
+                case JIXRYStateDataFlag.FREE_GAME_LWJPLB:
                     valueFeatureSelected.text = "GREEN RED PURPLE";
                     break;
             }

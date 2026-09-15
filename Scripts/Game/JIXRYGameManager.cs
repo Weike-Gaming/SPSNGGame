@@ -364,7 +364,7 @@ namespace Weike.Games.JIXRY
         {
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
 
-            if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU)
+            if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB)
             {
                 return;
             }
@@ -627,8 +627,7 @@ namespace Weike.Games.JIXRY
             byte betMultiplier = (byte)dm.getBetMultiplier;
 
             byte reel5 = 5;
-            byte jackpotIngotIndex = 18;
-
+            byte jackpotIngotIndex = 17;
             JIXRYExtraJackpotRoot extraJackpotRoot = _gameWeightageHandler.GetExtraJackpotRoot(rtpFk, betFk, GetUpcomingGameType(), ReelSetId, "Jackpot", reel5, jackpotIngotIndex, jackpotSet, jackpotGroup, jackpotOption, betMultiplier);
 
             long totalWeight = extraJackpotRoot.totalWeightCount;
@@ -812,7 +811,7 @@ namespace Weike.Games.JIXRY
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
 
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
-            bool isInReelNudge = feature.ToString().Contains("RN") ? true : false;
+            bool isInReelNudge = feature.ToString().Contains("LW") ? true : false;
             FgEndPanelCheckWinIngot(true);
         }
 
@@ -1870,25 +1869,25 @@ namespace Weike.Games.JIXRY
 
             switch (dm.upcomingPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
                     Debug.Log("State : Play RN Transition From Main Game");
                     break;
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     Debug.Log("State : Play JP Transition From Main Game");
                     break;
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
                     Debug.Log("State : Play RU Transition From Main Game");
                     break;
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
                     Debug.Log("State : Play RNJP Transition From Main Game");
                     break;
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
                     Debug.Log("State : Play RNRU Transition From Main Game");
                     break;
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
                     Debug.Log("State : Play JPRU Transition From Main Game");
                     break;
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
                     Debug.Log("State : Play RNJPRU Transition From Main Game");
                     break;
             }
@@ -2004,13 +2003,13 @@ namespace Weike.Games.JIXRY
             switch (state)
             {
                 case JIXRYStateDataFlag.MAIN_GAME: return new();
-                case JIXRYStateDataFlag.FREE_GAME_RN: return new() { JIXRYStateDataFlag.FREE_GAME_RN };
+                case JIXRYStateDataFlag.FREE_GAME_LW: return new() { JIXRYStateDataFlag.FREE_GAME_LW };
                 case JIXRYStateDataFlag.FREE_GAME_JP: return new() { JIXRYStateDataFlag.FREE_GAME_JP };
-                case JIXRYStateDataFlag.FREE_GAME_RU: return new() { JIXRYStateDataFlag.FREE_GAME_RU };
-                case JIXRYStateDataFlag.FREE_GAME_RNJP: return new() { JIXRYStateDataFlag.FREE_GAME_RN, JIXRYStateDataFlag.FREE_GAME_JP };
-                case JIXRYStateDataFlag.FREE_GAME_RNRU: return new() { JIXRYStateDataFlag.FREE_GAME_RN, JIXRYStateDataFlag.FREE_GAME_RU };
-                case JIXRYStateDataFlag.FREE_GAME_JPRU: return new() { JIXRYStateDataFlag.FREE_GAME_JP, JIXRYStateDataFlag.FREE_GAME_RU };
-                case JIXRYStateDataFlag.FREE_GAME_RNJPRU: return new() { JIXRYStateDataFlag.FREE_GAME_RN, JIXRYStateDataFlag.FREE_GAME_JP, JIXRYStateDataFlag.FREE_GAME_RU };
+                case JIXRYStateDataFlag.FREE_GAME_LB: return new() { JIXRYStateDataFlag.FREE_GAME_LB };
+                case JIXRYStateDataFlag.FREE_GAME_LWJP: return new() { JIXRYStateDataFlag.FREE_GAME_LW, JIXRYStateDataFlag.FREE_GAME_JP };
+                case JIXRYStateDataFlag.FREE_GAME_LWLB: return new() { JIXRYStateDataFlag.FREE_GAME_LW, JIXRYStateDataFlag.FREE_GAME_LB };
+                case JIXRYStateDataFlag.FREE_GAME_JPLB: return new() { JIXRYStateDataFlag.FREE_GAME_JP, JIXRYStateDataFlag.FREE_GAME_LB };
+                case JIXRYStateDataFlag.FREE_GAME_LWJPLB: return new() { JIXRYStateDataFlag.FREE_GAME_LW, JIXRYStateDataFlag.FREE_GAME_JP, JIXRYStateDataFlag.FREE_GAME_LB };
                 default: return new();
             }
         }
@@ -2150,9 +2149,9 @@ namespace Weike.Games.JIXRY
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
 
             ushort extraFreeGame = 0;
-            byte allPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU;
-            byte twoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJP;
-            byte onePotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RU;
+            byte allPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB;
+            byte twoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJP;
+            byte onePotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LB;
 
             if (currentFeatureGame == allPotFeature)
             {
@@ -2425,20 +2424,20 @@ namespace Weike.Games.JIXRY
 
             switch (dm.upcomingPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -2450,20 +2449,20 @@ namespace Weike.Games.JIXRY
 
             switch (dm.potFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -2475,20 +2474,20 @@ namespace Weike.Games.JIXRY
 
             switch (dm.savedTriggerPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -2506,33 +2505,33 @@ namespace Weike.Games.JIXRY
                 {
                     stackValue = 12;
                 }
-                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RU)
+                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LB)
                 {
                     stackValue = 13;
                 }
-                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPRU)
+                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPLB)
                 {
                     stackValue = 123;
                 }
             }
             else if (value == 2) //JP
             {
-                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RN)
+                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LW)
                 {
                     stackValue = 12;
                 }
-                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RU)
+                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LB)
                 {
                     stackValue = 23;
                 }
-                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNRU)
+                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWLB)
                 {
                     stackValue = 123;
                 }
             }
             else if (value == 3) //RU
             {
-                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RN)
+                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LW)
                 {
                     stackValue = 13;
                 }
@@ -2540,14 +2539,14 @@ namespace Weike.Games.JIXRY
                 {
                     stackValue = 23;
                 }
-                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNJP)
+                else if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWJP)
                 {
                     stackValue = 123;
                 }
             }
             else if (value == 12) //RUJP
             {
-                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RU)
+                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LB)
                 {
                     stackValue = 123;
                 }
@@ -2561,7 +2560,7 @@ namespace Weike.Games.JIXRY
             }
             else if (value == 23) //JPRU
             {
-                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RN)
+                if (dm.upcomingPotFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LW)
                 {
                     stackValue = 123;
                 }
@@ -2578,25 +2577,25 @@ namespace Weike.Games.JIXRY
             switch (value)
             {
                 case 1:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_RN;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_LW;
                     break;
                 case 2:
                     dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_JP;
                     break;
                 case 3:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_RU;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_LB;
                     break;
                 case 12:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_RNJP;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_LWJP;
                     break;
                 case 13:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_RNRU;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_LWLB;
                     break;
                 case 23:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_JPRU;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_JPLB;
                     break;
                 case 123:
-                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU;
+                    dm.upcomingPotFeatureGameFlag = (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB;
                     break;
                 default:
                     break;
@@ -2665,7 +2664,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { BlueScatter, BlueScatter, BlueScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RN;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LW;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
 
                 JIXRYReelNudgePreSpinDisplayObject tmp = FindObjectOfType<JIXRYReelNudgePreSpinDisplayObject>();
@@ -2681,7 +2680,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { GreenScatter, GreenScatter, GreenScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RU;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LB;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
             }
         }
@@ -2707,7 +2706,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { BlueScatter, BlueScatter, BlueScatter, RedScatter, RedScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJP;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJP;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
             }
         }
@@ -2720,7 +2719,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { BlueScatter, BlueScatter, GreenScatter, GreenScatter, GreenScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNRU;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWLB;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
             }
         }
@@ -2733,7 +2732,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { RedScatter, RedScatter, RedScatter, GreenScatter, GreenScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_JPRU;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_JPLB;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
             }
         }
@@ -2746,7 +2745,7 @@ namespace Weike.Games.JIXRY
                 ResetCheat();
                 JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
                 SetupCheat(GenerateCheatRng(new uint[] { BlueScatter, RedScatter, GreenScatter }));
-                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU;
+                cdm.demoPotFeature = (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB;
                 gameState!.AddInputAtomAndRunState("Cmd_DisableDemoPanel");
             }
         }
@@ -2880,7 +2879,7 @@ namespace Weike.Games.JIXRY
             byte[] empty = new byte[] { 0, 0, 0 };
             switch (potState)
             {
-                case JIXRYStateDataFlag.FREE_GAME_RN:
+                case JIXRYStateDataFlag.FREE_GAME_LW:
                     Debug.Log("Play LED: greenColor");
                     PlayLedStatic(greenColor);
                     break;
@@ -2888,23 +2887,23 @@ namespace Weike.Games.JIXRY
                     Debug.Log("Play LED: redColor");
                     PlayLedStatic(redColor);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RU:
+                case JIXRYStateDataFlag.FREE_GAME_LB:
                     Debug.Log("Play LED: purpleColor");
                     PlayLedStatic(purpleColor);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNRU:
+                case JIXRYStateDataFlag.FREE_GAME_LWLB:
                     Debug.Log("Play LED: greenColor, purpleColor");
                     PlayLedTransition(greenColor, purpleColor, empty);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNJP:
+                case JIXRYStateDataFlag.FREE_GAME_LWJP:
                     Debug.Log("Play LED: greenColor, redColor");
                     PlayLedTransition(greenColor, redColor, empty);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_JPRU:
+                case JIXRYStateDataFlag.FREE_GAME_JPLB:
                     Debug.Log("Play LED: redColor, purpleColor");
                     PlayLedTransition(redColor, purpleColor, empty);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RNJPRU:
+                case JIXRYStateDataFlag.FREE_GAME_LWJPLB:
                     Debug.Log("Play LED: greenColor, redColor, purpleColor");
                     const uint interval = 7500;
                     PlayLedTransition(greenColor, redColor, purpleColor, interval);
@@ -2957,7 +2956,7 @@ namespace Weike.Games.JIXRY
             JIXRYFreeGameDataModel fd = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            if (feature.ToString().Contains("RN"))
+            if (feature.ToString().Contains("LW"))
             {
                 if(fd.isLuckyWin && !rm.haveNudge)
                 {
@@ -2972,7 +2971,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            if (feature.ToString().Contains("RU"))
+            if (feature.ToString().Contains("LB"))
                 rm.ChangeNumRows(index);
         }
         public void ChangeReelToLuckyBoostinFeature(int index)
@@ -2980,7 +2979,7 @@ namespace Weike.Games.JIXRY
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            if (feature.ToString().Contains("RU"))
+            if (feature.ToString().Contains("LB"))
                 rm.ChangeNumRows(index);
         }
         #endregion

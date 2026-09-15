@@ -317,7 +317,7 @@ namespace Weike.Games.JIXRY
 
             switch (next)
             {
-                case JIXRYStateDataFlag.FREE_GAME_RN:
+                case JIXRYStateDataFlag.FREE_GAME_LW:
 #if DEBUG
                     Debug.Log("Fly small ingot: Play LED (FREE_GAME_RN)");
 #endif
@@ -335,7 +335,7 @@ namespace Weike.Games.JIXRY
                     gm.PlayLED(next);
                     PlayOrbAnim(2);
                     break;
-                case JIXRYStateDataFlag.FREE_GAME_RU:
+                case JIXRYStateDataFlag.FREE_GAME_LB:
 #if DEBUG 
                     Debug.Log("Fly small ingot: Play LED (FREE_GAME_RU)");
 #endif

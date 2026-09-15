@@ -682,9 +682,9 @@ namespace Weike.Games.JIXRY
         /// <param name="reelSetFk"></param>
         private void DeserializePotFeature(XmlNode node, byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk, string nodeName)
         {
-            byte reelNudgeScatter = StringToByte(node, "ReelNudge_Scatter");
+            byte reelNudgeScatter = StringToByte(node, "LuckyWin_Scatter");
             byte extraJackpotScatter = StringToByte(node, "Jackpot_Scatter");
-            byte reelUpgradeScatter = StringToByte(node, "ReelUpgrade_Scatter");
+            byte reelUpgradeScatter = StringToByte(node, "LuckyBoost_Scatter");
             long totalWeightCount = StringToLong(node, "TotalWeight_Cnt");
             byte totalTypeWeightCount = StringToByte(node, "TotalTypeWeight_Cnt");
 

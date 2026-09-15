@@ -267,20 +267,20 @@ namespace Weike.Games.JIXRY
 
             switch (dm.savedTriggerPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -295,20 +295,20 @@ namespace Weike.Games.JIXRY
             JIXRYHistorySubGameData gameData = subGameData as JIXRYHistorySubGameData;
             switch (gameData.savedPreviousPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -320,20 +320,20 @@ namespace Weike.Games.JIXRY
             
             switch (gameData.potFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
-                    return "FREE_GAME_RN";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
+                    return "FREE_GAME_LW";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "FREE_GAME_JP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
-                    return "FREE_GAME_RU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
-                    return "FREE_GAME_RNJP";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
-                    return "FREE_GAME_RNRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
-                    return "FREE_GAME_JPRU";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
-                    return "FREE_GAME_RNJPRU";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
+                    return "FREE_GAME_LB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
+                    return "FREE_GAME_LWJP";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
+                    return "FREE_GAME_LWLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
+                    return "FREE_GAME_JPLB";
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
+                    return "FREE_GAME_LWJPLB";
                 default:
                     return "MAIN_GAME";
             }
@@ -343,19 +343,19 @@ namespace Weike.Games.JIXRY
         {
             switch (flag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
                     return "Green Pot";
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     return "Red Pot";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
                     return "Purple Pot";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
                     return "Green + Red Pot";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
                     return "Green + Purple Pot";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
                     return "Red + Purple Pot";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJPRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJPLB:
                     return "Green + Red + Purple Pot";
                 default:
                     return "MAIN_GAME";
@@ -375,38 +375,38 @@ namespace Weike.Games.JIXRY
             JIXRYHistorySubGameData gameData = subGameData as JIXRYHistorySubGameData;
             switch (gameData.savedPreviousPotFeatureGameFlag)
             {
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RN:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LW:
                     {
-                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNJP)
+                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWJP)
                             return "Red";
-                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNRU)
+                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWLB)
                             return "Purple";
                         else
                             return "Red + Purple";
                     }
                 case (byte)JIXRYStateDataFlag.FREE_GAME_JP:
                     {
-                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNJP)
+                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWJP)
                             return "Green";
-                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPRU)
+                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPLB)
                             return "Purple";
                         else
                             return "Green + Purple";
                     }
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LB:
                     {
-                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_RNRU)
+                        if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_LWLB)
                             return "Green";
-                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPRU)
+                        else if (gameData.potFeatureGameFlag == (byte)JIXRYStateDataFlag.FREE_GAME_JPLB)
                             return "Red";
                         else
                             return "Green + Red";
                     }
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNJP:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWJP:
                     return "Purple";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_RNRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_LWLB:
                     return "Red";
-                case (byte)JIXRYStateDataFlag.FREE_GAME_JPRU:
+                case (byte)JIXRYStateDataFlag.FREE_GAME_JPLB:
                      return "Green";
                 default:
                     return "ERROR";
