@@ -530,7 +530,7 @@ namespace Weike.Games.JIXRY
 
                 // IngotValue
                 uint extraPrizeMultiplierIngotValue3 = GetIngotValue(reel3, ingotMultiplierIndex);
-                uint tempPrizeMulValue = fgDm.extraPrizeMultiplierIngotValue;
+                uint tempPrizeMulValue = 0;
                 tempPrizeMulValue = extraPrizeMultiplierIngotValue3;
                 fgDm.extraPrizeMultiplierIngotValue = tempPrizeMulValue;
                 return;
@@ -549,7 +549,6 @@ namespace Weike.Games.JIXRY
                 long weight = 0;
                 uint rng = machineContext.platformInterface.GetRng((uint)totalWeight);
                 var probList = extraPrizeMultiplierProbabilityRoot.ToList();
-                Debug.LogError($"probList.Count = {probList.Count}");
                 foreach (JIXRYExtraPrizeMultiplierProbabilityRoot prob in extraPrizeMultiplierProbabilityRoot)
                 {
                     weight += prob.weight;
@@ -967,7 +966,10 @@ namespace Weike.Games.JIXRY
                 fgDm.extraPrizeMultiplier,
                 fgDm.extraPrizeMultiplierIngotValue,
                 true,
-                modifyWinAmount
+                modifyWinAmount,
+                false,
+                false,
+                feature.ToString().Contains("LB")
             );
 
             dm.maxIngotWayWin = maxIngotWayWin;
@@ -2291,7 +2293,6 @@ namespace Weike.Games.JIXRY
                     tempValue[i] *= fgDm.extraPrizeMultiplier;
                 }
             }
-            Debug.LogError("fgDm.extraPrizeMultiplier" + fgDm.extraPrizeMultiplier);
             rm.UpdateIngotValueData(tempValue);
             rm.GatherAnimationData(dm.maxIngotWayWin);
 

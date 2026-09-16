@@ -27,7 +27,7 @@ namespace Weike.Games.JIXRY
         public (byte maxMayWin, JIXRYExtraIngotPosition extraIngotPosition) CheckIngotTrigger(
             WkReelManager reelManager, ReadOnlySpan<uint> ingotValue,
             uint extraPrizeMultiplier, uint extraPrizeMultiplierIngotValue, bool isFreeGame, bool modifyWinAmount,
-            bool resetWinStatement = false, bool isHistory = false)
+            bool resetWinStatement = false, bool isHistory = false, bool isMultiplier = false)
         {
             WkSymbolInfo symbolInfo = reelManager.symbolInfo ?? throw new Exception("Missing symbol info reference");
             WkSymbolInfoTemplate symbolInfoTemplate = symbolInfo.symbolTemplate!;
@@ -123,7 +123,7 @@ namespace Weike.Games.JIXRY
             {
                 totalIngotPrize = CalculateIngotPrize(normalIngotCount, normalIngotValue, extraFlags,
                                     extraPrizeMultiplier, extraPrizeMultiplierIngotValue,
-                                    isHistory);
+                                    isHistory,isMultiplier);
                 if (isFreeGame)
                 {
                     dm.totalFgIngotWinAmount = totalIngotPrize;
@@ -153,7 +153,7 @@ namespace Weike.Games.JIXRY
         private uint CalculateIngotPrize(
             uint normalIngotCount, uint normalIngotValue, JIXRYExtraIngotPosition extraFlags,
             uint extraPrizeMultiplier, uint extraPrizeMultiplierIngotValue,
-            bool isHistory = false)
+            bool isHistory = false,bool isMultiplier = false)
         {
             uint ingotWinAmount = 0;
 
@@ -161,12 +161,12 @@ namespace Weike.Games.JIXRY
             uint multiplier2IngotValue = 0;
 
 
-            if (true)
+            if (isMultiplier)
             {
                 multiplier2 = extraPrizeMultiplier;
                 multiplier2IngotValue = extraPrizeMultiplierIngotValue;
             }
-
+            UnityEngine.Debug.LogError("normalIngotValue: " + normalIngotValue + " multiplier2: " + multiplier2 + " multiplier2IngotValue: " + multiplier2IngotValue);
             ingotWinAmount = normalIngotValue * multiplier2 + multiplier2IngotValue;
            
             if(isHistory)
