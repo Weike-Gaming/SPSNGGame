@@ -367,7 +367,8 @@ namespace Weike.Games.JIXRY
 
             // Extra Prize Data
             dm.maxIngotWayWin = maxIngotWayWin;
-            if (extraIngotPosition.HasFlag(JIXRYExtraIngotPosition.MultiplierIn2))
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
+            if ((feature.ToString().Contains("LB")) && maxIngotWayWin >= 2)
             {
                 rd[2].haveMultiplierIngot = true;
             }
@@ -535,7 +536,7 @@ namespace Weike.Games.JIXRY
             // Extra Prize Data
             dm.maxIngotWayWin = maxIngotWayWin;
 
-            if (extraIngotPosition.HasFlag(JIXRYExtraIngotPosition.MultiplierIn2))
+            if ((feature.ToString().Contains("LB")) && maxIngotWayWin >= 2)
             {
                 rd[2].haveMultiplierIngot = true;
             }
@@ -973,6 +974,7 @@ namespace Weike.Games.JIXRY
                     {
                         uint tempPrizeMul = fgdm.extraPrizeMultiplier;
                         tempPrizeMul = (uint)prob.value;
+                       
                         fgdm.extraPrizeMultiplier = tempPrizeMul;
                         rm.UpdateExtraPrizeMultiplierType(reel3 - 1, (byte)fgdm.extraPrizeMultiplier);
                         break;

@@ -685,11 +685,11 @@ namespace Weike.Games.JIXRY
             _extraPrizeTargets = rm.GetAnimationData().ToArray();
 
             _prizeAnimationDone = 0;
-
+            //rm.PrizeMultiplyAnimDone();
             for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckPrizeMultiplierIngot())
+                if (row == 3)
                 {
                     PlayAwardSfx();
                     symbol.PlayAwardAnimation();
@@ -714,7 +714,7 @@ namespace Weike.Games.JIXRY
             for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckPrizeMultiplierIngot())
+                if (row == 3)
                 {
                     _animSpeed = rm.GetPrizeAnimSpeed();
                     symbol.PlayPrizeMultiplierAnim(_extraPrizeTargets[_prizeAnimationDone], _animSpeed, OnSymbolPrizeMultiplierComplete);
@@ -737,7 +737,7 @@ namespace Weike.Games.JIXRY
             for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckPrizeMultiplierIngot())
+                if (row == 3)
                 {
                     symbol.StartIngotTransform((int)reelData.GetModelDataChecked<JIXRYReelData>().reelIngotValue[row]);
                     break;

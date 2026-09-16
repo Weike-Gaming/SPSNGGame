@@ -803,7 +803,6 @@
 					"Cmd_NoHitNewFeature",
 					"Cmd_NoWin",
 					"Cmd_FinishScatterAnimation"
-					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -819,7 +818,6 @@
 					"Cmd_NoJackpot",
 					"Cmd_GotPrizeBoostMultiplier",
 					"Cmd_FinishScatterAnimation"
-					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -831,9 +829,8 @@
 				"fg-spin",
 				"fg-first-pop-animation",
 				[
-					"Cmd_ReelStopSpinning",					
+					"Cmd_ReelStopSpinning",
 					"Cmd_NoPrizeBoostMultiplier",
-					//"Cmd_GotNudge",
 					"Cmd_GotWin",
 					"Cmd_FinishScatterAnimation"
 				],

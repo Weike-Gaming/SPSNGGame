@@ -36,6 +36,9 @@ namespace Weike.Games.JIXRY
         private List<JIXRYExtraJackpotRoot> _extraJackpotCollection = new List<JIXRYExtraJackpotRoot>();
         private List<JIXRYExtraJackpotProbabilityRoot> _extraJackpotProbabilityCollection = new List<JIXRYExtraJackpotProbabilityRoot>();
 
+        private List<JIXRYProbMultiplyRoot> _probMultiplyCollection = new List<JIXRYProbMultiplyRoot>();
+        private List<JIXRYProbMultiplyProbabilityRoot> _probMultiplyProbabilityCollection = new List<JIXRYProbMultiplyProbabilityRoot>();
+
         private bool _docLoaded = false;
         private XmlDocument _doc = new();
         private string _checksum = string.Empty;
@@ -187,9 +190,7 @@ namespace Weike.Games.JIXRY
                                                                         p.betFk.Equals(betFk) &&
                                                                         p.gameTypeFk.Equals(gameTypeFk) &&
                                                                         p.reelSetFk.Equals(reelSetFk) &&
-                                                                        p.extraType.Equals(extraTypeFk) &&
-                                                                        p.reelNumber.Equals(reelNumberFk) &&
-                                                                        p.symbolIndex.Equals(symbolIndexFk)
+                                                                        p.extraType.Equals(extraTypeFk)
                                                                     select p;
             return returnVal;
         }
@@ -249,6 +250,25 @@ namespace Weike.Games.JIXRY
                                                                         p.jackpotOption.Equals(jackpotOptionFk) &&
                                                                         p.betMultiplier.Equals(betMultiplierFk) 
                                                                     select p;
+            return returnVal;
+        }
+
+        /// <summary>
+        /// Get Prob_Multiply probability
+        /// </summary>
+        /// <param name="rtpFk"></param>
+        /// <param name="betFk"></param>
+        /// <param name="gameTypeFk"></param>
+        /// <param name="reelSetFk"></param>
+        /// <returns></returns>
+        public IEnumerable<JIXRYProbMultiplyProbabilityRoot> GetProbMultiplyProbability(byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk)
+        {
+            IEnumerable<JIXRYProbMultiplyProbabilityRoot> returnVal = from p in _probMultiplyProbabilityCollection
+                                                                      where p.rtpFk.Equals(rtpFk) &&
+                                                                          p.betFk.Equals(betFk) &&
+                                                                          p.gameTypeFk.Equals(gameTypeFk) &&
+                                                                          p.reelSetFk.Equals(reelSetFk)
+                                                                      select p;
             return returnVal;
         }
 
@@ -445,9 +465,7 @@ namespace Weike.Games.JIXRY
                                                      s.betFk.Equals(betFk) &&
                                                      s.gameTypeFk.Equals(gameTypeFk) &&
                                                      s.reelSetFk.Equals(reelSetFk) &&
-                                                     s.extraType.Equals(extraType) &&
-                                                     s.reelNumber.Equals(reelNumber) &&
-                                                     s.symbolIndex.Equals(symbolIndex)
+                                                     s.extraType.Equals(extraType)
                                                   select s).First();
             return returnVal;
         }
@@ -484,6 +502,27 @@ namespace Weike.Games.JIXRY
                                                        select s).First();
             return returnVal;
         }
+
+
+        /// <summary>
+        /// Get Prob_Multiply Root
+        /// </summary>
+        /// <param name="rtpFk"></param>
+        /// <param name="betFk"></param>
+        /// <param name="gameTypeFk"></param>
+        /// <param name="reelSetFk"></param>
+        /// <returns></returns>
+        public JIXRYProbMultiplyRoot GetProbMultiplyRoot(byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk)
+        {
+            JIXRYProbMultiplyRoot returnVal = (from s in _probMultiplyCollection
+                                               where s.rtpFk.Equals(rtpFk) &&
+                                                  s.betFk.Equals(betFk) &&
+                                                  s.gameTypeFk.Equals(gameTypeFk) &&
+                                                  s.reelSetFk.Equals(reelSetFk)
+                                               select s).First();
+            return returnVal;
+        }
+
         #endregion
 
         #endregion
@@ -657,6 +696,9 @@ namespace Weike.Games.JIXRY
                 case "ReelUpgrade_Ingot":
                     DeserializeNoExtraJackpot(node, rtpFk, betFk, gameTypeFk, reelSetFk);
                     break;
+                case "Multiplier":
+                    DeserializeGlobalMultiplier(node, rtpFk, betFk, gameTypeFk, reelSetFk);
+                    break;
 
                 case "Mystery_Jackpot":
                     DeserializeMysteryJackpot(node, rtpFk, betFk, gameTypeFk, reelSetFk, nodeName);
@@ -665,7 +707,9 @@ namespace Weike.Games.JIXRY
                 case "Jackpot_Ingot":
                     DeserializeExtraJackpot(node, rtpFk, betFk, gameTypeFk, reelSetFk);
                     break;
-
+                case "Prob_Multiply":
+                    DeserializeProbMultiply(node, rtpFk, betFk, gameTypeFk, reelSetFk);
+                    break;
                 default:
                     Debug.LogWarning($"Unhandled feature node: {nodeName}");
                     break;
@@ -790,6 +834,7 @@ namespace Weike.Games.JIXRY
                 case "Multiplier":
                     JIXRYExtraPrizeMultiplierProbabilityRoot extraPrizeMultiplierProbability = new JIXRYExtraPrizeMultiplierProbabilityRoot(rtpFk, betFk, gameTypeFk, reelSetFk, extraType, reelNumber, symbolIndex, totalWeightCount, totalTypeWeightCount, value, weight);
                     _extraPrizeMultiplierProbabilityCollection.Add(extraPrizeMultiplierProbability);
+                    Debug.LogError("Multiplier");
                     break;
                 case "Payer":
                     JIXRYExtraPrizePayerProbabilityRoot extraPrizePayerProbability = new JIXRYExtraPrizePayerProbabilityRoot(rtpFk, betFk, gameTypeFk, reelSetFk, extraType, reelNumber, symbolIndex, totalWeightCount, totalTypeWeightCount, value, weight);
@@ -895,6 +940,71 @@ namespace Weike.Games.JIXRY
             JIXRYExtraJackpotProbabilityRoot probability = new JIXRYExtraJackpotProbabilityRoot(rtpFk, betFk, gameTypeFk, reelSetFk, extraType, reelNumber, symbolIndex, jackpotSet, jackpotGroup, jackpotOption, betMultiplier, totalWeightCount, totalTypeWeightCount, value, weight);
             _extraJackpotProbabilityCollection.Add(probability);
         }
+
+        private void DeserializeGlobalMultiplier(XmlNode node, byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk)
+        {
+            string extraType = "Multiplier";
+            // 全局Multiplier不再区分卷轴、符号，填0占位
+            byte reelNumber = 0;
+            byte symbolIndex = 0;
+
+            long totalWeightCount = StringToLong(node, "TotalWeight_Cnt");
+            byte totalTypeWeightCount = StringToByte(node, "TotalTypeWeight_Cnt");
+
+            // 构造Root实体，加入集合
+            JIXRYExtraPrizeMultiplierRoot multiRoot = new JIXRYExtraPrizeMultiplierRoot(
+                rtpFk, betFk, gameTypeFk, reelSetFk, extraType, reelNumber, symbolIndex, totalWeightCount, totalTypeWeightCount
+            );
+            _extraPrizeMultiplierCollection.Add(multiRoot);
+
+            // 遍历子节点PROBABILITY，填充Probability集合
+            int n = node.ChildNodes.Count;
+            for (int i = 0; i < n; i++)
+            {
+                XmlNode probNode = node.ChildNodes[i];
+                long value = StringToLong(probNode, "value");
+                long weight = StringToLong(probNode, "weight");
+                JIXRYExtraPrizeMultiplierProbabilityRoot prob = new JIXRYExtraPrizeMultiplierProbabilityRoot(
+                    rtpFk, betFk, gameTypeFk, reelSetFk, extraType, reelNumber, symbolIndex, totalWeightCount, totalTypeWeightCount, value, weight
+                );
+                _extraPrizeMultiplierProbabilityCollection.Add(prob);
+            }
+        }
+
+        /// <summary>
+        /// Deserialize Prob_Multiply root
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="rtpFk"></param>
+        /// <param name="betFk"></param>
+        /// <param name="gameTypeFk"></param>
+        /// <param name="reelSetFk"></param>
+        private void DeserializeProbMultiply(XmlNode node, byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk)
+        {
+            long totalWeightCount = StringToLong(node, "TotalWeight_Cnt");
+            byte totalTypeWeightCount = StringToByte(node, "TotalTypeWeight_Cnt");
+            JIXRYProbMultiplyRoot root = new JIXRYProbMultiplyRoot(rtpFk, betFk, gameTypeFk, reelSetFk, totalWeightCount, totalTypeWeightCount);
+            _probMultiplyCollection.Add(root);
+
+            int n = node.ChildNodes.Count;
+            for (int i = 0; i < n; i++)
+            {
+                XmlNode probNode = node.ChildNodes[i];
+                DeserializeProbMultiplyProbability(probNode, rtpFk, betFk, gameTypeFk, reelSetFk, totalWeightCount, totalTypeWeightCount);
+            }
+        }
+
+        /// <summary>
+        /// Deserialize Prob_Multiply PROBABILITY子节点
+        /// </summary>
+        private void DeserializeProbMultiplyProbability(XmlNode node, byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk, long totalWeightCount, byte totalTypeWeightCount)
+        {
+            long value = StringToLong(node, "value");
+            long weight = StringToLong(node, "weight");
+            JIXRYProbMultiplyProbabilityRoot prob = new JIXRYProbMultiplyProbabilityRoot(rtpFk, betFk, gameTypeFk, reelSetFk, totalWeightCount, totalTypeWeightCount, value, weight);
+            _probMultiplyProbabilityCollection.Add(prob);
+        }
+
         #endregion
 
         #region Helper
@@ -1506,6 +1616,51 @@ namespace Weike.Games.JIXRY
             this.jackpotGroup = jackpotGroup;
             this.jackpotOption = jackpotOption;
             this.betMultiplier = betMultiplier;
+            this.totalWeightCount = totalWeightCount;
+            this.totalTypeWeightCount = totalTypeWeightCount;
+            this.value = value;
+            this.weight = weight;
+        }
+    }
+
+
+    public struct JIXRYProbMultiplyRoot
+    {
+        public byte rtpFk;
+        public uint betFk;
+        public string gameTypeFk;
+        public byte reelSetFk;
+        public long totalWeightCount;
+        public byte totalTypeWeightCount;
+
+        public JIXRYProbMultiplyRoot(byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk, long totalWeightCount, byte totalTypeWeightCount)
+        {
+            this.rtpFk = rtpFk;
+            this.betFk = betFk;
+            this.gameTypeFk = gameTypeFk;
+            this.reelSetFk = reelSetFk;
+            this.totalWeightCount = totalWeightCount;
+            this.totalTypeWeightCount = totalTypeWeightCount;
+        }
+    }
+
+    public struct JIXRYProbMultiplyProbabilityRoot
+    {
+        public byte rtpFk;
+        public uint betFk;
+        public string gameTypeFk;
+        public byte reelSetFk;
+        public long value;
+        public long weight;
+        public long totalWeightCount;
+        public byte totalTypeWeightCount;
+
+        public JIXRYProbMultiplyProbabilityRoot(byte rtpFk, uint betFk, string gameTypeFk, byte reelSetFk, long totalWeightCount, byte totalTypeWeightCount, long value, long weight)
+        {
+            this.rtpFk = rtpFk;
+            this.betFk = betFk;
+            this.gameTypeFk = gameTypeFk;
+            this.reelSetFk = reelSetFk;
             this.totalWeightCount = totalWeightCount;
             this.totalTypeWeightCount = totalTypeWeightCount;
             this.value = value;

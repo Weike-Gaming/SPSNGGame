@@ -161,14 +161,14 @@ namespace Weike.Games.JIXRY
             uint multiplier2IngotValue = 0;
 
 
-            if (extraFlags.HasFlag(JIXRYExtraIngotPosition.MultiplierIn2))
+            if (true)
             {
                 multiplier2 = extraPrizeMultiplier;
                 multiplier2IngotValue = extraPrizeMultiplierIngotValue;
             }
 
             ingotWinAmount = normalIngotValue * multiplier2 + multiplier2IngotValue;
-
+           
             if(isHistory)
             {
                 // Using unmodified histGameData.fgPreviousIngotValue saving is done with modified values already.
