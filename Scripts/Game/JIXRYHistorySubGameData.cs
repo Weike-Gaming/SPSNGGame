@@ -16,6 +16,7 @@ namespace Weike.Games.JIXRY
         // From JIXRYFreeGameDataModel
         public uint[] fgIngotValue = new uint[40];
         public uint[] fgPreviousIngotValue = new uint[40];
+        public uint[] fgIsMultiply = new uint[20];
 
         public uint extraPrizeMultiplier = 0;
         public uint extraPrizeMultiplierIngotValue = 0;

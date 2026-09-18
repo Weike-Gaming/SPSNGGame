@@ -40,6 +40,22 @@ namespace Weike.Games.JIXRY
             }
         }
 
+        [WkSaveToHistory(WkHistorySaveType.SubGame)]
+        [WkSaveToSram]
+        public uint[] fgIsMultiply
+        {
+            get => _fgIsMultiply;
+            set
+            {
+                if (_fgIsMultiply.SequenceEqual(value))
+                {
+                    return;
+                }
+                _fgIsMultiply = value.ToArray();
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// int[35]
         /// </summary>
@@ -159,6 +175,7 @@ namespace Weike.Games.JIXRY
         private uint[] _fgIngotValue = new uint[40];
         private uint[] _fgTempIngotValue = new uint[40];
         private uint[] _fgPreviousIngotValue = new uint[40];
+        private uint[] _fgIsMultiply = new uint[20];
 
         private uint _extraPrizeMultiplier = 0;
         private uint _extraPrizeMultiplierIngotValue = 0;

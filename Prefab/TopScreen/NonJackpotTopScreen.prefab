@@ -2186,7 +2186,7 @@ MonoBehaviour:
   collection:
     _keys: []
     _values: []
-  potType: RU
+  potType: LB
   potCoinPosition: {fileID: 3310844656524197236}
   awardedRenderer: {fileID: 3499979721277454454}
   potCoinTextureCollection:
@@ -2835,7 +2835,7 @@ MonoBehaviour:
   collection:
     _keys: []
     _values: []
-  potType: RN
+  potType: LW
   potCoinPosition: {fileID: 5882110593044216971}
   awardedRenderer: {fileID: 7457225759938170743}
   potCoinTextureCollection:

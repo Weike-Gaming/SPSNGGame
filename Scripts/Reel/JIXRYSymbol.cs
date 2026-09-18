@@ -15,8 +15,8 @@ namespace Weike.Games.JIXRY
         private const int RedScatter = 12;
         private const int GreenScatter = 13;
         private const int NormalIngot = 15;
-        private const int PrizeMultiplierIngot = 16;
-        private const int JackpotIngot = 17;
+        private const int PrizeMultiplierIngot = 25;
+        private const int JackpotIngot = 16;
 
         private int ingotValueToAdd = 0;
 
@@ -526,6 +526,8 @@ namespace Weike.Games.JIXRY
                 TweenScaleFunctions.CubicEaseInOut,
                 t =>
                 {
+                    if (this == null || gameObject == null)
+                        return;
                     float u = t.CurrentValue;
 
                     Vector2 potPosition = QuadBezier(start, control, end, u);
@@ -751,12 +753,6 @@ namespace Weike.Games.JIXRY
 
         public void IngotValueTransform(int ingotValue)
         {
-            if (CheckPrizeMultiplierIngot())
-            {
-                rendererCollection["FeatureGraphic"].gameObject.SetActive(false);
-                extraSpriteRenderer.enabled = false;
-            }
-            
             SetIngotValue(ingotValue);
             AddTextInfo(ingotValueToAdd, OffsetWidth, OffsetHeight);
         }
@@ -826,25 +822,7 @@ namespace Weike.Games.JIXRY
         {
             StopGameSpecificAnimation();
             bool isEn = WkLobbySceneManager.instance.dataModel.language == WkGameLanguage.EN;
-
-            
-            if (CheckPrizeMultiplierIngot())
-            {
-                PlaySpecificAnimation("Award", 1, rendererCollection["Symbol"], () => PlaySpecificAnimation("Loop", -1, rendererCollection["Symbol"]));
-                if (_multiplierType == 2)
-                {
-                    PlaySpecificAnimation("Multiplier2_en", 1, rendererCollection["FeatureGraphic"]);
-                }
-                else if (_multiplierType == 3)
-                {
-                    PlaySpecificAnimation("Multiplier3_en", 1, rendererCollection["FeatureGraphic"]);
-                }
-                else if (_multiplierType == 5)
-                {
-                    PlaySpecificAnimation("Multiplier5_en", 1, rendererCollection["FeatureGraphic"]);
-                }
-            }
-            else if (CheckJackpotIngot())
+            if (CheckJackpotIngot())
             {
                 _isJpIngotAnimPlaying = true;
                 WkAudioManager.instance.PlayAudio("IngotAward");

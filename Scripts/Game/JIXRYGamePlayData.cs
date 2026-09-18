@@ -23,6 +23,7 @@ namespace Weike.Games.JIXRY
                 savedGreenPotScatter == other.savedGreenPotScatter &&
                 fgIngotValue.SequenceEqual(other.fgIngotValue) &&
                 fgPreviousIngotValue.SequenceEqual(other.fgPreviousIngotValue) &&
+                fgIsMultiply.SequenceEqual(other.fgIsMultiply) &&
                 extraPrizeMultiplier == other.extraPrizeMultiplier &&
                 extraPrizeMultiplierIngotValue == other.extraPrizeMultiplierIngotValue &&
                 previousExtraPrizeMultiplier == other.previousExtraPrizeMultiplier &&
@@ -62,6 +63,7 @@ namespace Weike.Games.JIXRY
             hashCode.Add(previousExtraPrizeMultiplier);
             hashCode.Add(extraJackpotType);
             hashCode.Add(previousExtraJackpotType);
+            hashCode.Add(fgIsMultiply);
             return hashCode.ToHashCode();
         }
 
@@ -85,6 +87,7 @@ namespace Weike.Games.JIXRY
         // From JIXRYfreeGameDataModel
         public uint[] fgIngotValue = new uint[40];
         public uint[] fgPreviousIngotValue = new uint[40];
+        public uint[] fgIsMultiply = new uint[20];
 
         public uint extraPrizeMultiplier = 0;
         public uint extraPrizeMultiplierIngotValue = 0;

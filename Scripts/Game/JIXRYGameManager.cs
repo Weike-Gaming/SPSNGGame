@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Weike.Common;
 using Weike.Core;
@@ -191,9 +190,9 @@ namespace Weike.Games.JIXRY
             if (!isRecovery)
             {
                 GenerateIngotsDigit(true);
-                //SavePreNudgeIngotValue();
                 FgGenerateExtraPrizeMultiplier();
                 FgGenerateExtraJackpotIngot();
+                FgGenerateMultiply();
             }
         }
 
@@ -556,7 +555,6 @@ namespace Weike.Games.JIXRY
                     {
                         uint tempPrizeMul = fgDm.extraPrizeMultiplier;
                         tempPrizeMul = (uint)prob.value;
-                        Debug.LogError("tempPrizeMul: " + tempPrizeMul);
                         fgDm.extraPrizeMultiplier = tempPrizeMul;
                         rm.UpdateExtraPrizeMultiplierType(reel3 - 1, (byte)fgDm.extraPrizeMultiplier);
                         break;
@@ -675,7 +673,7 @@ namespace Weike.Games.JIXRY
             rm.UpdateExtraJackpotType(fgDm.extraJackpotType);
         }
 
-        private void FgMultiply()
+        private void FgGenerateMultiply()
         {
             if (!GetUpcomingGameType().Contains("LB")) return;
 
@@ -698,26 +696,27 @@ namespace Weike.Games.JIXRY
             uint betFk = dm.getPlayOption;
             uint betMultiplier = dm.getBetMultiplier;
             string gameTypeFk = GetUpcomingGameType();
+            uint[] temp = new uint[fgDm.fgIsMultiply.Length];
             byte reelSetFk = ReelSetId;
             {
                 JIXRYProbMultiplyRoot probMultiplyRoot = gameWeightageHandler.GetProbMultiplyRoot(rtpFk, betFk, gameTypeFk, reelSetFk);
                 IEnumerable<JIXRYProbMultiplyProbabilityRoot> probList = gameWeightageHandler.GetProbMultiplyProbability(rtpFk, betFk, gameTypeFk, reelSetFk);
-
                 long totalWeight = probMultiplyRoot.totalWeightCount;
-                long weight = 0;
-                uint rng = machineContext.platformInterface.GetRng((uint)totalWeight);
-
-                foreach (JIXRYProbMultiplyProbabilityRoot prob in probList)
+                for(int i = 0;i < fgDm.fgIsMultiply.Length;i++)
                 {
-                    weight += prob.weight;
-                    if (rng < weight)
+                    uint rng = machineContext.platformInterface.GetRng((uint)totalWeight);
+                    long weight = 0;
+                    foreach (JIXRYProbMultiplyProbabilityRoot prob in probList)
                     {
-                        //uint tempProbMul = fgDm.probMultiplyValue;
-                        //tempProbMul = (uint)prob.value;
-                        //fgDm.probMultiplyValue = tempProbMul;
-                        break;
+                        weight += prob.weight;
+                        if (rng < weight)
+                        {
+                            temp[i] = (uint)prob.value;
+                            break;
+                        }
                     }
                 }
+                fgDm.fgIsMultiply = temp.ToArray();
             }
         }
         #endregion
@@ -778,6 +777,7 @@ namespace Weike.Games.JIXRY
             (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                 reelManager,
                 ingotValues,
+                new uint[20],
                 0,
                 0,
                 false,
@@ -894,22 +894,23 @@ namespace Weike.Games.JIXRY
                     ingotValues[destIndex + row] = fgDm.fgIngotValue[sourceIndex + row];
                 }
             }
-
+            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
             // Do normal ingot win check
             (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                 reelManager,
                 ingotValues,
+                fgDm.fgIsMultiply,
                 fgDm.extraPrizeMultiplier,
                 fgDm.extraPrizeMultiplierIngotValue,
                 true,
                 false,
-                resetWinStatements
+                resetWinStatements,
+                false,
+                feature.ToString().Contains("LB")
             );
-
             dm.maxIngotWayWin = maxIngotWayWin;
-
             // Extra Prize Data
-            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
+            
             if ((feature.ToString().Contains("LB")) && maxIngotWayWin >= 2)
             {
                 rd[2].haveMultiplierIngot = true;
@@ -956,13 +957,14 @@ namespace Weike.Games.JIXRY
                     ingotValues[destIndex + row] = fgDm.fgTempIngotValue[sourceIndex + row];
                 }
             }
-
+            CheckAllIsMultiplier();
             JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
             // Second call after nudge or no nudge
             // Do normal ingot win check
             (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                 reelManager,
                 ingotValues,
+                fgDm.fgIsMultiply,
                 fgDm.extraPrizeMultiplier,
                 fgDm.extraPrizeMultiplierIngotValue,
                 true,
@@ -2284,13 +2286,26 @@ namespace Weike.Games.JIXRY
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             uint[] tempValue = new uint[fgDm.fgTempIngotValue.Length];
             tempValue = fgDm.fgTempIngotValue.ToArray();
+            int totalNumRows = rd[0].numRows + rd[0].numDummy;
+            int startRow = rd[0].numDummy / 2;
 
-            int maxIndex = dm.maxIngotWayWin <= 3 ? 21 : fgDm.fgIngotValue.Length;
             if (rd[2].haveMultiplierIngot)
             {
-                for (int i = 0; i < maxIndex; i++)
+                int visibleIdx = 0;
+                for (int reel = 0; reel < rd.Length; reel++)
                 {
-                    tempValue[i] *= fgDm.extraPrizeMultiplier;
+                    
+                    int sourceIndex = reel * totalNumRows + startRow;
+                    for (int row = 0; row < rd[0].numRows; row++)
+                    {
+                        int idx = sourceIndex + row;
+                        // 边界保护，防止数组越界
+                        if (idx >= 0 && idx < tempValue.Length && fgDm.fgIsMultiply[visibleIdx] == 1)
+                        {
+                            tempValue[idx] *= fgDm.extraPrizeMultiplier; 
+                        }
+                        visibleIdx++;
+                    }
                 }
             }
             rm.UpdateIngotValueData(tempValue);
@@ -3034,6 +3049,57 @@ namespace Weike.Games.JIXRY
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
             if (feature.ToString().Contains("LB"))
                 rm.ChangeNumRows(index);
+        }
+
+        public void CheckAllIsMultiplier()
+        {
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+            WkSymbolInfo symbolInfo = reelManager.symbolInfo ?? throw new Exception("Missing symbol info reference");
+            WkSymbolInfoTemplate symbolInfoTemplate = symbolInfo.symbolTemplate!;
+            JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
+            int totalReels = reelManager.reelData.Length;
+            int[] winPosTemp = new int[totalReels];
+
+            bool ishaveMultiplier = false;
+            int ingotNum = 0;
+            int[] indexs = new int[20];
+            for (int reel = 0; reel < totalReels; reel++) //5
+            {
+                int numRows = reelManager.reelData[reel].numRows;
+               
+                for (int row = 0; row < numRows; row++) //4
+                {
+                    int index = reelManager.GetReelIconIndex(reel, row) - 1;
+                    if (index < 0 || index >= symbolInfoTemplate.symbols.Length) continue;
+
+                    WkSymbolDetail symbolDetail = symbolInfoTemplate.symbols[index];
+                    if (!string.IsNullOrEmpty(symbolDetail.symbolType))
+                    {
+                        string ingotType = symbolDetail.symbolType;
+                        int ingotPrizeIndex = reel * numRows + row;
+                        switch (ingotType)
+                        {
+                            case "INGOT":
+                                {
+                                    indexs[ingotNum] = ingotPrizeIndex;
+                                    ingotNum++;
+                                    if (fgDm.fgIsMultiply[ingotPrizeIndex] == 1)
+                                    {
+                                        ishaveMultiplier = true;
+                                    }
+                                    break;
+                                }
+                        }
+                    }
+                }
+            }
+            if(!ishaveMultiplier)
+            {
+                if (ingotNum == 0)
+                    return;
+                uint index = machineContext.platformInterface.GetRng((uint)ingotNum);
+                fgDm.fgIsMultiply[indexs[index]] = 1;
+            }
         }
         #endregion
 

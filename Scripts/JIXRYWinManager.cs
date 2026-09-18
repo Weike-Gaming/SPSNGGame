@@ -25,7 +25,7 @@ namespace Weike.Games.JIXRY
         /// <param name="isHistory"></param>
         /// <returns></returns>
         public (byte maxMayWin, JIXRYExtraIngotPosition extraIngotPosition) CheckIngotTrigger(
-            WkReelManager reelManager, ReadOnlySpan<uint> ingotValue,
+            WkReelManager reelManager, ReadOnlySpan<uint> ingotValue, ReadOnlySpan<uint> fgMultiplier,
             uint extraPrizeMultiplier, uint extraPrizeMultiplierIngotValue, bool isFreeGame, bool modifyWinAmount,
             bool resetWinStatement = false, bool isHistory = false, bool isMultiplier = false)
         {
@@ -65,9 +65,15 @@ namespace Weike.Games.JIXRY
                                 {
                                     hasIngotInThisReel = true;
                                     winPosTemp[reel] |= (byte)(1 << row);
-
                                     normalIngotCount++;
-                                    normalIngotValue += ingotValue[ingotPrizeIndex];
+                                    if(fgMultiplier[ingotPrizeIndex] == 1 && isMultiplier)
+                                    {
+                                        normalIngotValue += ingotValue[ingotPrizeIndex] * extraPrizeMultiplier;
+                                    }
+                                    else
+                                    {
+                                        normalIngotValue += ingotValue[ingotPrizeIndex];
+                                    }
                                     break;
                                 }
                             case "INGOT_PRIZEMULTIPLIER":
@@ -121,9 +127,8 @@ namespace Weike.Games.JIXRY
             // Get and save ingot win amount
             if (consecutiveReelsWithIngot > 1)
             {
-                totalIngotPrize = CalculateIngotPrize(normalIngotCount, normalIngotValue, extraFlags,
-                                    extraPrizeMultiplier, extraPrizeMultiplierIngotValue,
-                                    isHistory,isMultiplier);
+                totalIngotPrize = normalIngotValue;
+
                 if (isFreeGame)
                 {
                     dm.totalFgIngotWinAmount = totalIngotPrize;
@@ -157,22 +162,12 @@ namespace Weike.Games.JIXRY
         {
             uint ingotWinAmount = 0;
 
-            uint multiplier2 = 1;
-            uint multiplier2IngotValue = 0;
-
-
-            if (isMultiplier)
-            {
-                multiplier2 = extraPrizeMultiplier;
-                multiplier2IngotValue = extraPrizeMultiplierIngotValue;
-            }
-            UnityEngine.Debug.LogError("normalIngotValue: " + normalIngotValue + " multiplier2: " + multiplier2 + " multiplier2IngotValue: " + multiplier2IngotValue);
-            ingotWinAmount = normalIngotValue * multiplier2 + multiplier2IngotValue;
+            ingotWinAmount = normalIngotValue;
            
             if(isHistory)
             {
-                // Using unmodified histGameData.fgPreviousIngotValue saving is done with modified values already.
-                ingotWinAmount = normalIngotValue + multiplier2IngotValue;
+                
+                ingotWinAmount = normalIngotValue;
             }
 
             return ingotWinAmount;

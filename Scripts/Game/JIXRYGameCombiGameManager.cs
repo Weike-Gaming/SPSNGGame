@@ -357,6 +357,7 @@ namespace Weike.Games.JIXRY
             (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                 reelManager,
                 ingotValues,
+                new uint[20],
                 0,
                 0,
                 false,
@@ -448,6 +449,7 @@ namespace Weike.Games.JIXRY
                 (byte maxWayWin, _) = wm.CheckIngotTrigger(
                     reelManager,
                     fgDm.fgIngotValue,
+                    fgDm.fgIsMultiply,
                     fgDm.extraPrizeMultiplier,
                     fgDm.extraPrizeMultiplierIngotValue,
                     true,
@@ -525,6 +527,7 @@ namespace Weike.Games.JIXRY
             (byte maxIngotWayWin, JIXRYExtraIngotPosition extraIngotPosition) = JIXRYWinManager.CheckIngotTrigger(
                 reelManager,
                 ingotValues,
+                fgDm.fgIsMultiply,
                 fgDm.extraPrizeMultiplier,
                 fgDm.extraPrizeMultiplierIngotValue,
                 true,

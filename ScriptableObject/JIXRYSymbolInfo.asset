@@ -292,55 +292,80 @@ MonoBehaviour:
     digitsJson: {fileID: 4900000, guid: 9caab3be5d682424cbf60489c05521d1, type: 3}
     symbolType: INGOT
   - name: JACKPOT RED INGOT
-    symbolImageTexture: {fileID: 2800000, guid: 28664b12a9b410047a02b2c6b02cd7ca, type: 3}
+    symbolImageTexture: {fileID: 2800000, guid: 7f12487b72d9b9a40ae8cbd1a1314aa3, type: 3}
     symbolImageTextureZh: {fileID: 0}
     odds: 00000000000000000000
     spriteAnimationCollection:
-    - key: Loop
-      textureCollection:
-      - {fileID: 2800000, guid: 4c2a98d19c6bdc54eb9f8e8d8ee12531, type: 3}
-      - {fileID: 2800000, guid: 073b04e928e5b394c8c04294a77d26e3, type: 3}
-      - {fileID: 2800000, guid: fcf2a72f422bb9845a5cabf70b2e3bd9, type: 3}
-      jsonCollection:
-      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
-      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
-      - {fileID: 4900000, guid: ec6a5ae7640003542b0ef002c7769e3f, type: 3}
-    - key: Win
-      textureCollection:
-      - {fileID: 2800000, guid: 1ea88cacd8be33141acdb83fbbe983db, type: 3}
-      - {fileID: 2800000, guid: b42f9a0c070cd994ba69ea931752bdf1, type: 3}
-      - {fileID: 2800000, guid: 4803414d933d3314fbc022c67dc66cb6, type: 3}
-      jsonCollection:
-      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
-      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
-      - {fileID: 4900000, guid: 4ff8a1bfc68c34b45aa8dd9d762a712c, type: 3}
     - key: Landing
       textureCollection:
-      - {fileID: 2800000, guid: 5513d57a2a10e7e48837a87a9e451985, type: 3}
-      - {fileID: 2800000, guid: 848068c79bf03784289267397259d811, type: 3}
+      - {fileID: 2800000, guid: 853c53fff53cf1640aba13c866983bcf, type: 3}
+      - {fileID: 2800000, guid: 58dd7ffe7bbee4e45b2063d589580615, type: 3}
       jsonCollection:
-      - {fileID: 4900000, guid: fb76ec1202da1c04ba599bfa56870785, type: 3}
-      - {fileID: 4900000, guid: 327f0705ff6caa74d8fee3c1a8995aae, type: 3}
+      - {fileID: 4900000, guid: 6652eb4e402ebd0429363dbbbe0c21bd, type: 3}
+      - {fileID: 4900000, guid: d6e4716965061924890ffa1779122847, type: 3}
+    - key: Loop
+      textureCollection:
+      - {fileID: 2800000, guid: b952a15c8c059344e9a5686461bb0ed1, type: 3}
+      - {fileID: 2800000, guid: 994e35954a0ffb44aa60097cd261bba8, type: 3}
+      - {fileID: 2800000, guid: 93b5e1ea9fa3f8e47a8b0cf2a92fa565, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+      - {fileID: 4900000, guid: 393d9b2bdd456fc4b8bffaf90bb3f104, type: 3}
+    - key: Win
+      textureCollection:
+      - {fileID: 2800000, guid: b846d10e846a91a4999425e8e8114be6, type: 3}
+      - {fileID: 2800000, guid: b3804339e95343e46b6dc33c4007ea56, type: 3}
+      - {fileID: 2800000, guid: 5997120db029fa041b6b406bf95c7fd1, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
+      - {fileID: 4900000, guid: 17369b94d7d051a41af1e852cf353eea, type: 3}
     - key: Award
       textureCollection:
-      - {fileID: 2800000, guid: f6246d57993b815439cb4a276ecb70ce, type: 3}
+      - {fileID: 2800000, guid: ffcfd7d8c6f76c54099f5d3a9a271d6b, type: 3}
       jsonCollection:
-      - {fileID: 4900000, guid: 0ce821745e1f5a444b0e53c434bc0370, type: 3}
-    - key: Multiplier2_en
+      - {fileID: 4900000, guid: fdc927f854b705b4db4cf9759fd40743, type: 3}
+    - key: Grand_en
       textureCollection:
-      - {fileID: 2800000, guid: 195e2a3c5bdbfcc4ca069bc166d7216b, type: 3}
+      - {fileID: 2800000, guid: aa36c362634d4c94082347d3a6d574dc, type: 3}
       jsonCollection:
-      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
-    - key: Multiplier3_en
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Major_en
       textureCollection:
-      - {fileID: 2800000, guid: c13750502e2174c4d85e82d55d5b7226, type: 3}
+      - {fileID: 2800000, guid: 54ab36f2e9079ca4eb5e424778656624, type: 3}
       jsonCollection:
-      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
-    - key: Multiplier5_en
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Minor_en
       textureCollection:
-      - {fileID: 2800000, guid: b83f84c108622e246bec81358aa8b8fc, type: 3}
+      - {fileID: 2800000, guid: bf6c75984dc8b784cb39477d9bc63942, type: 3}
       jsonCollection:
-      - {fileID: 4900000, guid: 75e75f32c8aa89941ac0f8de226f548e, type: 3}
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Mini_en
+      textureCollection:
+      - {fileID: 2800000, guid: 569013866d8307e4c8f019c4e6522dc3, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Grand_zh
+      textureCollection:
+      - {fileID: 2800000, guid: 84e945f774cb46f49ba7610623f501dc, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Major_zh
+      textureCollection:
+      - {fileID: 2800000, guid: b80daa9686a3e644d9bbf47f21c829de, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Minor_zh
+      textureCollection:
+      - {fileID: 2800000, guid: dfcebad4d1e34d04387606c1ac862368, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
+    - key: Mini_zh
+      textureCollection:
+      - {fileID: 2800000, guid: 1b8c5fab77571fb45988d7502d1700fe, type: 3}
+      jsonCollection:
+      - {fileID: 4900000, guid: 22d1011fa567d8c4c945892f85fbc5a5, type: 3}
     digitsTexture: {fileID: 2800000, guid: 817e83d7c76e71041bd9323f01d8dcc1, type: 3}
     digitsJson: {fileID: 4900000, guid: 9caab3be5d682424cbf60489c05521d1, type: 3}
-    symbolType: INGOT_PRIZEMULTIPLIER
+    symbolType: INGOT_JACKPOT

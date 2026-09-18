@@ -332,7 +332,7 @@ namespace Weike.Games.JIXRY
             }
             if (playExtraPrizeMultiplierTransformation)
             {
-                PlayExtraPrizeMultiplierTransformation();
+                //PlayExtraPrizeMultiplierTransformation();
             }
             if (updateFgCheatData)
             {
@@ -683,20 +683,7 @@ namespace Weike.Games.JIXRY
         {
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
             _extraPrizeTargets = rm.GetAnimationData().ToArray();
-
             _prizeAnimationDone = 0;
-            //rm.PrizeMultiplyAnimDone();
-            for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
-            {
-                JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (row == 3)
-                {
-                    PlayAwardSfx();
-                    symbol.PlayAwardAnimation();
-                    break;
-                }
-            }
-
             DelayAction(() => PlayNextPrizeMultiplier(), 0.67f);
         }
 
