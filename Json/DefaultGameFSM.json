@@ -737,7 +737,6 @@
 				[
 					"Cmd_FinishIncrementing",
 					"Cmd_NoHitNewFeature"
-					//"Cmd_NoNudge"
 				],
 				1
 			]
@@ -846,7 +845,6 @@
 				[
 					"Cmd_ReelStopSpinning",
 					"Cmd_NoPrizeBoostMultiplier",
-					//"Cmd_NoNudge",
 					"Cmd_NoJackpot",
 					"Cmd_GotWin",
 					"Cmd_FinishScatterAnimation"
@@ -905,7 +903,6 @@
 					"Cmd_ReelStopSpinning",
 					"Cmd_GotJackpot",
 					"Cmd_FinishScatterAnimation"
-					//"Cmd_NoNudge"
 				],
 				1
 			]

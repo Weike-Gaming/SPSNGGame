@@ -27,8 +27,6 @@ namespace Weike.Games.JIXRY
         public bool playReelNudgeBorderExitAnim { get; set; }
         public bool wantToPlayNudgeAnim { get; set; }
 
-        private bool _isReelRebuilding;
-
         private bool _postSpinStop2 = false;    // 'duplicate' var from base due to need for overriding CheckBoundBack() and PlayReelStopSound()
         private bool _playCustomSfx2 = false;   // 'duplicate' var from base due to need for overriding CheckBoundBack() and PlayReelStopSound()
         #endregion
@@ -93,36 +91,17 @@ namespace Weike.Games.JIXRY
                 Transform symbolTransform = symbols[i].GetComponent<Transform>();
 
                 symbolTransform.localPosition = new Vector3(0, pos, 0);
-                if(!_isReelRebuilding)
-                {
-                    wkSymbol.SetSymbol(reelStrip![nextSymbolReelStop]);
-                }
+                wkSymbol.SetSymbol(reelStrip![nextSymbolReelStop]);
                 wkSymbol.SetOrder(i + 1 + reelLayerOffset);
                 wkSymbol.SpinLayer();
 
                 pos -= containerSize;
                 nextSymbolReelStop = ClampToReelLength(nextSymbolReelStop + 1);
             }
-            if (_isReelRebuilding)
-            {
-                StartCoroutine(DelaySetAllSymbols(nextSymbolReelStop));
-            }
             if (isNormalGame)
             {
                 reelManager.OnReelFinishInitialized();
                 Debug.Log($"Init Reel {name} DONE");
-            }
-        }
-        private IEnumerator DelaySetAllSymbols(int startIndex)
-        {
-            yield return null;
-
-            int num = startIndex;
-            for (int i = 0; i < symbols.Length; i++)
-            {
-                WkSymbol wkSymbol = symbols[i].GetComponent<WkSymbol>();
-                wkSymbol.SetSymbol(reelStrip[num]);
-                num = ClampToReelLength(num + 1);
             }
         }
         /// <summary>
@@ -944,19 +923,10 @@ namespace Weike.Games.JIXRY
                 symbols = null;
             }
         }
-        protected override void Update()
-        {
-            if (_isReelRebuilding)
-                return; 
-            base.Update();
-        }
         public void ReBuildReel()
         {
-            _isReelRebuilding = true;
-            ClearSymbols();
-
+            ClearSymbols();    
             InitReel();
-            _isReelRebuilding = false;
         }
 
     }
