@@ -712,6 +712,7 @@ namespace Weike.Games.JIXRY
                         if (rng < weight)
                         {
                             temp[i] = (uint)prob.value;
+                            Debug.LogError("prob.value" +(uint)prob.value);
                             break;
                         }
                     }

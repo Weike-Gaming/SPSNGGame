@@ -627,11 +627,11 @@ namespace Weike.Games.JIXRY
 
         private readonly Vector2[,] predefinedPositions = new Vector2[5, 4]
         {
-            { new Vector2(-6.68f, -2.22f), new Vector2(-6.68f, -3.72f), new Vector2(-6.68f, -5.42f) ,new Vector2(-6.68f, -7.62f)},
-            { new Vector2(-3.34f, -2.22f), new Vector2(-3.34f, -3.72f), new Vector2(-3.34f, -5.42f) ,new Vector2(-3.34f, -7.62f)},
-            { new Vector2(0.00f,  -2.22f), new Vector2(0.00f,  -3.72f), new Vector2(0.00f,  -5.42f) ,new Vector2(0.00f,  -7.62f)},
-            { new Vector2(3.34f,  -2.22f), new Vector2(3.34f,  -3.72f), new Vector2(3.34f,  -5.42f) ,new Vector2(3.34f,  -7.62f)},
-            { new Vector2(6.68f,  -2.22f), new Vector2(6.68f,  -3.72f), new Vector2(6.68f,  -5.42f) ,new Vector2(6.68f,  -7.62f)}
+            { new Vector2(-6.68f, -2.07f), new Vector2(-6.68f, -3.97f), new Vector2(-6.68f, -5.87f) ,new Vector2(-6.68f, -7.77f)},
+            { new Vector2(-3.34f, -2.07f), new Vector2(-3.34f, -3.97f), new Vector2(-3.34f, -5.87f) ,new Vector2(-3.34f, -7.77f)},
+            { new Vector2(0.00f,  -2.07f), new Vector2(0.00f,  -3.97f), new Vector2(0.00f,  -5.87f) ,new Vector2(0.00f,  -7.77f)},
+            { new Vector2(3.34f,  -2.07f), new Vector2(3.34f,  -3.97f), new Vector2(3.34f,  -5.87f) ,new Vector2(3.34f,  -7.77f)},
+            { new Vector2(6.68f,  -2.07f), new Vector2(6.68f,  -3.97f), new Vector2(6.68f,  -5.87f) ,new Vector2(6.68f,  -7.77f)}
         };
 
 
@@ -643,17 +643,25 @@ namespace Weike.Games.JIXRY
             byte maxIngotWayWin = GetMaxIngotWayWin();
 
             List<Vector2> result = new List<Vector2>();
+            int visibleIdx = 0;
             for (int reel = 0; reel < maxIngotWayWin; reel++)
-            { 
-                byte mask = rd[reel].animationBitmask;
+            {
+                byte newMask = 0; // 每个卷轴重新构建bitmask，初始0
+                byte oldMask = rd[reel].animationBitmask;
 
                 for (int row = 0; row < 4; row++)
                 {
-                    if ((mask & (1 << row)) != 0 && fgdm.fgIsMultiply[(reel+1)*4 -row - 1] == 1)
+                    int fgIndex = (reel + 1) * 4 - row - 1;
+                    bool condition = ((oldMask & (1 << row)) != 0) && (fgdm.fgIsMultiply[fgIndex] == 1);
+                    if (condition)
                     {
+                        newMask |= (byte)(1 << row);
                         result.Add(predefinedPositions[reel, row]);
                     }
+
+                    visibleIdx++;
                 }
+                rd[reel].animationBitmask = newMask;
             }
             return result;
         }
@@ -661,7 +669,6 @@ namespace Weike.Games.JIXRY
         public void PlayIngotTransform()
         {
             JIXRYReelData[] rd = reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-
             for (int i = 0; i < reelData.Length; i++)
             {
                 if (rd[i].animationBitmask != 0)

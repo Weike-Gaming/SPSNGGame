@@ -309,10 +309,6 @@ namespace Weike.Games.JIXRY
             {
                 PlayExtraPrizeMultiplierAnimation();
             }
-            if (playExtraPrizeMultiplierTransformation)
-            {
-                //PlayExtraPrizeMultiplierTransformation();
-            }
             if (updateFgCheatData)
             {
                 UpdateFgCheatData();
@@ -614,16 +610,9 @@ namespace Weike.Games.JIXRY
             for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckNormalIngot() || symbol.CheckPrizeMultiplierIngot())
+                if (symbol.CheckNormalIngot())
                 {
-                    if (!rd.haveMultiplierIngot)
-                    {
-                        bitmask += (byte)(1 << index);
-                    }
-                    else if (!symbol.CheckPrizeMultiplierIngot())
-                    {
-                        bitmask += (byte)(1 << index);
-                    }
+                    bitmask += (byte)(1 << index);
                 }
                 index++;
             }
@@ -670,7 +659,7 @@ namespace Weike.Games.JIXRY
         private void PlayNextPrizeMultiplier()
         {
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-
+            JIXRYReelData rd = reelData.GetModelDataChecked<JIXRYReelData>();
             if (_prizeAnimationDone >= _extraPrizeTargets.Length)
             {
                 rm.PrizeMultiplyAnimDone();
@@ -696,19 +685,6 @@ namespace Weike.Games.JIXRY
             _prizeAnimationDone++;
             getActiveAudioManager.PlayAudio($"SpinIngotCounter");
             PlayNextPrizeMultiplier();
-        }
-
-        private void PlayExtraPrizeMultiplierTransformation()
-        {
-            for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
-            {
-                JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (row == 3)
-                {
-                    symbol.StartIngotTransform((int)reelData.GetModelDataChecked<JIXRYReelData>().reelIngotValue[row]);
-                    break;
-                }
-            }
         }
         #endregion
 
