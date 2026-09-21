@@ -657,6 +657,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 4361584239951998264}
     m_Modifications:
     - target: {fileID: 38427240916805383, guid: dff5d3fa2fe27104f8d0b67144169ec0, type: 3}
+      propertyPath: scale.y
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 38427240916805383, guid: dff5d3fa2fe27104f8d0b67144169ec0, type: 3}
+      propertyPath: isHistory
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 38427240916805383, guid: dff5d3fa2fe27104f8d0b67144169ec0, type: 3}
       propertyPath: symbolPrefab
       value: 
       objectReference: {fileID: 7558966004024210388, guid: 96dfa634e2904ad4aa5c37fb37178040, type: 3}

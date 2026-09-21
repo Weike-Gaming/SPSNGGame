@@ -66,7 +66,7 @@ namespace Weike.Games.JIXRY
         [SerializeField] private Text totalJackpotAndBonusWinFromFreeGame;
             // == (WkSlotHistorySubGameData[LastGame].jackpotLevel1Prize + WkSlotHistorySubGameData[LastGame].jackpotLevel2Prize +
             // WkSlotHistorySubGameData[LastGame].jackpotLevel3Prize + WkSlotHistorySubGameData[LastGame].jackpotLevel4Prize)
-            // – (WkSlotHistoryMainGameData.jackpotLevel1Prize + WkSlotHistoryMainGameData.jackpotLevel2Prize +
+            // ?(WkSlotHistoryMainGameData.jackpotLevel1Prize + WkSlotHistoryMainGameData.jackpotLevel2Prize +
             // WkSlotHistoryMainGameData.jackpotLevel3Prize+ WkSlotHistoryMainGameData.jackpotLevel4Prize) 
         
         [SerializeField] private GameObject parentTotalRandomJackpotWin;

@@ -1,6 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using TreeEditor;
 using Weike.Common;
 using Weike.LobbyManagement;
 using Weike.MachineInterface;
@@ -21,6 +21,8 @@ namespace Weike.Games.JIXRY
 
         private uint _currentBetMultiplier;
         private uint _currentPlayOption;
+        private bool _currenrlyIsWin;
+        private bool _currenrlyIsMultiplier;
 
         public JIXRYHistoryGameManager() : base()
         {
@@ -139,8 +141,9 @@ namespace Weike.Games.JIXRY
                 reelManagerRef = reelManager
             };
             slotWinManager.CheckReelWayWin(info);
-            winStatementDataModel.multiplier = freeGameDataModel.fgMultiplier;
 
+            winStatementDataModel.multiplier = freeGameDataModel.fgMultiplier;
+            
             JIXRYHistorySubGameData histGameData = subGameData as JIXRYHistorySubGameData;
             JIXRYWinManager JIXRYWinManager = winManager as JIXRYWinManager ?? throw new InvalidCastException();
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
@@ -172,8 +175,17 @@ namespace Weike.Games.JIXRY
                     false,
                     true
                 );
-
-
+            WkSlotWinManagerModel slotWinManagerModel = winManager.modelData as WkSlotWinManagerModel ?? throw new InvalidCastException();
+            _currenrlyIsWin = false;
+            _currenrlyIsMultiplier = false;
+            if (slotWinManagerModel.totalFgWinAmount == 0 && maxIngotWayWin <= 1)
+            {
+                _currenrlyIsWin = true;
+            }
+            if (maxIngotWayWin > 1)
+            {
+                _currenrlyIsMultiplier = true;
+            }
             reelManager.HardCodeReelSymbol(subGameData.rng);
             PlayWinAnimation();
             // Force history to 'skip' animation for special ingots
@@ -218,6 +230,7 @@ namespace Weike.Games.JIXRY
             currentFgIndex = 0;
             subGameData = replayHistorySubRecoverData[currentFgIndex] as JIXRYHistorySubGameData;
             winStatementDataModel.showStatement = false;
+            ChangeReelToLuckyBoost(4);
             StartHistoryFgSpin();
             OnStatisticUpdate.Invoke();
             currentlyInSubGame = true;
@@ -226,10 +239,16 @@ namespace Weike.Games.JIXRY
         public override void PreviousSubGame()
         {
             if (currentFgIndex >= replayHistorySubRecoverData.Count - 1) return;
-
             currentFgIndex++;
             subGameData = replayHistorySubRecoverData[currentFgIndex] as JIXRYHistorySubGameData;
             currentlyInPreNudge = false;
+            JIXRYHistorySubGameData subGamesData = replayHistorySubRecoverData[currentFgIndex] as JIXRYHistorySubGameData; 
+            if (subGamesData.potFeatureGameFlag != subGamesData.savedPreviousPotFeatureGameFlag &&
+                       subGamesData.savedPreviousPotFeatureGameFlag != (byte)JIXRYStateDataFlag.MAIN_GAME &&
+                      GetGameType(subGamesData.potFeatureGameFlag,true).ToString().Contains("Purple"))
+            {
+                ChangeReelToLuckyBoost(3);
+            }
             StartHistoryFgSpin();
             OnStatisticUpdate.Invoke();
         }
@@ -241,12 +260,22 @@ namespace Weike.Games.JIXRY
             currentFgIndex--;
             subGameData = replayHistorySubRecoverData[currentFgIndex] as JIXRYHistorySubGameData;
             currentlyInPreNudge = false;
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+            JIXRYHistorySubGameData subGamesData = replayHistorySubRecoverData[currentFgIndex] as JIXRYHistorySubGameData;
+            JIXRYReelData[] rd = rm.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
+            if (GetGameType(subGamesData.potFeatureGameFlag, true).ToString().Contains("Purple") &&
+                       GetGameType(subGamesData.savedPreviousPotFeatureGameFlag, true).ToString().Contains("Purple")&& rd[0].numRows == 3
+                      )
+            {
+                ChangeReelToLuckyBoost(4);
+            }
             StartHistoryFgSpin();
             OnStatisticUpdate.Invoke();
         }
 
         public override void BackToMainGame()
         {
+            ChangeReelToLuckyBoost(3);
             StartHistorySpin();
             OnStatisticUpdate.Invoke();
             currentlyInSubGame = false;
@@ -417,63 +446,15 @@ namespace Weike.Games.JIXRY
 
         public string GetBonus()
         {
-            string tempStr = string.Empty;
-            List<string> tempList = new List<string>();
-
-            WkSymbolInfo symbolInfo = reelManager.symbolInfo ?? throw new Exception("Missing symbol info reference");
-            WkSymbolInfoTemplate symbolInfoTemplate = symbolInfo.symbolTemplate!;
-            int totalReels = reelManager.reelData.Length;
-            int[] winPosTemp = new int[totalReels];
-
             JIXRYHistorySubGameData sd = subGameData as JIXRYHistorySubGameData;
-
-            // loop through visible symbols and identify what was won
-            for (int reel = 0; reel < totalReels; reel++) //5
-            {
-                if (sd.previousMaxWayWin < reel + 1) break;
-                
-                int numRows = reelManager.reelData[reel].numRows;
-
-                for (int row = 0; row < numRows; row++) //3
-                {
-                    int index = reelManager.GetReelIconIndex(reel, row) - 1;
-                    if (index < 0 || index >= symbolInfoTemplate.symbols.Length) continue;
-
-                    WkSymbolDetail symbolDetail = symbolInfoTemplate.symbols[index];
-
-                    if (!string.IsNullOrEmpty(symbolDetail.symbolType))
-                    {
-                        string ingotType = symbolDetail.symbolType;
-                        int ingotPrizeIndex = reel * numRows + row;
-
-                        switch (ingotType)
-                        {
-                            case "INGOT_PRIZEMULTIPLIER":
-                                {
-                                    winPosTemp[reel] |= (byte)(1 << row);
-
-                                    tempStr = string.Empty;
-                                    if (reel == 2)
-                                    {
-                                        tempStr = $"x{sd.extraPrizeMultiplier} (reel 3)";
-                                        tempList.Add(tempStr);
-                                    }
-                                    break;
-                                }
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-
             // loop through tempList and stitch together return string
             string returnStr = string.Empty;
-
-            if (tempList.Count == 0)
-                return "N/A";
+            if (_currenrlyIsWin && GetGameType().ToString().Contains("LW"))
+                return "Lucky Win +1 spin";
+            if(_currenrlyIsMultiplier && GetGameType().ToString().Contains("LB"))
+                return "Lucky Boost x" + sd.extraPrizeMultiplier;
             else
-                return string.Join(", ", tempList);
+                return "N/A";
         }
         #endregion
 
@@ -512,5 +493,12 @@ namespace Weike.Games.JIXRY
         }
 
         #endregion
+
+        public void ChangeReelToLuckyBoost(int index)
+        {
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+            if (GetGameType().ToString().Contains("LB"))
+                rm.ChangeNumRows(index);
+        }
     }
 }

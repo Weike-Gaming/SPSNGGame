@@ -21,6 +21,7 @@ namespace Weike.Games.JIXRY
         private float _animSpeed = 0;
 
         private int visibleIndex = 1;
+        public bool isHistory;
         #region Reel Nudge Vars
         public int nudgeSteps { get; set; }
         public bool wantToNudgeInDefaultDir { get; set; }
@@ -31,7 +32,7 @@ namespace Weike.Games.JIXRY
         private bool _playCustomSfx2 = false;   // 'duplicate' var from base due to need for overriding CheckBoundBack() and PlayReelStopSound()
         #endregion
 
-
+        
         #region Binding
         public int numDummy { get; set; }
         public bool getAnimationData { get; set; }
