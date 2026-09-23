@@ -10,8 +10,8 @@ namespace Weike.Games.JIXRY
         protected override void OnAllowedEnable()
         {
             bottomScreen.SetActive(true);
+           
         }
-
         protected override void OnDisable()
         {
             base.OnDisable();

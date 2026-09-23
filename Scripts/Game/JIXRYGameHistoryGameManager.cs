@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using TreeEditor;
 using Weike.Common;
 using Weike.LobbyManagement;
 using Weike.MachineInterface;
@@ -21,7 +20,6 @@ namespace Weike.Games.JIXRY
 
         private uint _currentBetMultiplier;
         private uint _currentPlayOption;
-        private bool _currenrlyIsWin;
         private bool _currenrlyIsMultiplier;
 
         public JIXRYHistoryGameManager() : base()
@@ -48,9 +46,14 @@ namespace Weike.Games.JIXRY
             base.OnSelected();           
             currentFgIndex = 0;
             OnStatisticUpdate?.Invoke();
+            JIXRYReelManager rm = reelManager as JIXRYReelManager;
+            if (rm != null)
+            {
+                rm.ChangeNumRows(3);
+            }
             StartHistorySpin();
+           
         }
-
         /// <inheritdoc />
         protected override void GameSpecificStartHistorySpin()
         {
@@ -61,7 +64,6 @@ namespace Weike.Games.JIXRY
                 return;
             }
             slotWinManager.InitWinManager(gameCode, GameInfoWrapper.EnumType.TYPE_WAYS);
-
             RecoverIngotData();
 
             _currentPlayOption = GetSelectedPlayOptions()[historyData.selectedPlayOption];
@@ -119,6 +121,10 @@ namespace Weike.Games.JIXRY
             subGameData = replayHistorySubRecoverData[currentFgIndex] as WkSlotHistorySubGameData ?? throw new NullReferenceException();
             JIXRYHistorySubGameData thisSubGameData = subGameData as JIXRYHistorySubGameData ?? throw new InvalidCastException();
 
+            JIXRYHistorySubGameData prevSubGamesData = new JIXRYHistorySubGameData();
+            
+
+
             // Store local vars for rng
             // Will set subGameData.rng to pre-nudge rng, then immeditately reset, as base class uses .rng
             uint[] postNudgeRng = thisSubGameData.rng.ToArray(); 
@@ -175,13 +181,7 @@ namespace Weike.Games.JIXRY
                     false,
                     true
                 );
-            WkSlotWinManagerModel slotWinManagerModel = winManager.modelData as WkSlotWinManagerModel ?? throw new InvalidCastException();
-            _currenrlyIsWin = false;
             _currenrlyIsMultiplier = false;
-            if (slotWinManagerModel.totalFgWinAmount == 0 && maxIngotWayWin <= 1)
-            {
-                _currenrlyIsWin = true;
-            }
             if (maxIngotWayWin > 1)
             {
                 _currenrlyIsMultiplier = true;
@@ -272,7 +272,6 @@ namespace Weike.Games.JIXRY
             StartHistoryFgSpin();
             OnStatisticUpdate.Invoke();
         }
-
         public override void BackToMainGame()
         {
             ChangeReelToLuckyBoost(3);
@@ -281,10 +280,18 @@ namespace Weike.Games.JIXRY
             currentlyInSubGame = false;
         }
 
+        public override void ReturnToHistoryLobby()
+        {
+           
+            base.ReturnToHistoryLobby();
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+                rm.ChangeNumRows(3);
+
+        }
+
         public void ToggleNudge()
         {
             currentlyInPreNudge = !currentlyInPreNudge;
-
             StartHistoryFgSpin();
         }
 
@@ -444,12 +451,12 @@ namespace Weike.Games.JIXRY
             }
         }
 
-        public string GetBonus()
+        public string GetBonus(long winAmount)
         {
             JIXRYHistorySubGameData sd = subGameData as JIXRYHistorySubGameData;
             // loop through tempList and stitch together return string
             string returnStr = string.Empty;
-            if (_currenrlyIsWin && GetGameType().ToString().Contains("LW"))
+            if (winAmount == 0 && GetGameType().ToString().Contains("LW"))
                 return "Lucky Win +1 spin";
             if(_currenrlyIsMultiplier && GetGameType().ToString().Contains("LB"))
                 return "Lucky Boost x" + sd.extraPrizeMultiplier;

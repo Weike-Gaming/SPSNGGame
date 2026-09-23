@@ -12,7 +12,6 @@ namespace Weike.Games.JIXRY
 
         public override void EnterState()
         {
-
             JIXRYGameManager gm = gameManager as JIXRYGameManager ?? throw new InvalidCastException();
             gm.ChangeReelToLuckyBoost(3);
             gm.ResetToMgJackpotData();

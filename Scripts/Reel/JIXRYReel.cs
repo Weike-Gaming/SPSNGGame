@@ -364,7 +364,6 @@ namespace Weike.Games.JIXRY
         public void SetIngotInfo()
         {
             int index = 0;
-
             for (int row = 0; row < numRows + numDummy; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
@@ -465,7 +464,7 @@ namespace Weike.Games.JIXRY
                 // Play Ingot landing
                 if (reelNo > rm.GetMaxIngotWayWin())
                     continue;
-                else if (symbol.CheckNormalIngot() || symbol.CheckPrizeMultiplierIngot() || symbol.CheckJackpotIngot())
+                else if (symbol.CheckNormalIngot() || symbol.CheckJackpotIngot())
                 {
                     rmdm.customSfx.Add($"IngotLandingReel_{reelNo}");
                     break;
@@ -711,7 +710,7 @@ namespace Weike.Games.JIXRY
             for (int row = centerRow - 1; row <= centerRow + visibleIndex; row++)
             {
                 JIXRYSymbol symbol = symbols[row].GetComponent<JIXRYSymbol>();
-                if (symbol.CheckNormalIngot() || symbol.CheckPrizeMultiplierIngot() || symbol.CheckJackpotIngot())
+                if (symbol.CheckNormalIngot() || symbol.CheckJackpotIngot())
                 {
                     if (reelNo > rm.GetMaxIngotWayWin()) continue;
                     symbol.PlayLandingAnim();
@@ -776,7 +775,7 @@ namespace Weike.Games.JIXRY
 
                 if (reelNo > rm.GetMaxIngotWayWin())
                     continue;
-                else if (symbol.CheckNormalIngot() || symbol.CheckPrizeMultiplierIngot() || symbol.CheckJackpotIngot())
+                else if (symbol.CheckNormalIngot() || symbol.CheckJackpotIngot())
                 {
                     getActiveAudioManager.PlayAudioUnique($"IngotLandingReel_{reelNo}");
                     return true;
@@ -843,47 +842,50 @@ namespace Weike.Games.JIXRY
             {
                 symbols[i].GetComponent<JIXRYSymbol>().StopAnimation();
             }
-            int extraIndex = symbols.Length - 1;
-            if (symbols[extraIndex] != null)
+            if(symbols.Length == 8)
             {
-                WkSymbol sym = symbols[extraIndex].GetComponent<WkSymbol>();
-                sym?.StopAnimation();
-                Destroy(symbols[extraIndex]);
+                int extraIndex = symbols.Length - 1;
+                if (symbols[extraIndex] != null)
+                {
+                    WkSymbol sym = symbols[extraIndex].GetComponent<WkSymbol>();
+                    sym?.StopAnimation();
+                    Destroy(symbols[extraIndex]);
+                }
+                // 必须新建更短数组，复制前面有效元素，截断末尾
+                int newLen = symbols.Length - 1;
+                GameObject[] newSymbols = new GameObject[newLen];
+                int[] newSymbolIndex = new int[newLen];
+                Array.Copy(symbols, newSymbols, newLen);
+                Array.Copy(symbolIndex, newSymbolIndex, newLen);
+
+                symbols = newSymbols;
+                symbolIndex = newSymbolIndex;
+
+                // 重新调整剩下所有符号的Y位置
+                float pos = ((newLen + 1) / 2.0f) * containerSize;
+                for (int i = 0; i < newLen; i++)
+                {
+                    symbols[i].transform.localPosition = new Vector3(0, pos, 0);
+                    pos -= containerSize;
+                }
+                holder = 1f / newLen;
+                holderOffset = holder;
+
+
+                visibleIndex = 1;
+                for (int i = 0; i < symbols.Length; i++)
+                {
+                    symbols[i].GetComponent<JIXRYSymbol>().SetSymbolSize(1f);
+                    scale.y = 2.5f;
+                }
+                GameObject[] array = symbols;
+                foreach (GameObject gameObject in array)
+                {
+                    gameObject.GetComponent<WkSymbol>().SpinLayer();
+                    gameObject.GetComponent<WkSymbol>().ShowSymbol();
+                }
             }
-
-            // 必须新建更短数组，复制前面有效元素，截断末尾
-            int newLen = symbols.Length - 1;
-            GameObject[] newSymbols = new GameObject[newLen];
-            int[] newSymbolIndex = new int[newLen];
-            Array.Copy(symbols, newSymbols, newLen);
-            Array.Copy(symbolIndex, newSymbolIndex, newLen);
-
-            symbols = newSymbols;
-            symbolIndex = newSymbolIndex;
-
-            // 重新调整剩下所有符号的Y位置
-            float pos = ((newLen + 1) / 2.0f) * containerSize;
-            for (int i = 0; i < newLen; i++)
-            {
-                symbols[i].transform.localPosition = new Vector3(0, pos, 0);
-                pos -= containerSize;
-            }
-            holder = 1f / newLen;
-            holderOffset = holder;
-
-
-            visibleIndex = 1;
-            for (int i = 0; i < symbols.Length; i++)
-            {
-                symbols[i].GetComponent<JIXRYSymbol>().SetSymbolSize(1f);
-                scale.y = 2.5f;
-            }
-            GameObject[] array = symbols;
-            foreach (GameObject gameObject in array)
-            {
-                gameObject.GetComponent<WkSymbol>().SpinLayer();
-                gameObject.GetComponent<WkSymbol>().ShowSymbol();
-            }
+    
         }
         public void ClearSymbols()
         {

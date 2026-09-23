@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using Weike.Core;
 using Weike.SlotCore;
 
@@ -17,6 +19,7 @@ namespace Weike.Games.JIXRY
 
         public override void RecoverState()
         {
+            
             base.RecoverState();
             GetGameManagerChecked<JIXRYGameManager>().PlayWinAnimation();
         }

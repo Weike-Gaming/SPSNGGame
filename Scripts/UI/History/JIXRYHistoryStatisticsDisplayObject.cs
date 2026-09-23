@@ -349,11 +349,7 @@ namespace Weike.Games.JIXRY
                 #region FREE GAME
                 if (gameManager.currentlyInSubGame)
                 {
-                    #region CURRENT SPIN INGOT BONUS
-                    parentCurrentSpinIngotBonus.SetActive(true);
-                    currentSpinIngotBonus.text = gameManager.GetBonus();
-                    #endregion
-
+                    long winAmount = 0;
                     #region CURRENT SPIN WIN
                     parentCurrentSpinWin.SetActive(true);
                     JIXRYHistorySubGameData prevSubGamesData = new JIXRYHistorySubGameData();
@@ -365,8 +361,14 @@ namespace Weike.Games.JIXRY
                     else
                         tmp = subGamesData.savedTotalFgWinAmount - historyMainRecoverData.savedMgWinAmount;
                     currentSpinWin.text = _denomValue > 0 ? $"{tmp} ({WkCoreCurrencyUtils.GetCurrencyInString(_currency, (ulong)(tmp * _denomValue))})" : "Error: Denominator not set!";
+                    winAmount = tmp;
                     #endregion
 
+                    #region CURRENT SPIN INGOT BONUS
+                    parentCurrentSpinIngotBonus.SetActive(true);
+
+                    currentSpinIngotBonus.text = gameManager.GetBonus(winAmount);
+                    #endregion
                     #region CUMULATIVE WIN AFTER SPIN
                     parentCumulativeWinAfterSpin.SetActive(true);
                     tmp = subGamesData.savedTotalFgWinAmount;

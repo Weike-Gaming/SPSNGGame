@@ -153,13 +153,11 @@ namespace Weike.Games.JIXRY
             rendererCollection["Digit"].gameObject.SetActive(false);
             rendererCollection["FeatureGraphic"].gameObject.SetActive(false);
             rendererCollection["ScatterSpin"].gameObject.SetActive(false);
-
             switch (symbolID)
             {
-                case PrizeMultiplierIngot:
                 case JackpotIngot:
                     {
-                        if(!_isTransformed)
+                        if (!_isTransformed && _jackpotType >= 1 && _jackpotType <= 4)
                         {
                             bool isEn = WkLobbySceneManager.instance.dataModel.language == WkGameLanguage.EN;
                             AddFeatureImageInfo(isEn);
@@ -173,9 +171,8 @@ namespace Weike.Games.JIXRY
                     }
                     break;
             }
-
-            _isTransformed = false;
         }
+
 
         private void Update()
         {
@@ -193,7 +190,10 @@ namespace Weike.Games.JIXRY
         {
             Texture2D texture = null;
             SSFrame frame = new SSFrame();
-
+            if (_currentJackpotType < 1 || _currentJackpotType > 4)
+            {
+                return;
+            }
             switch (_currentJackpotType)
             {
                 case 1:
@@ -249,7 +249,6 @@ namespace Weike.Games.JIXRY
         {
             Texture2D texture = GetFeatureTexture(isEn);
             SSFrame frame = GetFeatureFrame();
-
             DrawImageInfo info = new DrawImageInfo();
             info.texture = texture;
             info.frame = frame;
@@ -258,52 +257,13 @@ namespace Weike.Games.JIXRY
 
             rendererCollection["FeatureGraphic"].gameObject.SetActive(true);
             rendererCollection["FeatureGraphic"].Draw();
-        }
-
-        private (Texture2D[], SSFrame[]) TryGetInfo(long amount)
-        {
-            List<Texture2D> textures = new List<Texture2D>();
-            List<SSFrame> frames = new List<SSFrame>();
-
-            // Add "+" symbol once at the start
-            (Texture2D plusTex, SSFrame plusFrame) = prizeAdditionInfo.GetTexture2DAndFrame("+");
-            textures.Add(plusTex);
-            frames.Add(plusFrame);
-
-            // Add digits
-            ReadOnlySpan<long> digits = GetDigits(amount);
-            for (int i = 0; i < digits.Length; i++)
-            {
-                string digit = digits[i].ToString();
-                (Texture2D tex, SSFrame frame) = prizeAdditionInfo.GetTexture2DAndFrame(digit);
-                textures.Add(tex);
-                frames.Add(frame);
-            }
-
-            return (textures.ToArray(), frames.ToArray());
-        }
-
-        private ReadOnlySpan<long> GetDigits(long num)
-        {
-            List<long> digits = new List<long>();
-
-            // Extract digits from right to left
-            while (num > 0)
-            {
-                digits.Add(num % 10);
-                num /= 10;
-            }
-
-            digits.Reverse(); // Reverse to get original order
-            return digits.ToArray();
+            _isTransformed = true;
         }
 
         private Texture2D GetFeatureTexture(bool isEn)
         {
             switch (symbolID)
             {
-                case PrizeMultiplierIngot:
-                    return ChangePrizeMultiplierSprite();
                 case JackpotIngot:
                     return ChangeJackpotTexture(isEn);
                 default:
@@ -315,8 +275,6 @@ namespace Weike.Games.JIXRY
         {
             switch (symbolID)
             {
-                case PrizeMultiplierIngot:
-                    return ChangeExtraPrizeMultiplierFrame();
                 case JackpotIngot:
                     return ChangeExtraJackpotFrame();
                 default:
@@ -361,37 +319,6 @@ namespace Weike.Games.JIXRY
         }
         #endregion
 
-        #region Prize
-        private Texture2D ChangePrizeMultiplierSprite()
-        {
-            switch (_multiplierType)
-            {
-                case 2:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier2_en").GetLastTexture();
-                case 3:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier3_en").GetLastTexture();
-                case 5:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier5_en").GetLastTexture();
-                default:
-                    Debug.Log($"Missing {_multiplierType}");
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier2_en").GetLastTexture();
-            }
-        }
-
-        private SSFrame ChangeExtraPrizeMultiplierFrame()
-        {
-            switch (_multiplierType)
-            {
-                case 2:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier2_en").GetLastFrame();
-                case 3:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier3_en").GetLastFrame();
-                case 5:
-                    return GetSymbolDetail().GetSpriteAnimationInfo("Multiplier5_en").GetLastFrame();
-            }
-
-            return new SSFrame();
-        }
         #endregion
 
         #region Jackpot
@@ -436,7 +363,6 @@ namespace Weike.Games.JIXRY
                     return new SSFrame();
             }
         }
-        #endregion
         #endregion
 
         #region Scatter
@@ -792,7 +718,7 @@ namespace Weike.Games.JIXRY
         /// <param name="callBack"></param>
         public void PlayNudgeAnimation(float duration, string key, Action callBack = null)
         {
-            if (CheckScatter() || CheckPrizeMultiplierIngot())
+            if (CheckScatter())
             {
                 callBack = () => PlaySpecificAnimation("Loop", -1, rendererCollection["Symbol"]);
             }
@@ -802,7 +728,7 @@ namespace Weike.Games.JIXRY
 
         protected override void PlayGameSpecificAnimation(float duration, string key, Action callBack = null)
         {
-            if (CheckScatter() || CheckPrizeMultiplierIngot())
+            if (CheckScatter())
             {
                 callBack = () => PlaySpecificAnimation("Loop", -1, rendererCollection["Symbol"]);
             }
@@ -812,7 +738,7 @@ namespace Weike.Games.JIXRY
 
         public void PlayLandingAnim()
         {
-            if (CheckNormalIngot() ||  CheckPrizeMultiplierIngot() || CheckJackpotIngot() || CheckScatter())
+            if (CheckNormalIngot() ||  CheckJackpotIngot() || CheckScatter())
             {
                 PlaySpecificAnimation("Landing", 1, rendererCollection["Symbol"], () => PlaySpecificAnimation("Loop", -1, rendererCollection["Symbol"]));
             }                 
