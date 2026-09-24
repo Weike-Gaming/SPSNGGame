@@ -261,6 +261,7 @@ namespace Weike.Games.JIXRY
                     GenerateIngotsDigit(true);
                     FgGenerateExtraPrizeMultiplier();
                     FgGenerateExtraJackpotIngot();
+                    FgGenerateMultiply();
 
                     // "PreSpin" stuff
                     UpdateReelIngotData(true);
@@ -412,17 +413,16 @@ namespace Weike.Games.JIXRY
             WkSlotWinManagerModel slotWinManagerModel = winManager.modelData as WkSlotWinManagerModel ?? throw new InvalidCastException();
             long iconWin = slotWinManagerModel.winAmount - slotWinManagerModel.totalFgWinAmount;
 
-            if (rm.haveNudge)
-            {
-                PerformNudge();
-            }
-
             FgCheckWinIngot();
 
             long ingotWin = slotWinManagerModel.winAmount - slotWinManagerModel.totalFgWinAmount - iconWin;
             long currentFreeGameWinAmount = slotWinManagerModel.winAmount - slotWinManagerModel.totalFgWinAmount;
             slotWinManagerModel.totalFgWinAmount = slotWinManagerModel.winAmount;
 
+            if (GetGameType().ToString().Contains("LW") && currentFreeGameWinAmount == 0)
+            {
+                freeGameDataModel.totalFreeGameAmount += 1;
+            }
             Debug.Log($"subGameSequence {freeGameDataModel.currentAmountOfFreeGame}/{freeGameDataModel.totalFreeGameAmount}: " +
                 $"FG current win {currentFreeGameWinAmount}, " +
                 $"FG current Icon win {iconWin}, " +
@@ -441,9 +441,7 @@ namespace Weike.Games.JIXRY
 
             bool isFgTriggered = dm.previousPotFeatureGameFlag != (byte)JIXRYStateDataFlag.MAIN_GAME;
             uint freeGameMultiplier = 1;
-            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.upcomingPotFeatureGameFlag;
-
-            if (feature.ToString().Contains("LW"))
+            if (GetGameType().ToString().Contains("LW"))
             {
                 // First call after spin
                 (byte maxWayWin, _) = wm.CheckIngotTrigger(
@@ -458,8 +456,6 @@ namespace Weike.Games.JIXRY
                     isHistory
                 );
                 dm.maxIngotWayWin = maxWayWin;
-                (rm.useDefaultSpinDir, rm.nudgeSteps) = GetNudgeData(maxWayWin);
-                rm.haveNudge = (maxWayWin > 1) ? true : false;
             }
 
             WkWinCheckingInfo info = new WkWinCheckingInfo()
@@ -500,14 +496,6 @@ namespace Weike.Games.JIXRY
                 !WkAssert.EnsureMsgf(reelManager, "ReelManager is missing during check win"))
                 return;
 
-            // Check if in nudge state and have nudge
-            JIXRYStateDataFlag feature = (JIXRYStateDataFlag)dm.potFeatureGameFlag;
-            bool isInReelNudge = feature.ToString().Contains("LW") ? true : false;
-            if (isInReelNudge && !rm.nudgeDoneThisSpin)
-            {
-                return;
-            }
-
             // Isolate only visible ingots from dm.ingotValue to pass into CheckIngotTrigger
             int totalNumRows = rd[0].numRows + rd[0].numDummy;
             int startRow = rd[0].numDummy / 2;
@@ -533,13 +521,14 @@ namespace Weike.Games.JIXRY
                 true,
                 modifyWinAmount,
                 false,
-                isHistory
+                isHistory,
+                GetGameType().ToString().Contains("LB")
             );
 
             // Extra Prize Data
             dm.maxIngotWayWin = maxIngotWayWin;
 
-            if ((feature.ToString().Contains("LB")) && maxIngotWayWin >= 2)
+            if ((GetGameType().ToString().Contains("LB")) && maxIngotWayWin >= 2)
             {
                 rd[2].haveMultiplierIngot = true;
             }
@@ -600,49 +589,6 @@ namespace Weike.Games.JIXRY
             freeGameDataModel.totalFreeGameAmount += extraFreeGame;
         }
 
-        #endregion
-
-        #region REEL NUDGE
-        private (bool[], uint[]) GetNudgeData(byte maxIngotWayWin)
-        {
-            bool[] useDefaultSpinDir = { false, false, false, false, false };
-            uint[] nudgeSteps = { 0, 0, 0, 0, 0 };
-
-            if (maxIngotWayWin < 2) return (useDefaultSpinDir, nudgeSteps);
-
-            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            JIXRYReelData[] rd = rm.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-            for (int reel = 0; reel < maxIngotWayWin; reel++)
-            {
-                // Check the 3 visible reels and set nudge steps
-                int indexTop = rm.GetReelIconIndex(reel, 2) - 1;
-                int indexCenter = rm.GetReelIconIndex(reel, 1) - 1;
-                int indexBottom = rm.GetReelIconIndex(reel, 0) - 1;
-
-                bool isIngotTop = rm.symbolInfo.symbolTemplate.symbols[indexTop].symbolType.Contains("INGOT");
-                bool isIngotCenter = rm.symbolInfo.symbolTemplate.symbols[indexCenter].symbolType.Contains("INGOT");
-                bool isIngotBottom = rm.symbolInfo.symbolTemplate.symbols[indexBottom].symbolType.Contains("INGOT");
-
-                if (isIngotTop && isIngotCenter && isIngotBottom)
-                {
-                    continue;
-                }
-
-                // Set spin direction
-                if (isIngotTop)
-                    useDefaultSpinDir[reel] = false;
-                if (isIngotBottom)
-                    useDefaultSpinDir[reel] = true;
-
-                // Set nudge steps
-                if (isIngotCenter)
-                    nudgeSteps[reel] = 1;
-                else
-                    nudgeSteps[reel] = 2;
-            }
-
-            return (useDefaultSpinDir, nudgeSteps);
-        }
         #endregion
 
         #region Generate Probability Before Spin
@@ -948,14 +894,14 @@ namespace Weike.Games.JIXRY
 
         private void FgGenerateExtraPrizeMultiplier()
         {
-            if (!GetGameType().Contains("RU")) return;
+            if (!GetGameType().Contains("LB")) return;
 
             JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
             JIXRYFreeGameDataModel fgdm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
             JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
 
             byte reel3 = 3;
-            byte ingotMultiplierIndex = 17;
+            byte ingotMultiplierIndex = 16;
 
             byte rtpFk = GetVariationIndex();
             uint betFk = dm.getPlayOption;
@@ -1018,65 +964,6 @@ namespace Weike.Games.JIXRY
             return 0;
         }
 
-        /// <summary>
-        /// Condensed version of normal GM doing reel nudge.
-        /// Adjusts rm.rmdm.rng & fgdm.fgIngotValue based on what was set by GetNudgeData().
-        /// </summary>
-        /// <exception cref="InvalidCastException"></exception>
-        private void PerformNudge()
-        {
-            JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
-            JIXRYFreeGameDataModel fgdm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
-            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
-            JIXRYReelData[] rd = rm.reelData as JIXRYReelData[] ?? throw new InvalidCastException();
-            int totalRows = rd[0].numRows + rd[0].numDummy;
-            int fgIngotValueIndex = 0;
-            for (int i = 0; i < dm.maxIngotWayWin; i++)
-            {
-                // Get subset of fgdm that corrosponds to that reel from uint[35] into uint[7]
-                uint[] reelIngotValue = new uint[totalRows];
-                fgIngotValueIndex = totalRows * i;
-                for (int j = 0; j < totalRows; j++)
-                {
-                    reelIngotValue[j] = fgdm.fgIngotValue[fgIngotValueIndex++];
-                }
-
-                if (rm.useDefaultSpinDir[i])
-                {
-                    // Nudge RNG
-                    rm.reelManagerDataModel.rng[i] += rm.nudgeSteps[i];
-
-                    // Nudge Ingot Values
-                    while (rm.nudgeSteps[i]-- > 0)
-                    {
-                        // Store first element
-                        uint firstElement = reelIngotValue[0];
-
-                        // Shift elements to the left
-                        Array.Copy(reelIngotValue, 1, reelIngotValue, 0, reelIngotValue.Length - 1);
-
-                        // Place the first element at the end
-                        reelIngotValue[reelIngotValue.Length - 1] = firstElement;
-                    }
-                }
-                else
-                {
-                    rm.reelManagerDataModel.rng[i] -= rm.nudgeSteps[i];
-                    while (rm.nudgeSteps[i]-- > 0)
-                    {
-                        // Same as above, but shift right
-                        uint lastElement = reelIngotValue[reelIngotValue.Length - 1];
-                        Array.Copy(reelIngotValue, 0, reelIngotValue, 1, reelIngotValue.Length - 1);
-                        reelIngotValue[0] = lastElement;
-                    }
-                }
-
-                // Update gm.dm.ingotValue
-                fgIngotValueIndex = totalRows * i;
-                Array.Copy(reelIngotValue, 0, fgdm.fgIngotValue, fgIngotValueIndex, totalRows);
-            }
-        }
-
         private void FgGenerateExtraJackpotIngot()
         {
             if (!GetGameType().Contains("JP")) return;
@@ -1097,8 +984,8 @@ namespace Weike.Games.JIXRY
             byte betMultiplier = (byte)dm.getBetMultiplier;
 
             byte reel5 = 5;
-            byte jackpotIngotIndex = 18;
-
+            byte jackpotIngotIndex = 17;
+            
             JIXRYExtraJackpotRoot extraJackpotRoot = _gameWeightageHandler.GetExtraJackpotRoot(rtpFk, betFk, GetGameType(), _reelStripSetIndex, "Jackpot", reel5, jackpotIngotIndex, jackpotSet, jackpotGroup, jackpotOption, betMultiplier);
 
             long totalWeight = extraJackpotRoot.totalWeightCount;
@@ -1143,6 +1030,42 @@ namespace Weike.Games.JIXRY
             }
             RandomJackpotQualifyingThreshold();
             rm.UpdateExtraJackpotType(fgdm.extraJackpotType);
+        }
+
+        private void FgGenerateMultiply()
+        {
+            if (!GetGameType().Contains("LB")) return;
+
+            JIXRYGameDataModel dm = dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
+            JIXRYFreeGameDataModel fgDm = freeGameDataModel as JIXRYFreeGameDataModel ?? throw new InvalidCastException();
+            JIXRYReelManager rm = reelManager as JIXRYReelManager ?? throw new InvalidCastException();
+
+            byte rtpFk = GetVariationIndex();
+            uint betFk = dm.getPlayOption;
+            uint betMultiplier = dm.getBetMultiplier;
+            string gameTypeFk = GetGameType();
+            uint[] temp = new uint[fgDm.fgIsMultiply.Length];
+            byte reelSetFk = _reelStripSetIndex;
+            {
+                JIXRYProbMultiplyRoot probMultiplyRoot = _gameWeightageHandler.GetProbMultiplyRoot(rtpFk, betFk, gameTypeFk, reelSetFk);
+                IEnumerable<JIXRYProbMultiplyProbabilityRoot> probList = _gameWeightageHandler.GetProbMultiplyProbability(rtpFk, betFk, gameTypeFk, reelSetFk);
+                long totalWeight = probMultiplyRoot.totalWeightCount;
+                for (int i = 0; i < fgDm.fgIsMultiply.Length; i++)
+                {
+                    uint rng = machineContext.platformInterface.GetRng((uint)totalWeight);
+                    long weight = 0;
+                    foreach (JIXRYProbMultiplyProbabilityRoot prob in probList)
+                    {
+                        weight += prob.weight;
+                        if (rng < weight)
+                        {
+                            temp[i] = (uint)prob.value;
+                            break;
+                        }
+                    }
+                }
+                fgDm.fgIsMultiply = temp.ToArray();
+            }
         }
         #endregion
 
@@ -1708,9 +1631,6 @@ namespace Weike.Games.JIXRY
                     tmp = $"Ingot {DebugGetIngotValue(reel, row)}";
                     break;
                 case 17:
-                    tmp = $"Ingot x{DebugGetMultiplier()}";
-                    break;
-                case 18:
                     tmp = "Ingot JP";
                     break;
                 default:
