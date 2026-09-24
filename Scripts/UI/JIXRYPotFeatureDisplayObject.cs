@@ -523,9 +523,9 @@ namespace Weike.Games.JIXRY
             JIXRYGameManager gm = owningPlayerController!.owner as JIXRYGameManager ?? throw new InvalidCastException();
             JIXRYGameDataModel dm = gm.dataModel as JIXRYGameDataModel ?? throw new InvalidCastException();
 
-            if (potTypeStr.Contains("RN")) return (isRecovery) ? dm.savedBluePotScatter : dm.tempBluePotScatter;
+            if (potTypeStr.Contains("LW")) return (isRecovery) ? dm.savedBluePotScatter : dm.tempBluePotScatter;
             if (potTypeStr.Contains("JP")) return (isRecovery) ? dm.savedRedPotScatter : dm.tempRedPotScatter;
-            if (potTypeStr.Contains("RU")) return (isRecovery) ? dm.savedGreenPotScatter : dm.tempGreenPotScatter;
+            if (potTypeStr.Contains("LB")) return (isRecovery) ? dm.savedGreenPotScatter : dm.tempGreenPotScatter;
             return 0;
         }
 

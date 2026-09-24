@@ -75,7 +75,7 @@ namespace Weike.Games.JIXRY
             extraPrize4MulContent.SetActive(false);
             jackpotContent.SetActive(false);
 
-            if (gm.GetUpcomingGameType().Contains("RU"))
+            if (gm.GetUpcomingGameType().Contains("LB"))
             {
                 //extraPrize2AddContent.SetActive(true);
                 extraPrize2MulContent.SetActive(true);

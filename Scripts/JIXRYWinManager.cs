@@ -224,7 +224,7 @@ namespace Weike.Games.JIXRY
 
                     string ingotType = symbolDetail.symbolType;
 
-                    if (potFeature.Contains("RN"))
+                    if (potFeature.Contains("LW"))
                     {
                         if (ingotType == "BLUE_SCATTER")
                         {
@@ -240,7 +240,7 @@ namespace Weike.Games.JIXRY
                         }
                     }
 
-                    if (potFeature.Contains("RU"))
+                    if (potFeature.Contains("LB"))
                     {
                         if (ingotType == "GREEN_SCATTER")
                         {

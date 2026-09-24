@@ -683,14 +683,10 @@ namespace Weike.Games.JIXRY
             JIXRYCheatDataModel cdm = cheatDataModel as JIXRYCheatDataModel ?? throw new InvalidCastException();
             if (cdm.fgCheatEnable)
             {
-                //// 作弊预设分支：直接取预设的倍率value
-                //uint tempProbMul = fgDm.probMultiplyValue;
-                //tempProbMul = cdm.predetermineProbMultiplyType;
-                //fgDm.probMultiplyValue = tempProbMul;
-                //// 如果需要通知ReelManager更新UI/标记，可以加一行类似Update接口，不需要就删掉
-                //// rm.UpdateProbMultiplyType(xxx, (byte)fgDm.probMultiplyValue);
-                //cdm.predetermineProbMultiplyType = 2;
-                //return;
+                // 作弊预设分支：直接取预设的倍率value
+                uint[] tempProbMul = cdm.predetermineIsMultiply;
+                fgDm.fgIsMultiply = tempProbMul.ToArray();
+                return;
             }
             byte rtpFk = GetVariationIndex();
             uint betFk = dm.getPlayOption;
@@ -1397,7 +1393,7 @@ namespace Weike.Games.JIXRY
                 }
             }
 
-            if(GetUpcomingGameType().Contains("RN"))
+            if(GetUpcomingGameType().Contains("LW"))
             {
                 if(dm.savedBluePotScatter < lowestLevel)
                 {
@@ -1405,7 +1401,7 @@ namespace Weike.Games.JIXRY
                 }
             }
 
-            if (GetUpcomingGameType().Contains("RU"))
+            if (GetUpcomingGameType().Contains("LB"))
             {
                 if (dm.savedGreenPotScatter < lowestLevel)
                 {
@@ -3062,7 +3058,8 @@ namespace Weike.Games.JIXRY
 
             bool ishaveMultiplier = false;
             int ingotNum = 0;
-            int[] indexs = new int[20];
+            uint[] indexs = new uint[20];
+            uint[] temp = new uint[20];
             for (int reel = 0; reel < totalReels; reel++) //5
             {
                 int numRows = reelManager.reelData[reel].numRows;
@@ -3081,7 +3078,7 @@ namespace Weike.Games.JIXRY
                         {
                             case "INGOT":
                                 {
-                                    indexs[ingotNum] = ingotPrizeIndex;
+                                    indexs[ingotNum] = (uint)ingotPrizeIndex;
                                     ingotNum++;
                                     if (fgDm.fgIsMultiply[ingotPrizeIndex] == 1)
                                     {
@@ -3098,7 +3095,8 @@ namespace Weike.Games.JIXRY
                 if (ingotNum == 0)
                     return;
                 uint index = machineContext.platformInterface.GetRng((uint)ingotNum);
-                fgDm.fgIsMultiply[indexs[index]] = 1;
+                temp[indexs[index]] = 1;
+                fgDm.fgIsMultiply = temp.ToArray();
             }
         }
         #endregion

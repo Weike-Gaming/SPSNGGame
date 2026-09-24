@@ -154,12 +154,12 @@ namespace Weike.Games.JIXRY
             // 5: Prize multipliers are added to Reels 3
 
             // Add Feature specific messages
-            if (gameType.Contains("RN") && gameType.Contains("JP") && gameType.Contains("RU"))
+            if (gameType.Contains("LW") && gameType.Contains("JP") && gameType.Contains("LB"))
             {
                 indices.Add(4);
                 indices.Add(5);
             }
-            else if (gameType.Contains("RN") && gameType.Contains("JP"))
+            else if (gameType.Contains("LW") && gameType.Contains("JP"))
             {
                 indices.Add(1);
                 indices.Add(4);
@@ -170,17 +170,17 @@ namespace Weike.Games.JIXRY
                 indices.Add(4);
                 indices.Add(5);
             }
-            else if (gameType.Contains("RN") && gameType.Contains("RU"))
+            else if (gameType.Contains("RN") && gameType.Contains("LB"))
             {
                 indices.Add(2);
                 indices.Add(5);
             }
-            else if (gameType.Contains("RN"))
+            else if (gameType.Contains("LW"))
             {
                 indices.Add(1);
                 indices.Add(2);
             }
-            else if (gameType.Contains("RU"))
+            else if (gameType.Contains("LB"))
             {
                 indices.Add(2);
                 indices.Add(3);
